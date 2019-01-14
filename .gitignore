@@ -6,7 +6,7 @@ target/
 libs/
 tmp/
 node_modules/
-out/
+out/*
 jaxws/jaxws-client/src/main/
 jaxws/jaxws-endpoint/src/main/webapp/WEB-INF/wsdl/
 
