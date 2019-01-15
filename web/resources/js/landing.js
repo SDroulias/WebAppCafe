@@ -2,11 +2,9 @@ $(document).ready(function(){
   const $pswd1 = $("#pswd1-register");
   const $pswd2 = $("#pswd2-register");
   const $passFeedback = $("#pass-val-feed");
+  const $pass2Feedback = $("#pass2-val-feed");
   const $registerForm = $("#register-form");
   let pswd1Check = false;
-  let pswd2Check = false;
-  console.log($pswd1);
-  console.log($passFeedback);
 
   function addInvalid(a) {
     if (!(a.hasClass("is-invalid"))){
@@ -42,31 +40,26 @@ $(document).ready(function(){
       addInvalid($(this));
       $passFeedback.html("Your password must contain at least one uppercase letter");
       pswd1Check = false;
-    } else if ($pswd2.val().length != 0 && $(this).val() !== $pswd2.val()) {
-      addValid($(this));
-      addInvalid($pswd2);
-      pswd1Check = true;
-      pswd2Check = false;
     } else {
       addValid($(this));
       pswd1Check = true;
     }
   });
 
-  $pswd2.change(function(){
+  $pswd2.keyup(function(){
     if ($pswd1.val() !== $(this).val() || $(this).val().length == 0){
-      console.log("Do not match!!");
       addInvalid($(this));
-      pswd2Check = false;
     } else {
-      console.log("They match!");
       addValid($(this));
-      pswd2Check = true;
     }
   });
 
   $registerForm.submit(function(e){
-    if (pswd1Check == false || pswd2Check == false) {
+    if (pswd1Check == false) {
+      e.preventDefault();
+    } else if ($pswd1.val() !== $pswd2.val()) {
+      addInvalid($pswd2);
+      $pass2Feedback.html("The passwords must match");
       e.preventDefault();
     }
   });
