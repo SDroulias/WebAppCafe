@@ -6,10 +6,14 @@ target/
 libs/
 tmp/
 node_modules/
+out/
 out/*
+lib/
 lib/*
 jaxws/jaxws-client/src/main/
 jaxws/jaxws-endpoint/src/main/webapp/WEB-INF/wsdl/
+build.xml
+
 
 # OS Files #
 
