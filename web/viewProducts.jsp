@@ -77,7 +77,7 @@
         </tr>
         </thead>
         <tbody>
-        <%--table with lists--%>
+        <%--Loops through the list of products--%>
         <c:forEach items="${products}" var="product">
             <tr>
                 <th class="id" scope="row">${product.getId()}</th>

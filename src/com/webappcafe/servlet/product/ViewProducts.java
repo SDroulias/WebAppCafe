@@ -12,22 +12,22 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "viewProducts", urlPatterns = {"/viewProducts"})
+@WebServlet(name = "viewProducts", value = {"/viewProducts"})
 public class ViewProducts extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ProductDAO productDAO = new ProductDAOImpl();
 
         List<Product> products = productDAO.getAllProducts();
 
         request.setAttribute("products", products);
-//        response.sendRedirect("viewProducts.jsp");
         request.getRequestDispatcher("viewProducts.jsp").forward(request, response);
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 
     }
 }
