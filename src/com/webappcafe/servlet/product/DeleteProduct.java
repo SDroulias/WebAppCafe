@@ -25,6 +25,14 @@ public class DeleteProduct extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        
+       
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
         ProductDAO productDAO;
         
         if(request.getParameter("id") != null) {
@@ -33,16 +41,9 @@ public class DeleteProduct extends HttpServlet {
             
             productDAO.deleteProduct(Integer.parseInt(request.getParameter("id")));
             
+            //response.sendRedirect("viewProducts");
+            
         }
-        
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-        
-        
     }
     
 }
