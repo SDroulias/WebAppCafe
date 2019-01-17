@@ -15,7 +15,7 @@
     <meta charset="utf-8">
     <title>View Products</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="./resources//css/style.css">
+    <link rel="stylesheet" type="text/css" href="./resources/css/viewproducts.css">
 </head>
 
 <body>
@@ -30,11 +30,11 @@
 
 <section class="container mt-4">
     <h1 class="text-center h2">Edit a Product</h1>
-    <form id="edit-form" class="mt-4" action="/UpdateProductServlet" method="POST">
+    <form id="edit-form" class="mt-4" action="updateProduct" method="POST">
         <div class="form-group row">
-            <label for="product-id" class="col-sm-2 col-form-label">Id</label>
+            <!--<label for="product-id" class="col-sm-2 col-form-label">Id</label>-->
             <div class="col-sm-10">
-                <input type="text" name="id" class="form-control-plaintext" id="product-id" required readonly>
+                <input type="hidden" name="id" class="form-control" id="product-id" readonly>
             </div>
         </div>
         <div class="form-group row">
@@ -85,33 +85,9 @@
                 <td class="price">${product.getPrice()}</td>
                 <td class="descr">${product.getDescription()}</td>
                 <td class="buttons"><button type="button" class="btn btn-outline-secondary edit-btn">Edit</button></td>
-                <td class="buttons"><a href="/DeleteProductServlet" class="btn btn-outline-danger delete-btn">Delete</a></td>
+                <td class="buttons"><button type="button" class="btn btn-outline-danger delete-btn">Delete</button></td>
             </tr>
         </c:forEach>
-        <%--<tr>--%>
-            <%--<th class="id" scope="row">1</th>--%>
-            <%--<td class="name">Mark</td>--%>
-            <%--<td class="price">15.89</td>--%>
-            <%--<td class="descr">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</td>--%>
-            <%--<td class="buttons"><button type="button" class="btn btn-outline-secondary edit-btn">Edit</button></td>--%>
-            <%--<td class="buttons"><a href="/DeleteProductServlet" class="btn btn-outline-danger delete-btn">Delete</a></td>--%>
-        <%--</tr>--%>
-        <%--<tr>--%>
-            <%--<th class="id"  scope="row">2</th>--%>
-            <%--<td class="name">Jacob</td>--%>
-            <%--<td class="price">9.99</td>--%>
-            <%--<td class="descr">skdjfsjdhfjskjfdhkjsdhkfjhsjhfdsjdfh</td>--%>
-            <%--<td class="buttons"><button type="button" class="btn btn-outline-secondary edit-btn">Edit</button></td>--%>
-            <%--<td class="buttons"><a href="/deleteProduct" class="btn btn-outline-danger delete-btn">Delete</a></td>--%>
-        <%--</tr>--%>
-        <%--<tr>--%>
-            <%--<th class="id" scope="row">3</th>--%>
-            <%--<td class="name">Larry</td>--%>
-            <%--<td class="price">10.11</td>--%>
-            <%--<td class="descr">sdkfjjskdhfjkshdkfjhskjdhfjshkdfhsd sdkjfhsjkdhfjkshdjkfsd sjdfhsjdhfjkshdjfshd sjkdfhjskdhfjsdhjfhsd skjdfhjskdhfjsdhf</td>--%>
-            <%--<td class="buttons"><button type="button" class="btn btn-outline-secondary edit-btn">Edit</button></td>--%>
-            <%--<td class="buttons"><a href="/deleteProduct" class="btn btn-outline-danger delete-btn">Delete</a></td>--%>
-        <%--</tr>--%>
         </tbody>
     </table>
 </section>
@@ -119,7 +95,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<<script type="text/javascript" src="./resources/js/main.js">
+<<script type="text/javascript" src="./resources/js/viewproducts.js">
 </script>
 </body>
 
