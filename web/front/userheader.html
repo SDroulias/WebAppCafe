@@ -1,6 +1,18 @@
 <nav class="navbar navbar-dark bg-dark">
-  <a href="#" class="navbar-brand">Logo</a>
-  <form class="form-inine" action="/" method="post">
-    <i class="fa fa-user fa-2x"></i>
-  </form>
+  <a id="logo" href="#" class="navbar-brand">Logo</a>
+  <div class="d-flex align-items-center">
+    <a href="cart"><i class="fa fa-coffee fa-2x"></i></a>
+    <ul class="nav">
+      <li class="nav-item dropdown">
+        <i class="fa fa-user fa-2x nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="orders">Orders</a>
+          <a class="dropdown-item" href="userprofile.html">Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Logout</a>
+        </div>
+      </li>
+    </ul>
+    <p id="username-value" class="mt-3"><!-- ${user.getUsername()}  -->username</p>
+  </div>
 </nav>
