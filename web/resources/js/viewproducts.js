@@ -10,7 +10,7 @@ $(document).ready(function(){
   
   $deleteBtn.click(function(){
     $deleteId = $(this).parent().siblings(".id");
-    $.post("DeleteProductServlet", {id: $deleteId.html()});
+    $.post("deleteProduct", {id: $deleteId.html()});
   });
 
   $editBtn.click(function(){

@@ -30,7 +30,7 @@
 
 <section class="container mt-4">
     <h1 class="text-center h2">Edit a Product</h1>
-    <form id="edit-form" class="mt-4" action="UpdateProductServlet" method="POST">
+    <form id="edit-form" class="mt-4" action="updateProduct" method="POST">
         <div class="form-group row">
             <!--<label for="product-id" class="col-sm-2 col-form-label">Id</label>-->
             <div class="col-sm-10">
