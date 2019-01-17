@@ -2,10 +2,16 @@ $(document).ready(function(){
   const $editForm = $("#edit-form");
   const $submitBtn = $("#submit-edit");
   const $editBtn = $(".edit-btn");
+  const $deleteBtn = $(".delete-btn");
   const $formId = $("#product-id");
   const $formName = $("#product-name");
   const $formPrice = $("#product-price");
   const $formDescr = $("#product-descr");
+  
+  $deleteBtn.click(function(){
+    $deleteId = $(this).parent().siblings(".id");
+    $.post("DeleteProductServlet", {id: $deleteId.html()});
+  });
 
   $editBtn.click(function(){
     $id = $(this).parent().siblings(".id");
