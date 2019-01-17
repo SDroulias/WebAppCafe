@@ -8,6 +8,8 @@ public class Customer
     private String username;
     private String password;
     
+    public Customer(){};
+    
     public Customer(int id, String fname, String lname, String username, String password)
     {
         this.id = id;

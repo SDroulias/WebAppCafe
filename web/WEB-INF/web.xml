@@ -29,6 +29,7 @@
         <servlet-name>LoginFunction</servlet-name>
         <url-pattern>/LoginFunction</url-pattern>
     </servlet-mapping>
+    
     <servlet>
         <description></description>
         <display-name>LogoutFunction</display-name>
@@ -38,5 +39,16 @@
     <servlet-mapping>
         <servlet-name>LogoutFunction</servlet-name>
         <url-pattern>/LogoutFunction</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <description></description>
+        <display-name>RegistrationFunction</display-name>
+        <servlet-name>RegistrationFunction</servlet-name>
+        <servlet-class>com.webappcafe.servlet.product.RegistrationFunction</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegistrationFunction</servlet-name>
+        <url-pattern>/RegistrationFunction</url-pattern>
     </servlet-mapping>
 </web-app>
