@@ -7,5 +7,8 @@ import java.util.List;
 public interface ProductDAO {
 
     long saveProduct(Product product);
+    
     List<Product> getAllProducts();
+    
+    int deleteProduct(int id);
 }

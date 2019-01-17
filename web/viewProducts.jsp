@@ -85,33 +85,9 @@
                 <td class="price">${product.getPrice()}</td>
                 <td class="descr">${product.getDescription()}</td>
                 <td class="buttons"><button type="button" class="btn btn-outline-secondary edit-btn">Edit</button></td>
-                <td class="buttons"><a class="btn btn-outline-danger delete-btn">Delete</a></td>
+                <td class="buttons"><button type="button" class="btn btn-outline-danger delete-btn">Delete</button></td>
             </tr>
         </c:forEach>
-        <%--<tr>--%>
-            <%--<th class="id" scope="row">1</th>--%>
-            <%--<td class="name">Mark</td>--%>
-            <%--<td class="price">15.89</td>--%>
-            <%--<td class="descr">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</td>--%>
-            <%--<td class="buttons"><button type="button" class="btn btn-outline-secondary edit-btn">Edit</button></td>--%>
-            <%--<td class="buttons"><a href="/DeleteProductServlet" class="btn btn-outline-danger delete-btn">Delete</a></td>--%>
-        <%--</tr>--%>
-        <%--<tr>--%>
-            <%--<th class="id"  scope="row">2</th>--%>
-            <%--<td class="name">Jacob</td>--%>
-            <%--<td class="price">9.99</td>--%>
-            <%--<td class="descr">skdjfsjdhfjskjfdhkjsdhkfjhsjhfdsjdfh</td>--%>
-            <%--<td class="buttons"><button type="button" class="btn btn-outline-secondary edit-btn">Edit</button></td>--%>
-            <%--<td class="buttons"><a href="/deleteProduct" class="btn btn-outline-danger delete-btn">Delete</a></td>--%>
-        <%--</tr>--%>
-        <%--<tr>--%>
-            <%--<th class="id" scope="row">3</th>--%>
-            <%--<td class="name">Larry</td>--%>
-            <%--<td class="price">10.11</td>--%>
-            <%--<td class="descr">sdkfjjskdhfjkshdkfjhskjdhfjshkdfhsd sdkjfhsjkdhfjkshdjkfsd sjdfhsjdhfjkshdjfshd sjkdfhjskdhfjsdhjfhsd skjdfhjskdhfjsdhf</td>--%>
-            <%--<td class="buttons"><button type="button" class="btn btn-outline-secondary edit-btn">Edit</button></td>--%>
-            <%--<td class="buttons"><a href="/deleteProduct" class="btn btn-outline-danger delete-btn">Delete</a></td>--%>
-        <%--</tr>--%>
         </tbody>
     </table>
 </section>
