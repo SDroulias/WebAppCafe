@@ -1,4 +1,4 @@
-    package com.webappcafe.datasource;
+package com.webappcafe.datasource;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

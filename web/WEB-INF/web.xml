@@ -18,10 +18,7 @@
         <url-pattern>/viewProducts</url-pattern>
     </servlet-mapping>
 
-<!--    <display-name>LoginMvc</display-name>
-    <welcome-file-list>
-        <welcome-file>Login.jsp</welcome-file>
-    </welcome-file-list>-->
+
     <servlet>
         <description></description>
         <display-name>LoginFunction</display-name>
@@ -32,14 +29,14 @@
         <servlet-name>LoginFunction</servlet-name>
         <url-pattern>/LoginFunction</url-pattern>
     </servlet-mapping>
-<!--    <servlet>
+    <servlet>
         <description></description>
-        <display-name>LogoutServlet</display-name>
-        <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>com.mvc.controller.LogoutServlet</servlet-class>
+        <display-name>LogoutFunction</display-name>
+        <servlet-name>LogoutFunction</servlet-name>
+        <servlet-class>com.webappcafe.servlet.product.LogoutFunction</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>LogoutServlet</servlet-name>
-        <url-pattern>/LogoutServlet</url-pattern>
-    </servlet-mapping>-->
+        <servlet-name>LogoutFunction</servlet-name>
+        <url-pattern>/LogoutFunction</url-pattern>
+    </servlet-mapping>
 </web-app>
