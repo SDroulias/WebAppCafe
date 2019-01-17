@@ -20,7 +20,7 @@ $(document).ready(function(){
     }
   }
 
-  $pswd1.change(function(){
+  $pswd1.keyup(function(){
     re1 = /[0-9]/;
     re2 = /[a-z]/;
     re3 = /[A-Z]/;
