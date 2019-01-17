@@ -1,0 +1,26 @@
+
+body {
+  height: 100vh;
+  background-image: url("../images/beans.jpg");
+  background-repeat: repeat;
+}
+
+h1 {
+  text-decoration: underline;
+}
+
+main {
+  background-color: #fff;
+}
+
+.border-cols {
+  border-right: 1px solid #343a40;
+}
+
+a {
+  color: #343a40;
+}
+
+a:hover {
+  color: #ffd621;
+}
