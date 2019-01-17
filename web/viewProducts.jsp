@@ -85,7 +85,7 @@
                 <td class="price">${product.getPrice()}</td>
                 <td class="descr">${product.getDescription()}</td>
                 <td class="buttons"><button type="button" class="btn btn-outline-secondary edit-btn">Edit</button></td>
-                <td class="buttons"><a href="/DeleteProductServlet" class="btn btn-outline-danger delete-btn">Delete</a></td>
+                <td class="buttons"><a href="/deleteProduct?id=${product.getId()}" class="btn btn-outline-danger delete-btn">Delete</a></td>
             </tr>
         </c:forEach>
         <%--<tr>--%>

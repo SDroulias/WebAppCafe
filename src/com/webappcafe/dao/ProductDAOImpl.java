@@ -11,6 +11,8 @@ public class ProductDAOImpl implements ProductDAO {
 
     private static final String INSERT_PRODUCT_STATEMENT = String.format("INSERT INTO %s (%s, %s, %s) VALUES(?, ?, ?);",
             "`products`", "`name`", "`description`", "`price`");
+    
+    private static final String DELETE_PRODUCT_STATEMENT = "DELETE FROM `products` WHERE `id`=?";
 
     //TODO final String UPDATE_STATEMENT
 
@@ -20,6 +22,7 @@ public class ProductDAOImpl implements ProductDAO {
 
     private Database database = Database.getInstance();
 
+    @Override
     public long saveProduct(Product product) {
 
         long id = 0;
@@ -58,6 +61,7 @@ public class ProductDAOImpl implements ProductDAO {
         return id;
     }
 
+    @Override
     public List<Product> getAllProducts() {
         List<Product> productList = new ArrayList<>();
         try (Connection connection = database.getConnection();
@@ -76,5 +80,26 @@ public class ProductDAOImpl implements ProductDAO {
             e.printStackTrace();
         }
         return productList;
+    }
+
+    @Override
+    public int deleteProduct(int id) {
+        int affectedRows = 0;
+        
+        PreparedStatement preparedStmt = Database.getInstance().getPreparedStatement(DELETE_PRODUCT_STATEMENT);
+        try {
+            preparedStmt.setLong(1, id);
+            
+            ResultSet results = preparedStmt.getGeneratedKeys();
+            
+            affectedRows = preparedStmt.executeUpdate();
+            
+            return affectedRows;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        
+        return affectedRows;
     }
 }

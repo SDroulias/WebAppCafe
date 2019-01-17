@@ -5,7 +5,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+/*
+ * A singleton Class which when we get the instance, a single instance is created.
+ * Anytime a query has to be executed, a new connection and a statement is created.
+ */
 public class Database {
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -20,10 +27,72 @@ public class Database {
     public static final String COLUMN_ID = "`id`";
 
     private Connection connection;
+    private Statement statement;
 
     private Database() {
+        connection = null;
+        statement = null;
     }
 
+    public <T> T connectAndExecute(String sqlQuery, byte t) {
+        switch(t) {
+            case 0: 
+                return (T) executeUpdate(sqlQuery);
+            case 1:
+                return (T) executeQuery(sqlQuery);
+        }
+       return null;
+    }
+    
+    public ResultSet executePreparedStatement(String sqlQuery) {
+        connection = getConnection();
+        statement = getStatement();
+        PreparedStatement prpstmt = getPreparedStatement(sqlQuery);
+        
+        try {
+            return prpstmt.executeQuery(sqlQuery);
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public PreparedStatement getPreparedStatement(String sqlQuery) {
+        connection = getConnection();
+        statement = getStatement();
+        
+        try {
+            return connection.prepareStatement(sqlQuery);
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public Integer executeUpdate(String sqlQuery) {
+        connection = getConnection();
+        statement = getStatement();
+        
+        try {
+            return statement.executeUpdate(sqlQuery);
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    
+    public ResultSet executeQuery(String sqlQuery) {
+        connection = getConnection();
+        statement = getStatement();
+        
+        try {
+            return statement.executeQuery(sqlQuery);
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
     public static Database getInstance() {
         if (databaseInstance == null) {
             databaseInstance = new Database();
@@ -39,6 +108,15 @@ public class Database {
             System.out.println("Couldn't connect to the database: " + e.getMessage());
         }
         return connection;
+    }
+    
+    public Statement getStatement() {
+        try {
+            statement = connection.createStatement();
+        } catch (SQLException e) {
+            System.out.println("Couldn't create a statement: " + e.getMessage());
+        }
+        return statement;
     }
 
     public boolean connectionTest() {
