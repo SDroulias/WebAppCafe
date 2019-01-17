@@ -10,7 +10,16 @@ $(document).ready(function(){
   
   $deleteBtn.click(function(){
     $deleteId = $(this).parent().siblings(".id");
-    $.post("deleteProduct", {id: $deleteId.html()});
+//    $.post("deleteProduct", {id: $deleteId.html()});
+    
+    $.ajax({
+    type: "POST",
+    url: "deleteProduct",
+    data: {id: $deleteId.html()},
+    success: function() {   
+        location.reload(true);  
+    }
+    });
   });
 
   $editBtn.click(function(){

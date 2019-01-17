@@ -41,7 +41,7 @@ public class DeleteProduct extends HttpServlet {
             
             productDAO.deleteProduct(Integer.parseInt(request.getParameter("id")));
             
-            //response.sendRedirect("viewProducts");
+//            response.sendRedirect("viewProducts");
             
         }
     }

@@ -85,7 +85,7 @@
                 <td class="price">${product.getPrice()}</td>
                 <td class="descr">${product.getDescription()}</td>
                 <td class="buttons"><button type="button" class="btn btn-outline-secondary edit-btn">Edit</button></td>
-                <td class="buttons"><a class="btn btn-outline-danger delete-btn">Delete</a></td>
+                <td class="buttons"><button type="button" class="btn btn-outline-danger delete-btn">Delete</button></td>
             </tr>
         </c:forEach>
         </tbody>
