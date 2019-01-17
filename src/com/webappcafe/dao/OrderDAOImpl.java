@@ -1,27 +1,27 @@
 package com.webappcafe.dao;
 
 import com.webappcafe.datasource.Database;
-import com.webappcafe.model.Product;
+import com.webappcafe.model.Order;
 
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDAOImpl implements ProductDAO {
+public class OrderDAOImpl implements OrderDAO {
 
-    private static final String INSERT_PRODUCT_STATEMENT = String.format("INSERT INTO %s (%s, %s, %s) VALUES(?, ?, ?);",
-            "`products`", "`name`", "`description`", "`price`");
+    private static final String INSERT_ORDER_STATEMENT = String.format("INSERT INTO %s (%s, %s) VALUES(?, ?);",
+            "`orders`", "`customer_id`", "`status`");
 
-    //TODO final String UPDATE_STATEMENT
+    public static final String SELECT_ORDERS_STATEMENT = String.format("SELECT * FROM %s;", "`orders`");
 
-//    public static final String UPDATE_STATEMENT = String.format("UPDATE %s SET ");
-
-    public static final String SELECT_PRODUCT_STATEMENT = String.format("SELECT * FROM %s;", "`products`");
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     private Database database = Database.getInstance();
 
     @Override
-    public long saveProduct(Product product) {
+    public long saveOrder(Order order) {
 
         long id = 0;
 
@@ -30,10 +30,9 @@ public class ProductDAOImpl implements ProductDAO {
         ResultSet resultSet = null;
 
         try {
-            preparedStatement = connection.prepareStatement(INSERT_PRODUCT_STATEMENT, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, product.getName());
-            preparedStatement.setString(2, product.getDescription());
-            preparedStatement.setDouble(3, product.getPrice());
+            preparedStatement = connection.prepareStatement(INSERT_ORDER_STATEMENT, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setLong(1,  order.getCustomerId());
+            preparedStatement.setString(2, order.getStatus());
 
             if (preparedStatement.executeUpdate() > 0) {
                 resultSet = preparedStatement.getGeneratedKeys();
@@ -60,23 +59,23 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public List<Product> getAllProducts() {
-        List<Product> productList = new ArrayList<>();
+    public List<Order> getAllOrders() {
+        List<Order> orderList = new ArrayList<>();
         try (Connection connection = database.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PRODUCT_STATEMENT);
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ORDERS_STATEMENT);
              ResultSet resultSet = preparedStatement.executeQuery()) {
             resultSet.beforeFirst();
             while (resultSet.next()) {
-                Product product = new Product();
-                product.setId(resultSet.getLong(1));
-                product.setName(resultSet.getString(2));
-                product.setDescription(resultSet.getString(3));
-                product.setPrice(resultSet.getDouble(4));
-                productList.add(product);
+                Order order = new Order();
+                order.setId(resultSet.getLong(1));
+                order.setDate(LocalDateTime.parse(resultSet.getString(2), FORMATTER));
+                order.setCustomerId(resultSet.getLong(3));
+                order.setStatus(resultSet.getString(4));
+                orderList.add(order);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return productList;
+        return orderList;
     }
 }
