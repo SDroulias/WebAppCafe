@@ -2,7 +2,7 @@ package com.webappcafe.model;
 
 public class Customer 
 {
-    private int id;
+    private long id;
     private String fname;
     private String lname;
     private String username;
@@ -19,12 +19,12 @@ public class Customer
         this.password = password;
     }
 
-    public int getId()
+    public long getId()
     {
         return id;
     }
 
-    public void setId(int id)
+    public void setId(long id)
     {
         this.id = id;
     }
