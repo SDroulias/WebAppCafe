@@ -15,9 +15,7 @@ public class ProductDAOImpl implements ProductDAO {
     private static final String DELETE_PRODUCT_STATEMENT = "DELETE FROM `products` WHERE `id`=?";
 
     public static final String UPDATE_PRODUCT_STATEMENT = "UPDATE `products` SET `name` = ?, `description` = ?, `price` = ? "
-            + "WHERE `id` = ?";
-    
-    public static final String UPDATE_PRODUCT_AVAILABILITY = "UPDATE `products` SET `is_availabe` = ? WHERE `id` = ?";
+            + "WHERE `id` = ?";    
 
     public static final String SELECT_PRODUCT_STATEMENT = String.format("SELECT * FROM %s;", "`products`");
     
@@ -144,7 +142,7 @@ public class ProductDAOImpl implements ProductDAO {
             ResultSet results = preparedStmt.executeQuery();
             
             p = fetchProductByResultSet(results);
-            
+                
             return p;
             
         } catch (SQLException e) {
@@ -160,25 +158,23 @@ public class ProductDAOImpl implements ProductDAO {
     public Product fetchProductByResultSet(ResultSet results) {
         Product p = null;
         
-        if(results != null) {
-            
             try {
+                while(results.next()) {
                 p = Product.createProduct(
                         results.getLong("id"), 
                         results.getString("name"), 
                         results.getString("description"), 
                         results.getDouble("price"),
-                        results.getByte("is_available"));
+                        results.getBoolean("is_available"));
                 
                 return p;
+                }
                 
             } catch(SQLException e) {
                 System.out.println(e.getMessage());
                 e.printStackTrace();
             }
             
-        }
-        
         //if p = null
         return p;
     }

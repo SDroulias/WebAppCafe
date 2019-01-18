@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(name = "setProductAnavailable", urlPatterns = {"/setProductAnavailable"})
-public class SetProductAnavailable extends HttpServlet {
+@WebServlet(name = "setProductUnavailable", urlPatterns = {"/setProductUnavailable"})
+public class SetProductUnavailable extends HttpServlet {
 
    
     @Override
@@ -30,6 +30,6 @@ public class SetProductAnavailable extends HttpServlet {
         
         ProductService service = new ProductService();
         
-        service.updateProductAvailability(Long.parseLong(request.getParameter("id")), (byte)0);
+        service.updateProductAvailability(Long.parseLong(request.getParameter("id")), false);
     }
 }

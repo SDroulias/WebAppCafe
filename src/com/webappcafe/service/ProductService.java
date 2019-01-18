@@ -14,7 +14,7 @@ public class ProductService {
     
     private ProductDAO productDAO;
     
-    public boolean updateProductAvailability(long id, byte isAvailable) {
+    public void updateProductAvailability(long id, boolean isAvailable) {
         
         productDAO = new ProductDAOImpl();
         
@@ -26,10 +26,6 @@ public class ProductService {
             
             productDAO.updateProduct(p);
             
-            return true;
         }
-        
-        return false;
     }
-    
 }

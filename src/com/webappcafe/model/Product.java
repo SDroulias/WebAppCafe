@@ -6,7 +6,7 @@ public class Product {
     private String name;
     private String description;
     private double price;
-    private byte isAvailable;
+    private boolean isAvailable;
 
     public Product() {
     }
@@ -20,13 +20,12 @@ public class Product {
         setName(name);
         setDescription(description);
         setPrice(price);
-        setIsAvailable((byte)1); //setting available when a Product is created
     }
 
     /*
      *  This constructor is for fetching a Product from database
      */
-    private Product(long id, String name, String description, double price, byte isAvailable) {
+    private Product(long id, String name, String description, double price, boolean isAvailable) {
         setId(id);
         setName(name);
         setDescription(description);
@@ -34,11 +33,11 @@ public class Product {
         setIsAvailable(isAvailable);
     }
 
-    public byte getIsAvailable() {
+    public boolean getIsAvailable() {
         return isAvailable;
     }
 
-    public void setIsAvailable(byte isAvailable) {
+    public void setIsAvailable(boolean isAvailable) {
         this.isAvailable = isAvailable;
     }
     
@@ -74,7 +73,7 @@ public class Product {
         this.price = price;
     }
 
-    public static Product createProduct(long id, String name, String description, double price, byte isAvailable) {
+    public static Product createProduct(long id, String name, String description, double price, boolean isAvailable) {
         return new Product(id, name, description, price, isAvailable);
     }
 

@@ -14,7 +14,7 @@ $(document).ready(function(){
     
     $.ajax({
     type: "POST",
-    url: "deleteProduct",
+    url: "setProductUnavailable",
     data: {id: $deleteId.html()},
     success: function() {   
         location.reload(true);  
