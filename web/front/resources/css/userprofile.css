@@ -2,12 +2,12 @@ main {
   margin-top: 4.5rem;
 }
 
-#update-form {
+#update-user {
   border: 1px solid #d2ab00;
   color: #d2ab00;
 }
 
-#update-form:hover {
+#update-user:hover {
   background-color: #d2ab00;
-  color: #343a40;
+  color: #fff;
 }
