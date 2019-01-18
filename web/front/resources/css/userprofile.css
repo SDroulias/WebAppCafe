@@ -1,5 +1,7 @@
 main {
-  margin-top: 4.5rem;
+  position: relative;
+  top: 4.5rem;
+  overflow: auto;
 }
 
 #update-user {
