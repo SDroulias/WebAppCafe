@@ -31,5 +31,5 @@ main {
 } */
 
 #content .row:nth-child(odd) {
-  background-color: lightgrey;
+  background-color: #f2f2f2;
 }
