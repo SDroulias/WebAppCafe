@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.webappcafe.servlet.product;
 
 import com.webappcafe.dao.ProductDAO;
 import com.webappcafe.dao.ProductDAOImpl;
+import com.webappcafe.model.Product;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,32 +12,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(name = "deleteProduct", value = {"/deleteProduct"})
-public class DeleteProduct extends HttpServlet {
+@WebServlet(name = "editProduct", urlPatterns = {"/editProduct"})
+public class EditProduct extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         
-       
+        
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        ProductDAO productDAO;
+        ProductDAO productDAO = new ProductDAOImpl();
         
-        if(request.getParameter("id") != null) {
-            
-            productDAO = new ProductDAOImpl();
-            
-            productDAO.deleteProduct(Integer.parseInt(request.getParameter("id")));
-            
-//            response.sendRedirect("viewProducts");
-            
-        }
+        Product p = Product.createProduct(
+                request.getParameter("productName"), 
+                request.getParameter("description"), 
+                Double.parseDouble(request.getParameter("price"))
+        );
+        
+        productDAO.deleteProduct((int)p.getId());
+        
     }
     
 }

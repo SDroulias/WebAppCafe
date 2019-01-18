@@ -6,6 +6,8 @@ import com.webappcafe.model.Product;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ProductDAOImpl implements ProductDAO {
 
@@ -14,9 +16,8 @@ public class ProductDAOImpl implements ProductDAO {
     
     private static final String DELETE_PRODUCT_STATEMENT = "DELETE FROM `products` WHERE `id`=?";
 
-    //TODO final String UPDATE_STATEMENT
-
-//    public static final String UPDATE_STATEMENT = String.format("UPDATE %s SET ");
+    public static final String UPDATE_PRODUCT_STATEMENT = "UPDATE `products` SET `name` = ?, `description` = ?, `price` = ? "
+            + "WHERE `id` = ?";
 
     public static final String SELECT_PRODUCT_STATEMENT = String.format("SELECT * FROM %s;", "`products`");
 
@@ -95,6 +96,7 @@ public class ProductDAOImpl implements ProductDAO {
             affectedRows = preparedStmt.executeUpdate();
             
             return affectedRows;
+            
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -102,4 +104,32 @@ public class ProductDAOImpl implements ProductDAO {
         
         return affectedRows;
     }
+
+    @Override
+    public int editProduct(Product product) {
+        int affectedRows = 0;
+        
+        PreparedStatement preparedStmt = Database.getInstance().getPreparedStatement(UPDATE_PRODUCT_STATEMENT);
+        try {
+            preparedStmt.setString(1, product.getName());
+            preparedStmt.setString(2, product.getDescription());
+            preparedStmt.setDouble(3, product.getPrice());
+            preparedStmt.setLong(4, product.getId());
+            
+            ResultSet results = preparedStmt.getGeneratedKeys();
+            
+            affectedRows = preparedStmt.executeUpdate();
+            
+            return affectedRows;
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        
+        
+        return affectedRows;
+    }
+    
+    
 }

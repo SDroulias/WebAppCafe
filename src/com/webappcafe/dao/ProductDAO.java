@@ -11,4 +11,6 @@ public interface ProductDAO {
     List<Product> getAllProducts();
     
     int deleteProduct(int id);
+    
+    int editProduct(Product product);
 }
