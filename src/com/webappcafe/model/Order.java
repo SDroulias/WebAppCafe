@@ -1,6 +1,7 @@
 package com.webappcafe.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Order {
 
@@ -9,6 +10,7 @@ public class Order {
     private long customerId;
     private String status;
     private boolean isAvailable;
+    private List<String> productsOfOrder;
 
     public Order() {
     }
@@ -71,7 +73,15 @@ public class Order {
     public void setIsAvailable(boolean isAvailable) {
         this.isAvailable = isAvailable;
     }
-    
+
+    public List<String> getProductsOfOrder() {
+        return productsOfOrder;
+    }
+
+    public void setProductsOfOrder(List<String> productsOfOrder) {
+        this.productsOfOrder = productsOfOrder;
+    }
+
     public static Order createOrder(long id, LocalDateTime date, long customerId, String status, boolean isAvailable) {
         return new Order(id, date, customerId, status, isAvailable);
     }

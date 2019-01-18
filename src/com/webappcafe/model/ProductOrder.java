@@ -1,48 +1,48 @@
 package com.webappcafe.model;
 
 public class ProductOrder {
-    private int id;
-    private int ordersId;
-    private int productsId;
+    private long id;
+    private long ordersId;
+    private long productsId;
     private int productsQuantity;
 
     private ProductOrder() {
     }
     
-    private ProductOrder(int id, int ordersId, int productsId, int productsQuantity) {
+    private ProductOrder(long id, long ordersId, long productsId, int productsQuantity) {
         setId(id);
         setOrdersId(ordersId);
         setProductsId(productsId);
         setProductsQuantity(productsQuantity);
     }
     
-    private ProductOrder(int ordersId, int productsId, int productsQuantity) {
+    private ProductOrder(long ordersId, long productsId, int productsQuantity) {
         setOrdersId(ordersId);
         setProductsId(productsId);
         setProductsQuantity(productsQuantity);
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getOrdersId() {
+    public long getOrdersId() {
         return ordersId;
     }
 
-    public void setOrdersId(int ordersId) {
+    public void setOrdersId(long ordersId) {
         this.ordersId = ordersId;
     }
 
-    public int getProductsId() {
+    public long getProductsId() {
         return productsId;
     }
 
-    public void setProductsId(int productsId) {
+    public void setProductsId(long productsId) {
         this.productsId = productsId;
     }
 
@@ -54,11 +54,11 @@ public class ProductOrder {
         this.productsQuantity = productsQuantity;
     }
     
-    public static ProductOrder createProductOrder(int id, int ordersId, int productsId, int productsQuantity) {
+    public static ProductOrder createProductOrder(long id, long ordersId, long productsId, int productsQuantity) {
         return new ProductOrder(id, ordersId, productsId, productsQuantity);
     }
     
-    public static ProductOrder createProductOrder(int ordersId, int productsId, int productsQuantity) {
+    public static ProductOrder createProductOrder(long ordersId, long productsId, int productsQuantity) {
         return new ProductOrder(ordersId, productsId, productsQuantity);
     }
 
