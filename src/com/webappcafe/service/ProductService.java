@@ -28,4 +28,22 @@ public class ProductService {
             
         }
     }
+    
+    public void editProduct(long id, String name, double price, String description) {
+        
+        productDAO = new ProductDAOImpl();
+        
+        Product p = productDAO.getProductById(id);
+        
+        if(p != null) {
+            
+            p.setName(name);
+            p.setPrice(price);
+            p.setDescription(description);
+            
+            productDAO.updateProduct(p);
+            
+        }
+        
+    }
 }

@@ -1,10 +1,7 @@
 package com.webappcafe.servlet.product;
 
-import com.webappcafe.dao.ProductDAO;
-import com.webappcafe.dao.ProductDAOImpl;
-import com.webappcafe.model.Product;
+import com.webappcafe.service.ProductService;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +24,12 @@ public class EditProduct extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        ProductService service = new ProductService();
         
+        service.editProduct(Long.parseLong(request.getParameter("id")), 
+                request.getParameter("name"), 
+                Double.parseDouble(request.getParameter("price")), 
+                request.getParameter("description"));
         
     }
     
