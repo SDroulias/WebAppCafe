@@ -8,6 +8,7 @@ package com.webappcafe.service;
 import com.webappcafe.dao.ProductDAO;
 import com.webappcafe.dao.ProductDAOImpl;
 import com.webappcafe.model.Product;
+import java.util.List;
 
 
 public class ProductService {
@@ -44,6 +45,5 @@ public class ProductService {
             productDAO.updateProduct(p);
             
         }
-        
     }
 }
