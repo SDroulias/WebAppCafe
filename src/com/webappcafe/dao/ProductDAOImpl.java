@@ -14,7 +14,7 @@ public class ProductDAOImpl implements ProductDAO {
     
     private static final String DELETE_PRODUCT_STATEMENT = "DELETE FROM `products` WHERE `id`=?";
 
-    public static final String UPDATE_PRODUCT_STATEMENT = "UPDATE `products` SET `name` = ?, `description` = ?, `price` = ? "
+    public static final String UPDATE_PRODUCT_STATEMENT = "UPDATE `products` SET `name` = ?, `description` = ?, `price` = ?, `is_available` = ? "
             + "WHERE `id` = ?";    
 
     public static final String SELECT_PRODUCT_STATEMENT = String.format("SELECT * FROM %s;", "`products`");
@@ -114,8 +114,9 @@ public class ProductDAOImpl implements ProductDAO {
             preparedStmt.setString(1, product.getName());
             preparedStmt.setString(2, product.getDescription());
             preparedStmt.setDouble(3, product.getPrice());
-            preparedStmt.setLong(4, product.getId());
-            
+            preparedStmt.setBoolean(4, product.getIsAvailable());
+            preparedStmt.setLong(5, product.getId());
+
             ResultSet results = preparedStmt.getGeneratedKeys();
             
             affectedRows = preparedStmt.executeUpdate();
