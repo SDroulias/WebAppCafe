@@ -8,20 +8,28 @@ public class Order {
     private LocalDateTime date;
     private long customerId;
     private String status;
+    private boolean isAvailable;
 
     public Order() {
     }
 
-    private Order(long id, LocalDateTime date, long customerId, String status) {
-        this.id = id;
-        this.date = date;
-        this.customerId = customerId;
-        this.status = status;
+    private Order(long id, LocalDateTime date, long customerId, String status, boolean isAvailable) {
+        setId(id);
+        setDate(date);
+        setCustomerId(customerId);
+        setStatus(status);
+        setIsAvailable(isAvailable);
     }
-
+    
+    private Order(long customerId, String status, boolean isAvailable) {
+        setCustomerId(customerId);
+        setStatus(status);
+        setIsAvailable(isAvailable);
+    }
+    
     private Order(long customerId, String status) {
-        this.customerId = customerId;
-        this.status = status;
+        setCustomerId(customerId);
+        setStatus(status);
     }
 
     public long getId() {
@@ -56,8 +64,16 @@ public class Order {
         this.status = status;
     }
 
-    public static Order createOrder(long id, LocalDateTime date, long customerId, String status) {
-        return new Order(id, date, customerId, status);
+    public boolean isIsAvailable() {
+        return isAvailable;
+    }
+
+    public void setIsAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
+    }
+    
+    public static Order createOrder(long id, LocalDateTime date, long customerId, String status, boolean isAvailable) {
+        return new Order(id, date, customerId, status, isAvailable);
     }
 
     public static Order createOrder(long customerId, String status) {
@@ -66,11 +82,11 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", date=" + date +
-                ", customerId=" + customerId +
-                ", status='" + status + '\'' +
-                '}';
+        return "Order{" + 
+                "id=" + id + 
+                ", date=" + date + 
+                ", customerId=" + customerId + 
+                ", status=" + status + 
+                ", isAvailable=" + isAvailable + '}';
     }
 }

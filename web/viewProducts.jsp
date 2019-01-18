@@ -46,7 +46,7 @@
         <div class="form-group row">
             <label for="product-price" class="col-sm-2 col-form-label">Price</label>
             <div class="col-sm-10">
-                <input type="number" name="price" step="0.01" class="form-control " id="product-price" required disabled>
+                <input type="number" name="price" step="0.01" class="form-control " id="product-price" min="0.01" max="99.99" required disabled>
             </div>
         </div>
         <div class="form-group row">
@@ -100,4 +100,3 @@
 </body>
 
 </html>
-

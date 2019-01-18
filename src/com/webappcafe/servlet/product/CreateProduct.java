@@ -28,7 +28,7 @@ public class CreateProduct extends HttpServlet {
 
         productDAO.saveProduct(product);
 
-        response.sendRedirect("createProductSuccess.jsp");
+//        response.sendRedirect("createProductSuccess.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
