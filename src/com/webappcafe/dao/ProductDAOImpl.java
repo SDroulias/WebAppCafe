@@ -6,8 +6,6 @@ import com.webappcafe.model.Product;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ProductDAOImpl implements ProductDAO {
 
@@ -18,8 +16,12 @@ public class ProductDAOImpl implements ProductDAO {
 
     public static final String UPDATE_PRODUCT_STATEMENT = "UPDATE `products` SET `name` = ?, `description` = ?, `price` = ? "
             + "WHERE `id` = ?";
+    
+    public static final String UPDATE_PRODUCT_AVAILABILITY = "UPDATE `products` SET `is_availabe` = ? WHERE `id` = ?";
 
     public static final String SELECT_PRODUCT_STATEMENT = String.format("SELECT * FROM %s;", "`products`");
+    
+    public static final String SELECT_PRODUCT_WHERE_ID_STATEMENT = "SELECT * FROM `products` WHERE `id` = ?";
 
     private Database database = Database.getInstance();
 
@@ -106,7 +108,7 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public int editProduct(Product product) {
+    public int updateProduct(Product product) {
         int affectedRows = 0;
         
         PreparedStatement preparedStmt = Database.getInstance().getPreparedStatement(UPDATE_PRODUCT_STATEMENT);
@@ -131,5 +133,53 @@ public class ProductDAOImpl implements ProductDAO {
         return affectedRows;
     }
     
+    @Override
+    public Product getProductById(long id) {
+        Product p = null;
+        
+        PreparedStatement preparedStmt = Database.getInstance().getPreparedStatement(SELECT_PRODUCT_WHERE_ID_STATEMENT);
+        try {
+            preparedStmt.setLong(1, id);
+            
+            ResultSet results = preparedStmt.executeQuery();
+            
+            p = fetchProductByResultSet(results);
+            
+            return p;
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
+        //if p = null
+        return p;
+    }
     
+    @Override
+    public Product fetchProductByResultSet(ResultSet results) {
+        Product p = null;
+        
+        if(results != null) {
+            
+            try {
+                p = Product.createProduct(
+                        results.getLong("id"), 
+                        results.getString("name"), 
+                        results.getString("description"), 
+                        results.getDouble("price"),
+                        results.getByte("is_available"));
+                
+                return p;
+                
+            } catch(SQLException e) {
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+            }
+            
+        }
+        
+        //if p = null
+        return p;
+    }
 }

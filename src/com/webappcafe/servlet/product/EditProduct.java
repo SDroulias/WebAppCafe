@@ -27,15 +27,7 @@ public class EditProduct extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        ProductDAO productDAO = new ProductDAOImpl();
         
-        Product p = Product.createProduct(
-                request.getParameter("productName"), 
-                request.getParameter("description"), 
-                Double.parseDouble(request.getParameter("price"))
-        );
-        
-        productDAO.deleteProduct((int)p.getId());
         
     }
     
