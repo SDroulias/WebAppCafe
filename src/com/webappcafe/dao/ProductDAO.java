@@ -14,6 +14,8 @@ public interface ProductDAO {
     Product getProductById(long id);
     
     int deleteProduct(int id);
+
+    List<Product> getProductsOfOrder(long product_id);
     
     int updateProduct(Product product);
     
