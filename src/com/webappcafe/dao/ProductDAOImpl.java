@@ -25,41 +25,25 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public long saveProduct(Product product) {
-
-        long id = 0;
-
-        Connection connection = database.getConnection();
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-
+        long affectedRows = 0;
+        
+        PreparedStatement preparedStmt = Database.getInstance().getPreparedStatement(INSERT_PRODUCT_STATEMENT);
         try {
-            preparedStatement = connection.prepareStatement(INSERT_PRODUCT_STATEMENT, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, product.getName());
-            preparedStatement.setString(2, product.getDescription());
-            preparedStatement.setDouble(3, product.getPrice());
-
-            if (preparedStatement.executeUpdate() > 0) {
-                resultSet = preparedStatement.getGeneratedKeys();
-
-                if (resultSet.next()) {
-                    id = resultSet.getLong(1);
-                }
-            }
-
-        } catch (SQLException e) {
+            preparedStmt.setString(1, product.getName());
+            preparedStmt.setString(2, product.getDescription());
+            preparedStmt.setDouble(3, product.getPrice());
+            
+            affectedRows = preparedStmt.executeUpdate();
+            
+            return affectedRows;
+            
+        } catch(SQLException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
-        } finally {
-            try {
-                resultSet.close();
-                preparedStatement.close();
-                connection.close();
-            } catch (SQLException | NullPointerException e) {
-                System.out.println(e.getMessage());
-                e.printStackTrace();
-            }
         }
-        return id;
+
+        
+        return affectedRows;
     }
 
     @Override
