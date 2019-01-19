@@ -30,7 +30,7 @@
 
 <section class="container mt-4">
     <h1 class="text-center h2">Edit a Product</h1>
-    <form id="edit-form" class="mt-4" action="updateProduct" method="POST">
+    <form id="edit-form" class="mt-4" novalidate>
         <div class="form-group row">
             <!--<label for="product-id" class="col-sm-2 col-form-label">Id</label>-->
             <div class="col-sm-10">
@@ -41,23 +41,26 @@
             <label for="product-name" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-10">
                 <input type="text" name="productName" class="form-control" maxlength="45" id="product-name" placeholder="Enter the product's name" required disabled>
+                <div class="invalid-feedback">Please enter a product name</div>
             </div>
         </div>
         <div class="form-group row">
             <label for="product-price" class="col-sm-2 col-form-label">Price</label>
             <div class="col-sm-10">
                 <input type="number" name="price" step="0.01" class="form-control " id="product-price" min="0.01" max="99.99" required disabled>
+                <div class="invalid-feedback">Please enter a price from 0.01 to 99.99</div>
             </div>
         </div>
         <div class="form-group row">
             <label for="product-descr" class="col-sm-2 col-form-label">Description</label>
             <div class="col-sm-10">
                 <textarea name="description" class="form-control" id="product-descr" rows="3" maxlength="150" placeholder="Enter the product's description" required disabled></textarea>
+                <div class="invalid-feedback">Please enter a product description</div>
             </div>
         </div>
         <div class="form-group row justify-content-end">
             <div class="col-sm-2">
-                <input id="submit-edit" class="btn btn-outline-dark w-100" type="submit" value="Save" disabled>
+                <input id="submit-edit" class="btn btn-outline-dark w-100" value="Save" type="submit" disabled>
             </div>
         </div>
     </form>

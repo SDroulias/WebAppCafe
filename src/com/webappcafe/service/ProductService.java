@@ -46,7 +46,6 @@ public class ProductService {
             productDAO.updateProduct(p);
             
         }
-        
     }
     
     public List<Product> getAvailableProducts() {

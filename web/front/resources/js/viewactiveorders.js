@@ -3,7 +3,7 @@ $(document).ready(function(){
   console.log($updateBtn);
 
   $updateBtn.click(function(){
-    $updateId = $(this).parent().siblings(".id");
-    $.post("UpdateOrderServlet", {id: $updateId.html()});
+    $updateId = $(this).parent().siblings().children(".id");
+    $.post("UpdateOrder", {id: $updateId.html()});
   });
 });
