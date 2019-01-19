@@ -17,21 +17,21 @@
     </header>
 
     <main class="mt-5 mb-5 container flex-grow-1 d-flex flex-column">
-      <div class="row flex-grow-1">
+     <div class="row flex-grow-1">
         <div class="border-cols col-md-4 d-flex flex-column align-items-center">
           <h1 class="pt-5 pb-5">Customers</h1>
-          <a class="d-block pb-5" href="CreateCustomerServlet">Create Customer</a>
-          <a class="" href="ViewCustomerServlet">View Customers</a>
+          <a class="d-block mb-5" href="createCustomer">Create Customer</a>
+          <a class="" href="viewCustomer">View Customers</a>
         </div>
         <div class="border-cols col-md-4 d-flex flex-column align-items-center">
           <h1 class="pt-5 pb-5 text-center">Products</h1>
-          <a class="d-block pb-5" href="CreateProductServlet">Create Product</a>
-          <a class="" href="ViewProductServlet">View Products</a>
+          <a class="d-block mb-5" href="createProduct.jsp">Create Product</a>
+          <a class="" href="viewProducts">View Products</a>
         </div>
         <div class="col-md-4 d-flex flex-column align-items-center">
           <h1 class="pt-5 pb-5 text-center">Orders</h1>
-          <a class="d-block pb-5" href="ViewActiveOrderServlet">View Active Orders</a>
-          <a class="" href="ViewCompletedOrderServlet">View Completed Orders</a>
+          <a class="d-block mb-5" href="viewActiveOrder">View Active Orders</a>
+          <a class="" href="viewCompletedOrder">View Completed Orders</a>
         </div>
       </div>
     </main>

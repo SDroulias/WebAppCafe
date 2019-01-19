@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "createProduct", value = {"/createProduct"})
+@WebServlet(name = "createOrder", value = {"/createOrder"})
 public class CreateProduct extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,7 +27,7 @@ public class CreateProduct extends HttpServlet {
 
         productDAO.saveProduct(product);
 
-        response.sendRedirect("createProductSuccess.jsp");
+//        response.sendRedirect("createProductSuccess.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
