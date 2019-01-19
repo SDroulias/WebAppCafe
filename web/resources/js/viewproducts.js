@@ -7,17 +7,17 @@ $(document).ready(function(){
   const $formName = $("#product-name");
   const $formPrice = $("#product-price");
   const $formDescr = $("#product-descr");
-  
+
   $deleteBtn.click(function(){
     $deleteId = $(this).parent().siblings(".id");
 //    $.post("deleteProduct", {id: $deleteId.html()});
-    
+
     $.ajax({
     type: "POST",
-    url: "deleteProduct",
+    url: "setProductUnavailable",
     data: {id: $deleteId.html()},
-    success: function() {   
-        location.reload(true);  
+    success: function() {
+        location.reload(true);
     }
     });
   });
@@ -43,20 +43,18 @@ $(document).ready(function(){
 
   });
 
-  $editForm.submit(function(e){
-    e.preventDefault();
-    this.submit();
-    setTimeout(function(){
-      $submitBtn.prop("disabled", true);
-      $formId.prop("disabled",true);
-      $formName.prop("disabled",true);
-      $formPrice.prop("disabled",true);
-      $formDescr.prop("disabled",true);
-      $formId.val('');
-      $formName.val('');
-      $formPrice.val('');
-      $formDescr.val('');
-    }, 1);
 
+  $submitBtn.click(function(e){
+    console.log('out of if');
+    e.preventDefault();
+    $editForm.addClass("was-validated");
+    if ($editForm[0].checkValidity()){
+      console.log('in if');
+      $.post("editProduct",{id: $formId.val(), name: $formName.val(), price: $formPrice.val(), description: $formDescr.val()},
+      function(){
+        location.reload(true);
+      });
+    }
   });
+
 });
