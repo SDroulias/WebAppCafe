@@ -8,6 +8,7 @@ package com.webappcafe.service;
 import com.webappcafe.dao.ProductDAO;
 import com.webappcafe.dao.ProductDAOImpl;
 import com.webappcafe.model.Product;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -53,7 +54,7 @@ public class ProductService {
         
         List<Product> products = productDAO.getAllProducts();
         
-        List<Product> availableProducts = null;
+        List<Product> availableProducts = new ArrayList();
 
         for(Product p : products) {
             

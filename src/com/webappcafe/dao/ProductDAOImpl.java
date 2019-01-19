@@ -6,6 +6,8 @@ import com.webappcafe.model.Product;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ProductDAOImpl implements ProductDAO {
 
@@ -48,20 +50,19 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public List<Product> getAllProducts() {
+        
         List<Product> productList = new ArrayList<>();
+        
         try (Connection connection = database.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PRODUCT_STATEMENT);
              ResultSet resultSet = preparedStatement.executeQuery()) {
             resultSet.beforeFirst();
+            
             while (resultSet.next()) {
-                Product product = new Product();
-                product.setId(resultSet.getLong(1));
-                product.setName(resultSet.getString(2));
-                product.setDescription(resultSet.getString(3));
-                product.setPrice(resultSet.getDouble(4));
-                productList.add(product);
+                productList.add(fetchProductByResultSet(resultSet));
             }
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             e.printStackTrace();
         }
         return productList;
@@ -126,7 +127,9 @@ public class ProductDAOImpl implements ProductDAO {
             
             ResultSet results = preparedStmt.executeQuery();
             
-            p = fetchProductByResultSet(results);
+            while(results.next()) {
+                p = fetchProductByResultSet(results);
+            }
                 
             return p;
             
@@ -143,23 +146,21 @@ public class ProductDAOImpl implements ProductDAO {
     public Product fetchProductByResultSet(ResultSet results) {
         Product p = null;
         
-            try {
-                while(results.next()) {
-                p = Product.createProduct(
-                        results.getLong("id"), 
-                        results.getString("name"), 
-                        results.getString("description"), 
-                        results.getDouble("price"),
-                        results.getBoolean("is_available"));
-                
-                return p;
-                }
-                
-            } catch(SQLException e) {
-                System.out.println(e.getMessage());
-                e.printStackTrace();
-            }
+        try {
+            p = Product.createProduct(
+                    results.getLong("id"),
+                    results.getString("name"),
+                    results.getString("description"),
+                    results.getDouble("price"),
+                    results.getBoolean("is_available"));
             
+            return p;
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+                
         //if p = null
         return p;
     }
