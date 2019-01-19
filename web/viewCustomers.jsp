@@ -33,20 +33,16 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th class="id" scope="row">1</th>
-          <td class="fname">stev</td>
-          <td class="lname">drea</td>
-          <td class="uname">fredericia</td>
-          <td class="buttons"><button class="btn btn-outline-danger delete-btn">Delete</button></td>
-        </tr>
-        <tr>
-          <th class="id" scope="row">2</th>
-          <td class="fname">Jacob</td>
-          <td class="lname">drea</td>
-          <td class="uname">stef</td>
-          <td class="buttons"><button class="btn btn-outline-danger delete-btn">Delete</button></td>
-        </tr>
+        <c:forEach items="${customers}" var="customers">
+            <tr>
+                <th class="id" scope="row">${customers.getId()}</th>
+                <td class="fname">${customers.getFname()}</td>
+                <td class="lname">${customers.getLname()}</td>
+                <td class="uname">${customers.getUsername()}</td>
+                <!--<td class="buttons"><button type="button" class="btn btn-outline-secondary edit-btn">Edit</button></td>-->
+                <td class="buttons"><button class="btn btn-outline-danger delete-btn">Delete</button></td>            
+            </tr>
+        </c:forEach>
       </tbody>
     </table>
   </main>

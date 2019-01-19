@@ -14,7 +14,7 @@ public class CustomerDAOImpl implements CustomerDAO
 {
     private Database database = Database.getInstance();
     public static final String SELECT_CUSTOMERS_STATEMENT = String.format("SELECT * FROM %s;", "`customers`");
-    public static final String DELETE_CUSTOMER_BYID = String.format("DELETE FROM 'customers' WHERE id = ?");
+    public static final String DELETE_CUSTOMER_BYID = String.format("DELETE FROM customers WHERE id = ?;");
  public String registerUser(Customer registerBean)
  {
     String fname = registerBean.getFname();
@@ -76,6 +76,7 @@ public class CustomerDAOImpl implements CustomerDAO
      try (Connection connection = database.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CUSTOMER_BYID);
              ) {
+             preparedStatement.setLong(1, id);
              preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

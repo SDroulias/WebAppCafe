@@ -34,16 +34,13 @@ public class DeleteCustomer extends HttpServlet
         String id = request.getParameter("id");
         CustomerDAO customerDAO;
 
-        if(request.getParameter("id") != null) {
+        if(id != null) {
 	
-	            CustomerDAOImpl customer = new CustomerDAOImpl();
-	
-	            customer.deleteCustomerByID(Integer.parseInt(request.getParameter("id")));
-	
+	            customerDAO = new CustomerDAOImpl();
+                    customerDAO.deleteCustomerByID(Long.parseLong(id));
 	
 	        }
 
-        response.sendRedirect("createProductSuccess.jsp");
     }
 
 }
