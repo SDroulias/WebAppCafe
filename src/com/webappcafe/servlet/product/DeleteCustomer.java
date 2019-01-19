@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(name = "deleteCustomer", value = {"/deleteCustomer"})
+@WebServlet(name = "DeleteCustomer", value = {"/DeleteCustomer"})
 public class DeleteCustomer extends HttpServlet 
 {
 
