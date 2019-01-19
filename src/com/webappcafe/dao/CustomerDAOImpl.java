@@ -15,6 +15,8 @@ public class CustomerDAOImpl implements CustomerDAO
     private Database database = Database.getInstance();
     public static final String SELECT_CUSTOMERS_STATEMENT = String.format("SELECT * FROM %s;", "`customers`");
     public static final String DELETE_CUSTOMER_BYID = String.format("DELETE FROM 'customers' WHERE id = ?");
+    public static final String UPDATE_CUSTOMER_STATEMENT = "UPDATE `customers` SET `fname` = ?, `lname` = ?, `username` = ?, `password` = ? "
+            + "WHERE `id` = ?";
  public String registerUser(Customer registerBean)
  {
     String fname = registerBean.getFname();
@@ -81,4 +83,26 @@ public class CustomerDAOImpl implements CustomerDAO
             e.printStackTrace();
         }
  }
+
+    @Override
+    public int updateProduct(Customer customer) {
+        int affectedRows = 0;
+        
+        PreparedStatement preparedStmt = Database.getInstance().getPreparedStatement(UPDATE_CUSTOMER_STATEMENT);
+        
+        //TODO: implement fetching customer
+        
+        return affectedRows;
+    }
+
+    @Override
+    public Customer fetchCustomerByResultSet(ResultSet results) {
+        Customer c = null;
+        
+        //TODO: implement Customer creation by result set
+       
+        return c;
+    }
+ 
+    
 }
