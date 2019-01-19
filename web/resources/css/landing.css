@@ -17,14 +17,34 @@ body {
   color: #343a40;
 }
 
-main {
-  background-color: #d2ab00;
+main div {
+  height: 100%;
+}
+
+.main-1 {
+  background-image: url(../images/coffee_donuts.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.main-2 {
+  background-image: url(../images/coffee-cappuccino.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.main-3 {
+  background-image: url(../images/coffee-beans.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #banner {
   width: 40%;
   height: 40%;
-  /* background-color: transparent; */
 }
 
 footer {
