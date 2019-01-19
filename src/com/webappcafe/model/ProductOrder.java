@@ -6,7 +6,7 @@ public class ProductOrder {
     private long productsId;
     private int productsQuantity;
 
-    private ProductOrder() {
+    public ProductOrder() {
     }
     
     private ProductOrder(long id, long ordersId, long productsId, int productsQuantity) {

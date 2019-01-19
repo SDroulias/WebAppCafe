@@ -1,12 +1,11 @@
 package com.webappcafe.dao;
 
-import com.webappcafe.model.Product;
+import com.webappcafe.model.ProductOrder;
 
 import java.util.List;
 
 public interface ProductOrderDAO {
 
-
-    List<Product> getProductsOfOrder(long product_id);
+    List<ProductOrder> getProductsOrdersByOrderId(long orderId);
 
 }

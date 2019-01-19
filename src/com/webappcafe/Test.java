@@ -62,5 +62,13 @@ public class Test {
 //            System.out.println(stringBuilder);
 //        }
 
+//        ProductOrderDAO productOrderDAO = new ProductOrderDAOImpl();
+//
+//        List<ProductOrder> productOrderList = productOrderDAO.getProductsOrdersByOrderId(39);
+//
+//        for (ProductOrder productOrder : productOrderList) {
+//            System.out.println(productOrder);
+//        }
+
     }
 }

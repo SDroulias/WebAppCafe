@@ -1,12 +1,10 @@
 package com.webappcafe.servlet.admin;
 
-import com.webappcafe.dao.OrderDAO;
-import com.webappcafe.dao.OrderDAOImpl;
-import com.webappcafe.dao.ProductOrderDAO;
-import com.webappcafe.dao.ProductOrderDAOImpl;
+import com.webappcafe.dao.*;
 import com.webappcafe.model.Customer;
 import com.webappcafe.model.Order;
 import com.webappcafe.model.Product;
+import com.webappcafe.model.ProductOrder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -28,48 +27,43 @@ public class ViewCompletedOrders extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-//        ProductDAO productDAO = new ProductDAOImpl();
-//
-//        List<Product> products = productDAO.getAllProducts();
-//
-//        request.setAttribute("products", products);
-//        request.getRequestDispatcher("viewProducts.jsp").forward(request, response);
-
         OrderDAO orderDAO = new OrderDAOImpl();
+
+        ProductDAO productDAO = new ProductDAOImpl();
 
         ProductOrderDAO productOrderDAO = new ProductOrderDAOImpl();
 
         Map<Order, Customer> completedOrders = orderDAO.getCompletedOrders("complete");
 
-//        List<Product> productList = new ArrayList<>();
+        for (Map.Entry<Order, Customer> orderCustomerEntry : completedOrders.entrySet()) {
 
-        for (Map.Entry<Order, Customer> entry : completedOrders.entrySet()) {
+            List<Product> productList = productDAO.getProductsOfOrder(orderCustomerEntry.getKey().getId());
 
-            List<Product> productList = productOrderDAO.getProductsOfOrder(entry.getKey().getId());
+            List<ProductOrder> productOrderList = productOrderDAO.getProductsOrdersByOrderId(orderCustomerEntry.getKey().getId());
 
-            StringBuilder productsOfOrderSB = new StringBuilder();
+            Iterator<Product> productIterator = productList.iterator();
+            Iterator<ProductOrder> productOrderIterator = productOrderList.iterator();
 
             List<String> productsOfOrder = new ArrayList<>();
-            for (Product product : productList) {
 
-//                productsOfOrderSB.append(product.getName()).append("\n");
-                productsOfOrder.add(product.getName());
+            double totalPrice = 0;
+            while (productIterator.hasNext() && productOrderIterator.hasNext()) {
+                //creates products list of String
+                Product product = productIterator.next();
+                String productString = product.getName();
+                productsOfOrder.add(productString);
+
+                ProductOrder productOrder = productOrderIterator.next();
+                totalPrice += (product.getPrice() * productOrder.getProductsQuantity());
+
             }
 
-            entry.getKey().setProductsOfOrder(productsOfOrder);
+            orderCustomerEntry.getKey().setProductsOfOrder(productsOfOrder);
+            orderCustomerEntry.getKey().setTotalPrice(totalPrice);
 
-//            productsOfOrder.add(productsOfOrderSB);
-
-//            System.out.println(entry.getKey() + " / " + entry.getValue());
-
-//            System.out.println(entry.getKey()entry.getValue());
-//            System.out.println(entry.getKey().getCustomerId() entry.getValue());
         }
 
         request.setAttribute("completedOrders", completedOrders);
         request.getRequestDispatcher("viewCompletedProducts.jsp").forward(request, response);
-
-
-
     }
 }

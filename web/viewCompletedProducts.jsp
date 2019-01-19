@@ -42,27 +42,27 @@
                 <%--<td>${completedOrder.key.getProductsOfOrder()}</td>--%>
                 <td>
                     <ul class="list-unstyled">
-                        <c:forEach items="${completedOrder.key.getProductsOfOrder()}" var="products">
-                            <li>${products}</li>
+                        <c:forEach items="${completedOrder.key.getProductsOfOrder()}" var="product">
+                            <li>${product}</li>
                         </c:forEach>
                     </ul>
                 </td>
                 <td>${completedOrder.value.getLname()}</td>
-                <td>0</td>
+                <td>${completedOrder.key.getTotalPrice()}</td>
             </tr>
         </c:forEach>
 
 
         <%--<tr>--%>
-            <th class="id" scope="row">1</th>
-            <td>2018</td>
-            <td><ul class="list-unstyled">
-                <li>Product</li>
-                <li>Product</li>
-                <li>Product</li>
-            </ul></td>
-            <td>drea</td>
-            <td>100</td>
+            <%--<th class="id" scope="row">1</th>--%>
+            <%--<td>2018</td>--%>
+            <%--<td><ul class="list-unstyled">--%>
+                <%--<li>Product</li>--%>
+                <%--<li>Product</li>--%>
+                <%--<li>Product</li>--%>
+            <%--</ul></td>--%>
+            <%--<td>drea</td>--%>
+            <%--<td>100</td>--%>
         <%--</tr>--%>
         <%--<tr>--%>
             <%--<th class="id" scope="row">2</th>--%>
