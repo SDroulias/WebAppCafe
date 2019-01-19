@@ -17,6 +17,26 @@
         <servlet-name>viewProducts</servlet-name>
         <url-pattern>/viewProducts</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>viewCustomers</servlet-name>
+        <servlet-class>com.webappcafe.servlet.product.ViewCustomers</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>viewCustomers</servlet-name>
+        <url-pattern>/viewCustomers</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>deleteCustomer</servlet-name>
+        <servlet-class>com.webappcafe.servlet.product.DeleteCustomer</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>deleteCustomer</servlet-name>
+        <url-pattern>/deleteCustomer</url-pattern>
+    </servlet-mapping>
 
 
     <servlet>

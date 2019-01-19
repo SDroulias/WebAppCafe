@@ -12,7 +12,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>View Products</title>
+    <title>View Customers</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./resources//css/style.css">
 </head>
@@ -30,28 +30,34 @@
 <section class="container mt-4">
     <h1 class="text-center h2">Edit a Customer</h1>
     <form id="edit-form" class="mt-4" action="/UpdateProductServlet" method="POST">
-        <div class="form-group row">
+<!--        <div class="form-group row">
             <label for="customers-id" class="col-sm-2 col-form-label">Id</label>
             <div class="col-sm-10">
                 <input type="text" name="id" class="form-control-plaintext" id="customers-id" required readonly>
             </div>
-        </div>
+        </div>-->
         <div class="form-group row">
-            <label for="customers-name" class="col-sm-2 col-form-label">Name</label>
+            <label for="customers-name" class="col-sm-2 col-form-label">First Name</label>
             <div class="col-sm-10">
-                <input type="text" name="customersName" class="form-control" maxlength="45" id="customers-name" placeholder="Enter the customers's name" required disabled>
+                <input type="text" name="customersFName" class="form-control" maxlength="45" id="customers-fname" placeholder="Enter the customers's first name" required disabled>
             </div>
         </div>
         <div class="form-group row">
-            <label for="customers-price" class="col-sm-2 col-form-label">Price</label>
+            <label for="customers-price" class="col-sm-2 col-form-label">Last Name</label>
             <div class="col-sm-10">
-                <input type="number" name="price" step="0.01" class="form-control " id="customers-price" required disabled>
+                <input type="text" name="customersLName" class="form-control" maxlength="45" id="customers-lname" placeholder="Enter the customers's last name" required disabled>
             </div>
         </div>
         <div class="form-group row">
-            <label for="customers-descr" class="col-sm-2 col-form-label">Description</label>
+            <label for="customers-descr" class="col-sm-2 col-form-label">Username</label>
             <div class="col-sm-10">
-                <textarea name="description" class="form-control" id="customers-descr" rows="3" maxlength="150" placeholder="Enter the customers's description" required disabled></textarea>
+                <input type="text" name="username" class="form-control" maxlength="45" id="customers-username" placeholder="Enter the customers's username" required disabled>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="customers-descr" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="text" name="password" class="form-control" maxlength="45" id="customers-password" placeholder="Enter the customers's password" required disabled>
             </div>
         </div>
         <div class="form-group row justify-content-end">
@@ -84,7 +90,7 @@
                 <td class="lname">${customers.getLname()}</td>
                 <td class="username">${customers.getUsername()}</td>
                 <td class="buttons"><button type="button" class="btn btn-outline-secondary edit-btn">Edit</button></td>
-                <td class="buttons"><a href="/DeleteCustomerServlet" class="btn btn-outline-danger delete-btn">Delete</a></td>
+                <td class="buttons"><a href="deleteCustomer" class="btn btn-outline-danger delete-btn">Delete</a></td>
             </tr>
         </c:forEach>
         </tbody>

@@ -1,12 +1,10 @@
 package com.webappcafe.dao;
  
-import static com.webappcafe.dao.ProductDAOImpl.SELECT_PRODUCT_STATEMENT;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import com.webappcafe.datasource.Database;
 import com.webappcafe.model.Customer;
-import com.webappcafe.model.Product;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +13,7 @@ public class CustomerDAO
 {
     private Database database = Database.getInstance();
     public static final String SELECT_CUSTOMERS_STATEMENT = String.format("SELECT * FROM %s;", "`customers`");
+    public static final String DELETE_CUSTOMER_BYID = String.format("DELETE FROM 'customers' WHERE id = ?");
  public String registerUser(Customer registerBean)
  {
     String fname = registerBean.getFname();
@@ -70,4 +69,15 @@ public class CustomerDAO
         }
         return customerList;
     }
+ 
+ public void deleteCustomerByID(long id)
+ {
+     try (Connection connection = database.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CUSTOMER_BYID);
+             ) {
+             preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+ }
 }
