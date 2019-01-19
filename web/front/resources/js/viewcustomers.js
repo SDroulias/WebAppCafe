@@ -1,8 +1,13 @@
-$(document).ready(function(){
+$(document).ready(function() {
   const $deleteBtn = $(".delete-btn");
 
-  $deleteBtn.click(function(){
+  $deleteBtn.click(function() {
     $deleteId = $(this).parent().siblings(".id");
-    $.post("DeleteCustomerServlet", {id: $deleteId.html()});
+    $.post("deleteCustomer", {
+        id: $deleteId.html()
+      },
+      function() {
+        location.reload();
+      });
   });
 });
