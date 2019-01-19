@@ -7,13 +7,15 @@ import java.util.List;
 
 public interface CustomerDAO {
     
-    public String registerUser(Customer registerBean);
+    String registerUser(Customer registerBean);
     
-    public List<Customer> getAllCustomers();
+    List<Customer> getAllCustomers();
     
-    public void deleteCustomerByID(long id);
+    Customer getCustomerById(long id);
     
-    int updateProduct(Customer customer);
+    void deleteCustomerByID(long id);
+    
+    int updateCustomer(Customer customer);
     
     Customer fetchCustomerByResultSet(ResultSet results);
 }

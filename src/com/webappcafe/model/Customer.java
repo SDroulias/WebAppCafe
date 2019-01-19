@@ -67,7 +67,7 @@ public class Customer
         this.password = password;
     }
     
-    public static Customer createCustomer(int id, String fname, String lname, String username, String password) {
+    public static Customer createCustomer(long id, String fname, String lname, String username, String password) {
         return new Customer(id, fname, lname, username, password);
     }
     
