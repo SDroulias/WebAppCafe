@@ -22,7 +22,6 @@ public class CustomerDAOImpl implements CustomerDAO
     String userName = registerBean.getUsername();
     String password = registerBean.getPassword();
 
-    Connection con = null;
     PreparedStatement preparedStatement = null;
     Database database = Database.getInstance();
 

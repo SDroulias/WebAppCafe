@@ -28,7 +28,7 @@ public class LoginFunction extends HttpServlet
         try
         {
             String username = request.getParameter("username");
-            String password = request.getParameter("password");
+            String password = request.getParameter("pswd");
             LoginItem loginBean = new LoginItem(); 
             loginBean.setUsername(username); 
             loginBean.setPassword(password);
