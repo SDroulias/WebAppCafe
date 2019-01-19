@@ -38,6 +38,7 @@ public class RegistrationFunction extends HttpServlet {
     }
     else   
     {
+        System.out.println("Same username");
         request.setAttribute("errMessage", userRegistered);
         request.getRequestDispatcher("/landingPage.html").forward(request, response);
     }

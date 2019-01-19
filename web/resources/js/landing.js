@@ -3,7 +3,12 @@ $(document).ready(function(){
   const $pswd2 = $("#pswd2-register");
   const $passFeedback = $("#pass-val-feed");
   const $pass2Feedback = $("#pass2-val-feed");
+  const $loginBtn = $("#login-submit");
+  const $username = $("#username-login");
+  const $loginPass = $("#pswd-login");
+  const $loginFail = $("#login-fail");
   const $registerForm = $("#register-form");
+  const $loginForm = $("#login-form");
   let pswd1Check = false;
 
   function addInvalid(a) {
@@ -61,6 +66,43 @@ $(document).ready(function(){
       addInvalid($pswd2);
       $pass2Feedback.html("The passwords must match");
       e.preventDefault();
+    }
+  });
+
+  $username.focus(function(){
+    $username.removeClass("login-fail");
+    $loginPass.removeClass("login-fail");
+    $loginFail.empty();
+  });
+
+  $loginPass.focus(function(){
+    $username.removeClass("login-fail");
+    $loginPass.removeClass("login-fail");
+    $loginFail.empty();
+  });
+
+  $loginBtn.click(function(e) {
+    e.preventDefault();
+    $loginForm.addClass("was-validated");
+    if ($loginForm[0].checkValidity()) {
+      $.post("loginFunction", {
+          username: $username.val(),
+          password: $loginPass.val()
+        },
+        function(result) {
+          // console.log(result);
+          if (result == 'true') {
+            // console.log("IT IS TRUE");
+            window.location.assign("successfullogin.jsp");
+          } else {
+            // console.log("IT IS FALSE");
+            // window.location.assign("loginfailure.jsp");
+            $loginForm.removeClass("was-validated");
+            $loginFail.html("Invalid username or password");
+            $username.addClass("login-fail");
+            $loginPass.addClass("login-fail");
+          }
+        });
     }
   });
 

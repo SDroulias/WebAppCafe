@@ -31,3 +31,11 @@ footer {
   height: 5rem;
   background-color: #343a40;
 }
+
+.login-fail {
+  border-color: #dc3545;
+}
+
+#login-fail{
+  color: #dc3545;
+}
