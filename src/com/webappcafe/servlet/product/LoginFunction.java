@@ -37,16 +37,18 @@ public class LoginFunction extends HttpServlet
             if(userValidate.equals("SUCCESS")) 
             {
                 //Create new session for currently logged in user
-                request.setAttribute("userName", username);
+//                request.setAttribute("userName", username);
                 HttpSession session=request.getSession();
                 loggedInCustomer = LoginFunction.getCustomer(username, password);
                 session.setAttribute("loggedInCustomer",loggedInCustomer);  
-                request.getRequestDispatcher("/successfullogin.jsp").forward(request, response);
+//                request.getRequestDispatcher("/successfullogin.jsp").forward(request, response);
+                response.getWriter().print(true);
             }
             else
             {
-                request.setAttribute("errMessage", userValidate); 
-                request.getRequestDispatcher("/loginfailure.jsp").forward(request, response);
+//                request.setAttribute("errMessage", userValidate); 
+//                request.getRequestDispatcher("/loginfailure.jsp").forward(request, response);
+                response.getWriter().print(false);
             }   
         } 
         catch (SQLException ex)
