@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -19,6 +21,9 @@ import java.util.Map;
 
 @WebServlet(name = "viewCompletedOrders", value = {"/viewCompletedOrders"})
 public class ViewCompletedOrders extends HttpServlet {
+
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat(".###");
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -48,12 +53,14 @@ public class ViewCompletedOrders extends HttpServlet {
 
             double totalPrice = 0;
             while (productIterator.hasNext() && productOrderIterator.hasNext()) {
-                //creates products list of String
+
                 Product product = productIterator.next();
-                String productString = product.getName();
+                ProductOrder productOrder = productOrderIterator.next();
+
+                //creates products list of String with name and quantity
+                String productString = product.getName() + " x " + productOrder.getProductsQuantity();
                 productsOfOrder.add(productString);
 
-                ProductOrder productOrder = productOrderIterator.next();
                 totalPrice += (product.getPrice() * productOrder.getProductsQuantity());
 
             }
@@ -63,6 +70,8 @@ public class ViewCompletedOrders extends HttpServlet {
 
         }
 
+        request.setAttribute("DATE_TIME_FORMATTER", DATE_TIME_FORMATTER);
+        request.setAttribute("DECIMAL_FORMAT", DECIMAL_FORMAT);
         request.setAttribute("completedOrders", completedOrders);
         request.getRequestDispatcher("viewCompletedProducts.jsp").forward(request, response);
     }

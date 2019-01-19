@@ -38,8 +38,7 @@
         <c:forEach items="${completedOrders}" var="completedOrder">
             <tr>
                 <th class="id" scope="row">${completedOrder.key.getId()}</th>
-                <td>${completedOrder.key.getDate()}</td>
-                <%--<td>${completedOrder.key.getProductsOfOrder()}</td>--%>
+                <td items=${DATE_TIME_FORMATTER} var="DATE_TIME_FORMATTER">${DATE_TIME_FORMATTER.format(completedOrder.key.getDate())}</td>
                 <td>
                     <ul class="list-unstyled">
                         <c:forEach items="${completedOrder.key.getProductsOfOrder()}" var="product">
@@ -47,35 +46,10 @@
                         </c:forEach>
                     </ul>
                 </td>
-                <td>${completedOrder.value.getLname()}</td>
-                <td>${completedOrder.key.getTotalPrice()}</td>
+                <td>${completedOrder.value.getFname()} ${completedOrder.value.getLname()}</td>
+                <td items="${DECIMAL_FORMAT}" var="DECIMAL_FORMAT">${DECIMAL_FORMAT.format(completedOrder.key.getTotalPrice())}</td>
             </tr>
         </c:forEach>
-
-
-        <%--<tr>--%>
-            <%--<th class="id" scope="row">1</th>--%>
-            <%--<td>2018</td>--%>
-            <%--<td><ul class="list-unstyled">--%>
-                <%--<li>Product</li>--%>
-                <%--<li>Product</li>--%>
-                <%--<li>Product</li>--%>
-            <%--</ul></td>--%>
-            <%--<td>drea</td>--%>
-            <%--<td>100</td>--%>
-        <%--</tr>--%>
-        <%--<tr>--%>
-            <%--<th class="id" scope="row">2</th>--%>
-            <%--<td>2019</td>--%>
-            <%--<td><ul class="list-unstyled">--%>
-                <%--<li>Product</li>--%>
-                <%--<li>Product</li>--%>
-                <%--<li>Product</li>--%>
-                <%--<li>Product</li>--%>
-            <%--</ul></td>--%>
-            <%--<td>stef</td>--%>
-            <%--<td>200</td>--%>
-        <%--</tr>--%>
         </tbody>
     </table>
 </main>
