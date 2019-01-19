@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "createOrder", value = {"/createOrder"})
+
+@WebServlet(name = "createProduct", value = {"/createProduct"})
 public class CreateProduct extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -19,15 +20,11 @@ public class CreateProduct extends HttpServlet {
         //TODO make DAOImpls singleton classes
         ProductDAO productDAO = new ProductDAOImpl();
 
-        String name = request.getParameter("productName");
-        String description = request.getParameter("description");
-        double price = Double.parseDouble(request.getParameter("price"));
-
-        Product product = Product.createProduct(name, description, price);
+        Product product = Product.createProduct(request.getParameter("productName"), 
+                request.getParameter("description"), 
+                Double.parseDouble(request.getParameter("price")));
 
         productDAO.saveProduct(product);
-
-//        response.sendRedirect("createProductSuccess.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

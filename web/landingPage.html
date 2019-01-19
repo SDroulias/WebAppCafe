@@ -76,19 +76,19 @@
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="pswd1-register">Password</label>
-                <input name="pswd" type="password" class="form-control" id="pswd1-register" placeholder="Password" required>
+                <input name="pswd" type="password" class="form-control" id="pswd1-register" placeholder="Password" maxlength="70" required>
                 <div id="pass-val-feed" class="invalid-feedback">
 
                 </div>
                 <small id="passwordHelp" class="form-text text-muted">
-                  Your password must be 8-45 characters long, contain one capital and one lowercase letter and a number
+                  Your password must be 8-70 characters long, contain one capital and one lowercase letter and a number
                 </small>
               </div>
               <div class="form-group col-md-6">
                 <label for="pswd2-register">&nbsp;</label>
                 <input type="password" class="form-control" id="pswd2-register" placeholder="Re-enter Password" required>
-                <div class="invalid-feedback">
-                  The passwords must match.
+                <div id="pass2-val-feed" class="invalid-feedback">
+
                 </div>
               </div>
             </div>

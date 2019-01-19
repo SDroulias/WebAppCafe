@@ -9,22 +9,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(name = "viewProducts", value = {"/viewProducts"})
-public class ViewProducts extends HttpServlet {
+@WebServlet(name = "editProduct", urlPatterns = {"/editProduct"})
+public class EditProduct extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        ProductService service = new ProductService();
         
-        request.setAttribute("products", service.getAvailableProducts());
-        request.getRequestDispatcher("viewProducts.jsp").forward(request, response);
         
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        ProductService service = new ProductService();
+        
+        service.editProduct(Long.parseLong(request.getParameter("id")), 
+                request.getParameter("name"), 
+                Double.parseDouble(request.getParameter("price")), 
+                request.getParameter("description"));
+        
     }
+    
 }

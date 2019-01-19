@@ -6,6 +6,8 @@ import com.webappcafe.model.Product;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ProductDAOImpl implements ProductDAO {
 
@@ -14,11 +16,12 @@ public class ProductDAOImpl implements ProductDAO {
     
     private static final String DELETE_PRODUCT_STATEMENT = "DELETE FROM `products` WHERE `id`=?";
 
-    //TODO final String UPDATE_STATEMENT
-
-//    public static final String UPDATE_STATEMENT = String.format("UPDATE %s SET ");
+    public static final String UPDATE_PRODUCT_STATEMENT = "UPDATE `products` SET `name` = ?, `description` = ?, `price` = ?, `is_available` = ? "
+            + "WHERE `id` = ?";    
 
     public static final String SELECT_PRODUCT_STATEMENT = String.format("SELECT * FROM %s;", "`products`");
+    
+    public static final String SELECT_PRODUCT_WHERE_ID_STATEMENT = "SELECT * FROM `products` WHERE `id` = ?";
 
     public static final String GET_PRODUCTS_OF_ORDER_STATEMENT = "SELECT `p`.*\n" +
             " FROM `products` `p`\n" +
@@ -30,59 +33,42 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public long saveProduct(Product product) {
-
-        long id = 0;
-
-        Connection connection = database.getConnection();
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-
+        long affectedRows = 0;
+        
+        PreparedStatement preparedStmt = Database.getInstance().getPreparedStatement(INSERT_PRODUCT_STATEMENT);
         try {
-            preparedStatement = connection.prepareStatement(INSERT_PRODUCT_STATEMENT, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, product.getName());
-            preparedStatement.setString(2, product.getDescription());
-            preparedStatement.setDouble(3, product.getPrice());
-
-            if (preparedStatement.executeUpdate() > 0) {
-                resultSet = preparedStatement.getGeneratedKeys();
-
-                if (resultSet.next()) {
-                    id = resultSet.getLong(1);
-                }
-            }
-
-        } catch (SQLException e) {
+            preparedStmt.setString(1, product.getName());
+            preparedStmt.setString(2, product.getDescription());
+            preparedStmt.setDouble(3, product.getPrice());
+            
+            affectedRows = preparedStmt.executeUpdate();
+            
+            return affectedRows;
+            
+        } catch(SQLException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
-        } finally {
-            try {
-                resultSet.close();
-                preparedStatement.close();
-                connection.close();
-            } catch (SQLException | NullPointerException e) {
-                System.out.println(e.getMessage());
-                e.printStackTrace();
-            }
         }
-        return id;
+
+        
+        return affectedRows;
     }
 
     @Override
     public List<Product> getAllProducts() {
+        
         List<Product> productList = new ArrayList<>();
+        
         try (Connection connection = database.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PRODUCT_STATEMENT);
              ResultSet resultSet = preparedStatement.executeQuery()) {
             resultSet.beforeFirst();
+            
             while (resultSet.next()) {
-                Product product = new Product();
-                product.setId(resultSet.getLong(1));
-                product.setName(resultSet.getString(2));
-                product.setDescription(resultSet.getString(3));
-                product.setPrice(resultSet.getDouble(4));
-                productList.add(product);
+                productList.add(fetchProductByResultSet(resultSet));
             }
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             e.printStackTrace();
         }
         return productList;
@@ -101,6 +87,7 @@ public class ProductDAOImpl implements ProductDAO {
             affectedRows = preparedStmt.executeUpdate();
             
             return affectedRows;
+            
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -108,6 +95,34 @@ public class ProductDAOImpl implements ProductDAO {
         
         return affectedRows;
     }
+
+    @Override
+    public int updateProduct(Product product) {
+        int affectedRows = 0;
+        
+        PreparedStatement preparedStmt = Database.getInstance().getPreparedStatement(UPDATE_PRODUCT_STATEMENT);
+        try {
+            preparedStmt.setString(1, product.getName());
+            preparedStmt.setString(2, product.getDescription());
+            preparedStmt.setDouble(3, product.getPrice());
+            preparedStmt.setBoolean(4, product.getIsAvailable());
+            preparedStmt.setLong(5, product.getId());
+
+            ResultSet results = preparedStmt.getGeneratedKeys();
+            
+            affectedRows = preparedStmt.executeUpdate();
+            
+            return affectedRows;
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        
+        
+        return affectedRows;
+    }
+
 
     @Override
     public List<Product> getProductsOfOrder(long product_id) {
@@ -146,5 +161,53 @@ public class ProductDAOImpl implements ProductDAO {
         }
 
         return productsOfOrderList;
+    
+    @Override
+    public Product getProductById(long id) {
+        Product p = null;
+        
+        PreparedStatement preparedStmt = Database.getInstance().getPreparedStatement(SELECT_PRODUCT_WHERE_ID_STATEMENT);
+        try {
+            preparedStmt.setLong(1, id);
+            
+            ResultSet results = preparedStmt.executeQuery();
+            
+            while(results.next()) {
+                p = fetchProductByResultSet(results);
+            }
+                
+            return p;
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
+        //if p = null
+        return p;
+    }
+    
+    @Override
+    public Product fetchProductByResultSet(ResultSet results) {
+        Product p = null;
+        
+        try {
+            p = Product.createProduct(
+                    results.getLong("id"),
+                    results.getString("name"),
+                    results.getString("description"),
+                    results.getDouble("price"),
+                    results.getBoolean("is_available"));
+            
+            return p;
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+                
+        //if p = null
+        return p;
+
     }
 }

@@ -5,8 +5,7 @@
  */
 package com.webappcafe.servlet.product;
 
-import com.webappcafe.dao.ProductDAO;
-import com.webappcafe.dao.ProductDAOImpl;
+import com.webappcafe.service.ProductService;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,36 +13,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author kostas
- */
-@WebServlet(name = "deleteProduct", value = {"/deleteProduct"})
-public class DeleteProduct extends HttpServlet {
 
+@WebServlet(name = "setProductUnavailable", urlPatterns = {"/setProductUnavailable"})
+public class SetProductUnavailable extends HttpServlet {
+
+   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
-       
     }
 
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        ProductDAO productDAO;
+        ProductService service = new ProductService();
         
-        if(request.getParameter("id") != null) {
-            
-            productDAO = new ProductDAOImpl();
-            
-            productDAO.deleteProduct(Integer.parseInt(request.getParameter("id")));
-            
-//            response.sendRedirect("viewProducts");
-            
-        }
+        service.updateProductAvailability(Long.parseLong(request.getParameter("id")), false);
     }
-    
 }
