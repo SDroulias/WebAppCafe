@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <title>Admin Panel</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="./resources/css/viewactiveorders.css">
+  <link rel="stylesheet" type="text/css" href="./resources/css/adminorders.css">
 </head>
 
 <body>
@@ -21,47 +21,112 @@
   <main class="container">
     <h1 class="mb-5 mt-5 text-center">Active Orders</h1>
 
-    <table class="table table-striped">
-      <thead id="thead">
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Date</th>
-          <th scope="col">Products</th>
-          <th scope="col">Customer</th>
-          <th scope="col">Price</th>
-          <th scope="col" colspan="2">Voucher</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th class="id" scope="row">1</th>
-          <td>2018</td>
-          <td><ul class="list-unstyled">
+    <div id="head" class="row">
+      <div class="col-1 d-flex align-items-center">
+        <p class="h5 font-weight-bold">ID</p>
+      </div>
+      <div class="col-3 d-flex align-items-center">
+        <p class="h5 font-weight-bold">Date</p>
+      </div>
+      <div class="col-2 d-flex align-items-center">
+        <p class="h5 font-weight-bold">Products</p>
+      </div>
+      <div class="col-3 d-flex align-items-center">
+        <p class="h5 font-weight-bold">Customer</p>
+      </div>
+      <div class="col-2 d-flex align-items-center">
+        <p class="h5 font-weight-bold">Price</p>
+      </div>
+    </div>
+    <div id="content">
+      <div class="row">
+        <div class="cols col-1 d-flex align-items-center">
+          <p class="id font-weight-bold">1</p>
+        </div>
+        <div class="cols col-3 d-flex align-items-center">
+          <p>Friday 6/6/6 6:66</p>
+        </div>
+        <div class="cols products col-2">
+          <ul class="list-unstyled">
             <li>Product</li>
             <li>Product</li>
             <li>Product</li>
-          </ul></td>
-          <td>drea</td>
-          <td>100</td>
-          <td>239847283748273942837427384</td>
-          <td class="buttons"><button class="btn btn-outline-success update-btn">Completed</button></td>
-        </tr>
-        <tr>
-          <th class="id" scope="row">2</th>
-          <td>2019</td>
-          <td><ul class="list-unstyled">
+          </ul>
+        </div>
+        <div class="cols col-3 d-flex align-items-center">
+          <p>Drea</p>
+        </div>
+        <div class="cols col-1 d-flex align-items-center">
+          <p>100</p>
+        </div>
+        <div class="cols col-2 d-flex align-items-center justify-content-end">
+          <button class="btn btn-outline-success update-btn">Completed</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="cols col-1 d-flex align-items-center">
+          <p class="id font-weight-bold">3</p>
+        </div>
+        <div class="cols col-3 d-flex align-items-center">
+          <p>Friday 6/6/6 6:66</p>
+        </div>
+        <div class="cols products col-2">
+          <ul class="list-unstyled">
             <li>Product</li>
             <li>Product</li>
             <li>Product</li>
             <li>Product</li>
-          </ul></td>
-          <td>stef</td>
-          <td>200</td>
-          <td>sdkjfhjsdfjskjdhfkjsdjkfhsjdhfjshdkfhsdf</td>
-          <td class="buttons"><button class="btn btn-outline-success update-btn">Completed</button></td>
-        </tr>
-      </tbody>
-    </table>
+            <li>Product</li>
+            <li>Product</li>
+            <li>Product</li>
+            <li>Product</li>
+            <li>Product</li>
+          </ul>
+        </div>
+        <div class="cols col-3 d-flex align-items-center">
+          <p>Drea</p>
+        </div>
+        <div class="cols col-1 d-flex align-items-center">
+          <p>100</p>
+        </div>
+        <div class="cols col-2 d-flex align-items-center justify-content-end">
+          <button class="btn btn-outline-success update-btn">Completed</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="cols col-1 d-flex align-items-center">
+          <p class="id font-weight-bold">13</p>
+        </div>
+        <div class="cols col-3 d-flex align-items-center">
+          <p>Friday 6/6/6 6:66</p>
+        </div>
+        <div class="cols products col-2">
+          <ul class="list-unstyled">
+            <li>Product</li>
+            <li>Product</li>
+            <li>Product</li>
+            <li>Product</li>
+            <li>Product</li>
+            <li>Product</li>
+            <li>Product</li>
+            <li>Product</li>
+            <li>Product</li>
+            <li>Product</li>
+            <li>Product</li>
+            <li>Product</li>
+          </ul>
+        </div>
+        <div class="cols col-3 d-flex align-items-center">
+          <p>Drea</p>
+        </div>
+        <div class="cols col-1 d-flex align-items-center">
+          <p>100</p>
+        </div>
+        <div class="cols col-2 d-flex align-items-center justify-content-end">
+          <button class="btn btn-outline-success update-btn">Completed</button>
+        </div>
+      </div>
+    </div>
   </main>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
