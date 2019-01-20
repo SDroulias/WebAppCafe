@@ -5,6 +5,7 @@ import com.webappcafe.datasource.Database;
 import com.webappcafe.model.Customer;
 import com.webappcafe.model.LoginItem;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,7 +33,12 @@ public class RegistrationFunction extends HttpServlet {
      try
      {
         if(!preRegistrationCheck(userName))
-            response.getWriter().print(false); 
+        {
+            response.getWriter().print(false);
+            PrintWriter out = response.getWriter();
+            out.write("Username already in use.");
+            return;
+        }          
      } catch (SQLException ex)
      {
          Logger.getLogger(RegistrationFunction.class.getName()).log(Level.SEVERE, null, ex);
