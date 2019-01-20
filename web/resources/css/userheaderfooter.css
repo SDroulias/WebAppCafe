@@ -1,0 +1,19 @@
+i.fa, i.fa, #logo {
+  color: #d2ab00;
+}
+
+i.fa:hover {
+  cursor: pointer;
+}
+
+p#username-value {
+  color: #fff;
+}
+
+footer {
+  background-color: #343a40;
+}
+
+footer p {
+  color: #fff;
+}
