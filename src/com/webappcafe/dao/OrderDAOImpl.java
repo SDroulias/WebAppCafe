@@ -25,7 +25,7 @@ public class OrderDAOImpl implements OrderDAO {
             "where o.status = ?;";
 
 
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     private Database database = Database.getInstance();
 
@@ -77,7 +77,7 @@ public class OrderDAOImpl implements OrderDAO {
             while (resultSet.next()) {
                 Order order = new Order();
                 order.setId(resultSet.getLong(1));
-                order.setDate(LocalDateTime.parse(resultSet.getString(2), FORMATTER));
+                order.setDate(LocalDateTime.parse(resultSet.getString(2), DATE_TIME_FORMATTER));
                 order.setCustomerId(resultSet.getLong(3));
                 order.setStatus(resultSet.getString(4));
                 orderList.add(order);
@@ -108,16 +108,15 @@ public class OrderDAOImpl implements OrderDAO {
 
                 Order order = new Order();
                 order.setId(resultSet.getLong(1));
-                order.setDate(LocalDateTime.parse(resultSet.getString(2), FORMATTER));
+                order.setDate(LocalDateTime.parse(resultSet.getString(2), DATE_TIME_FORMATTER));
                 order.setCustomerId(resultSet.getLong(3));
                 order.setStatus(resultSet.getString(4));
-                order.setIsAvailable(resultSet.getBoolean(5));
 
                 Customer customer = new Customer();
-                customer.setId(resultSet.getLong(6));
-                customer.setFname(resultSet.getString(7));
-                customer.setLname(resultSet.getString(8));
-                customer.setUsername(resultSet.getString(9));
+                customer.setId(resultSet.getLong(5));
+                customer.setFname(resultSet.getString(6));
+                customer.setLname(resultSet.getString(7));
+                customer.setUsername(resultSet.getString(8));
 
                 completedOrders.put(order, customer);
             }

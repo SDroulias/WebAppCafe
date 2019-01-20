@@ -73,6 +73,6 @@ public class ViewCompletedOrders extends HttpServlet {
         request.setAttribute("DATE_TIME_FORMATTER", DATE_TIME_FORMATTER);
         request.setAttribute("DECIMAL_FORMAT", DECIMAL_FORMAT);
         request.setAttribute("completedOrders", completedOrders);
-        request.getRequestDispatcher("viewCompletedProducts.jsp").forward(request, response);
+        request.getRequestDispatcher("viewCompletedOrders.jsp").forward(request, response);
     }
 }

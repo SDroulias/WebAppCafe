@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <title>Admin Panel</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="./resources/css/viewcompletedorders.css">
+    <link rel="stylesheet" type="text/css" href="./resources/css/adminorders.css">
 </head>
 
 <body>
@@ -24,34 +24,50 @@
 <main class="container">
     <h1 class="mb-5 mt-5 text-center">Completed Orders</h1>
 
-    <table class="table table-striped">
-        <thead id="thead">
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Date</th>
-            <th scope="col">Products</th>
-            <th scope="col">Customer</th>
-            <th scope="col">Price</th>
-        </tr>
-        </thead>
-        <tbody>
+    <div id="head" class="row">
+        <div class="col-2 d-flex align-items-center">
+            <p class="h5 font-weight-bold">ID</p>
+        </div>
+        <div class="col-3 d-flex align-items-center">
+            <p class="h5 font-weight-bold">Date</p>
+        </div>
+        <div class="col-2 d-flex align-items-center">
+            <p class="h5 font-weight-bold">Products</p>
+        </div>
+        <div class="col-3 d-flex align-items-center">
+            <p class="h5 font-weight-bold">Customer</p>
+        </div>
+        <div class="col-2 d-flex align-items-center">
+            <p class="h5 font-weight-bold">Price</p>
+        </div>
+    </div>
+    <div id="content">
         <c:forEach items="${completedOrders}" var="completedOrder">
-            <tr>
-                <th class="id" scope="row">${completedOrder.key.getId()}</th>
-                <td items=${DATE_TIME_FORMATTER} var="DATE_TIME_FORMATTER">${DATE_TIME_FORMATTER.format(completedOrder.key.getDate())}</td>
-                <td>
+
+            <div class="row">
+                <div class="cols col-2 d-flex align-items-center">
+                    <p class="id font-weight-bold">${completedOrder.key.getId()}</p>
+                </div>
+                <div class="cols col-3 d-flex align-items-center">
+                    <p items=${DATE_TIME_FORMATTER} var="DATE_TIME_FORMATTER">${DATE_TIME_FORMATTER.format(completedOrder.key.getDate())}</p>
+                </div>
+                <div class="cols products col-2">
                     <ul class="list-unstyled">
                         <c:forEach items="${completedOrder.key.getProductsOfOrder()}" var="product">
                             <li>${product}</li>
                         </c:forEach>
                     </ul>
-                </td>
-                <td>${completedOrder.value.getFname()} ${completedOrder.value.getLname()}</td>
-                <td items="${DECIMAL_FORMAT}" var="DECIMAL_FORMAT">${DECIMAL_FORMAT.format(completedOrder.key.getTotalPrice())}</td>
-            </tr>
+                </div>
+                <div class="cols col-3 d-flex align-items-center">
+                    <p>${completedOrder.value.getFname()} ${completedOrder.value.getLname()}</p>
+                </div>
+                <div class="cols col-2 d-flex align-items-center">
+                    <p items="${DECIMAL_FORMAT}" var="DECIMAL_FORMAT">${DECIMAL_FORMAT.format(completedOrder.key.getTotalPrice())}</p>
+                </div>
+            </div>
+
         </c:forEach>
-        </tbody>
-    </table>
+    </div>
 </main>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -60,4 +76,5 @@
 </body>
 
 </html>
+
 
