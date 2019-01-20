@@ -36,6 +36,6 @@ footer {
   border-color: #dc3545;
 }
 
-#login-fail{
+#login-fail, #register-fail {
   color: #dc3545;
 }

@@ -60,20 +60,24 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form id="register-form" action="registrationFunction" method="post">
+        <form id="register-form" method="post" novalidate>
           <div class="modal-body">
             <div class="form-group">
               <label for="username-register">Username</label>
               <input name="username" type="text" class="form-control" id="username-register" placeholder="Enter username" maxlength="45" required>
+              <div id="uname-val-feed" class="invalid-feedback"></div>
+              <p id="register-fail"></p>
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="fname-register">First Name</label>
                 <input name="fname" type="text" class="form-control" id="fname-register" placeholder="Enter your First Name" maxlength="45" required>
+                <div id="fname-val-feed" class="invalid-feedback">Please enter your name</div>
               </div>
               <div class="form-group col-md-6">
                 <label for="lname-register">Last Name</label>
                 <input name="lname" type="text" class="form-control" id="lname-register" placeholder="Enter your Last Name" maxlength="45" required>
+                <div id="lname-val-feed" class="invalid-feedback">Please enter your last name</div>
               </div>
             </div>
             <div class="form-row">
@@ -91,9 +95,7 @@
               <div class="form-group col-md-6">
                 <label for="pswd2-register">&nbsp;</label>
                 <input type="password" class="form-control" id="pswd2-register" placeholder="Re-enter Password" required>
-                <div id="pass2-val-feed" class="invalid-feedback">
-
-                </div>
+                <div id="pass2-val-feed" class="invalid-feedback"></div>
               </div>
             </div>
           </div>

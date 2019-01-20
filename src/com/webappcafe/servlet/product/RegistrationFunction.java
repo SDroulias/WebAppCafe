@@ -38,9 +38,9 @@ public static final String SELECT_CUSTOMERS_USERNAME = String.format("SELECT use
         if(!preRegistrationCheck(userName))
         {
             response.getWriter().print(false);
-            PrintWriter out = response.getWriter();
-            out.write("Username already in use.");
-            return;
+//            PrintWriter out = response.getWriter();
+//            out.write("Username already in use.");
+//            return;
         }
         else
         {
@@ -54,6 +54,7 @@ public static final String SELECT_CUSTOMERS_USERNAME = String.format("SELECT use
             HttpSession session=request.getSession();
 //            loggedInCustomer = LoginFunction.getCustomer(userName, password);
             session.setAttribute("loggedInCustomer",registerBean);  
+            response.getWriter().print(true);
         }
      } 
      catch (SQLException ex)
@@ -71,19 +72,19 @@ public static final String SELECT_CUSTOMERS_USERNAME = String.format("SELECT use
 //
 //    String userRegistered = customerDao.registerUser(registerBean);
 
-    if(userRegistered.equals("SUCCESS"))   
-    {
+//    if(userRegistered.equals("SUCCESS"))   
+//    {
 //        LoginFunction logUserIn = new LoginFunction();
 //        logUserIn.doPost(request, response);
-        response.getWriter().print(true);
+//        response.getWriter().print(true);
 
-    }
-    else   
-    {
+//    }
+//    else   
+//    {
 //        request.setAttribute("errMessage", userRegistered);
 //        request.getRequestDispatcher("/landingPage.html").forward(request, response);
-        response.getWriter().print(false);
-    }
+//        response.getWriter().print(false);
+//    }
  }
  
  public static boolean preRegistrationCheck(String usr) throws SQLException
