@@ -15,6 +15,7 @@ public class CustomerDAOImpl implements CustomerDAO
     private Database database = Database.getInstance();
     public static final String SELECT_CUSTOMERS_STATEMENT = String.format("SELECT * FROM %s;", "`customers`");
     public static final String DELETE_CUSTOMER_BYID = String.format("DELETE FROM customers WHERE id = ?;");
+    public static final String CREATE_NEW_CUSTOMER = String.format("INSERT INTO customers(fname,lname,username,password) VALUES (?,?,?,?)");
  public String registerUser(Customer registerBean)
  {
     String fname = registerBean.getFname();
@@ -28,8 +29,8 @@ public class CustomerDAOImpl implements CustomerDAO
     try
     {
         Connection connection = database.getConnection();
-        String query = "insert into customers(fname,lname,username,password) values (?,?,?,?)";
-        preparedStatement = connection.prepareStatement(query); 
+//        String query = "INSERT INTO customers(fname,lname,username,password) VALUES (?,?,?,?)";
+        preparedStatement = connection.prepareStatement(CREATE_NEW_CUSTOMER); 
         preparedStatement.setString(1, fname);
         preparedStatement.setString(2, lname);
         preparedStatement.setString(3, userName);

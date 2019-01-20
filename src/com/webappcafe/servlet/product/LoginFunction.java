@@ -21,6 +21,9 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "loginFunction", value = {"/loginFunction"})
 public class LoginFunction extends HttpServlet 
 {
+    public static final String SELECT_CUSTOMERS_USERNAME_PASSWORD = String.format("SELECT username,password FROM customers");
+    public static final String SELECT_CUSTOMER_INSTANCE = String.format("SELECT * FROM customers WHERE username = ? AND password = ?;");
+    
     public LoginFunction() {}
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
@@ -41,7 +44,7 @@ public class LoginFunction extends HttpServlet
                 HttpSession session=request.getSession();
                 loggedInCustomer = LoginFunction.getCustomer(username, password);
                 session.setAttribute("loggedInCustomer",loggedInCustomer);  
-//                request.getRequestDispatcher("/successfullogin.jsp").forward(request, response);
+                request.getRequestDispatcher("/successfullogin.jsp").forward(request, response);
                 response.getWriter().print(true);
             }
             else
@@ -72,7 +75,7 @@ public class LoginFunction extends HttpServlet
         {
             Connection connection = database.getConnection();
             statement = connection.createStatement(); 
-            resultSet = statement.executeQuery("SELECT username,password FROM customers"); 
+            resultSet = statement.executeQuery(SELECT_CUSTOMERS_USERNAME_PASSWORD); 
             while(resultSet.next()) 
             {
                 userNameDB = resultSet.getString("username"); 
@@ -97,8 +100,8 @@ public class LoginFunction extends HttpServlet
         Customer customer = null;
         try
         {
-            String query = "SELECT * FROM customers WHERE username = ? AND password = ?;";
-            PreparedStatement st = con.prepareStatement(query);
+//            String query = "SELECT * FROM customers WHERE username = ? AND password = ?;";
+            PreparedStatement st = con.prepareStatement(SELECT_CUSTOMER_INSTANCE);
             try
             {
                 st.setString(1, username);

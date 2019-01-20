@@ -16,6 +16,6 @@ pageEncoding="ISO-8859-1"%>
 <center><h2>Home Page</h2></center>
 Welcome ${loggedInCustomer.getUsername()} <br>
 <%--<%=request.getAttribute("userName") %>--%> 
-<div style="text-align: right"><a href="LogoutFunction">Logout</a></div>
+<div style="text-align: right"><a href="logoutFunction">Logout</a></div>
 </body>
 </html>

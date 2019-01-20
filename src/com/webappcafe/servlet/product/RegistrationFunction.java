@@ -1,9 +1,7 @@
 package com.webappcafe.servlet.product;
-import com.webappcafe.dao.CustomerDAO;
 import com.webappcafe.dao.CustomerDAOImpl;
 import com.webappcafe.datasource.Database;
 import com.webappcafe.model.Customer;
-import com.webappcafe.model.LoginItem;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -21,6 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "registrationFunction", value = {"/registrationFunction"})
 public class RegistrationFunction extends HttpServlet {
  
+public static final String SELECT_CUSTOMERS_USERNAME = String.format("SELECT username FROM customers");
+
+    
  public RegistrationFunction() {}
  
  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
@@ -78,7 +79,7 @@ public class RegistrationFunction extends HttpServlet {
         {
             Connection connection = database.getConnection();
             statement = connection.createStatement(); 
-            resultSet = statement.executeQuery("SELECT username FROM customers"); 
+            resultSet = statement.executeQuery(SELECT_CUSTOMERS_USERNAME); 
             while(resultSet.next()) 
             {
                 userNameDB = resultSet.getString("username"); 

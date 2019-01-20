@@ -1,6 +1,5 @@
 package com.webappcafe.servlet.product;
 
-import com.webappcafe.dao.CustomerDAO;
 import com.webappcafe.dao.CustomerDAOImpl;
 import com.webappcafe.model.Customer;
 import javax.servlet.ServletException;
