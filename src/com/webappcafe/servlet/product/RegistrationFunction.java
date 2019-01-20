@@ -1,8 +1,16 @@
 package com.webappcafe.servlet.product;
 import com.webappcafe.dao.CustomerDAO;
 import com.webappcafe.dao.CustomerDAOImpl;
+import com.webappcafe.datasource.Database;
 import com.webappcafe.model.Customer;
+import com.webappcafe.model.LoginItem;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +28,16 @@ public class RegistrationFunction extends HttpServlet {
     String lname = request.getParameter("lname");
     String userName = request.getParameter("username");
     String password = request.getParameter("pswd");
-
+    
+     try
+     {
+        if(!preRegistrationCheck(userName))
+            response.getWriter().print(false); 
+     } catch (SQLException ex)
+     {
+         Logger.getLogger(RegistrationFunction.class.getName()).log(Level.SEVERE, null, ex);
+     }
+    
     Customer registerBean = new Customer();
     registerBean.setFname(fname);
     registerBean.setLname(lname);
@@ -42,6 +59,35 @@ public class RegistrationFunction extends HttpServlet {
         request.getRequestDispatcher("/landingPage.html").forward(request, response);
     }
  }
+ 
+ public static boolean preRegistrationCheck(String usr) throws SQLException
+    {
+        Database database = Database.getInstance();
+
+        String username = usr; 
+        Statement statement = null;
+        ResultSet resultSet = null;
+        String userNameDB = "";
+        try
+        {
+            Connection connection = database.getConnection();
+            statement = connection.createStatement(); 
+            resultSet = statement.executeQuery("SELECT username FROM customers"); 
+            while(resultSet.next()) 
+            {
+                userNameDB = resultSet.getString("username"); 
+                if(username.equals(userNameDB))
+                {
+                    return false; 
+                }
+            }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return true; 
+    }
 }
 
 
