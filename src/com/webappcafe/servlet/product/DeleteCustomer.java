@@ -29,21 +29,17 @@ public class DeleteCustomer extends HttpServlet
 
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    {
         String id = request.getParameter("id");
         CustomerDAO customerDAO;
 
-        if(request.getParameter("id") != null) {
-	
-	            CustomerDAOImpl customer = new CustomerDAOImpl();
-	
-	            customer.deleteCustomerByID(Integer.parseInt(request.getParameter("id")));
-	
-	
-	        }
+        if(id != null) 
+        {
+            customerDAO = new CustomerDAOImpl();
+            customerDAO.deleteCustomerByID(Long.parseLong(id));
+        }
 
-        response.sendRedirect("createProductSuccess.jsp");
     }
 
 }

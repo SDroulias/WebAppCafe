@@ -19,7 +19,7 @@ public class RegistrationFunction extends HttpServlet {
     String fname = request.getParameter("fname");
     String lname = request.getParameter("lname");
     String userName = request.getParameter("username");
-    String password = request.getParameter("password");
+    String password = request.getParameter("pswd");
 
     Customer registerBean = new Customer();
     registerBean.setFname(fname);

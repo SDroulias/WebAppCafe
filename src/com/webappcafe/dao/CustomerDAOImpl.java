@@ -14,10 +14,10 @@ public class CustomerDAOImpl implements CustomerDAO
 {
     private Database database = Database.getInstance();
     public static final String SELECT_CUSTOMERS_STATEMENT = String.format("SELECT * FROM %s;", "`customers`");
-    public static final String DELETE_CUSTOMER_BYID = String.format("DELETE FROM 'customers' WHERE id = ?");
     public static final String UPDATE_CUSTOMER_STATEMENT = "UPDATE `customers` SET `fname` = ?, `lname` = ?, `username` = ?, `password` = ? "
             + "WHERE `id` = ?";
     public static final String SELECT_CUSTOMER_WHERE_ID_STATEMENT = "SELECT * FROM `customers` WHERE `id` = ?";
+    public static final String DELETE_CUSTOMER_BYID = "DELETE FROM `customers` WHERE `id` = ?;";
     
  public String registerUser(Customer registerBean)
  {
@@ -26,7 +26,6 @@ public class CustomerDAOImpl implements CustomerDAO
     String userName = registerBean.getUsername();
     String password = registerBean.getPassword();
 
-    Connection con = null;
     PreparedStatement preparedStatement = null;
     Database database = Database.getInstance();
 
@@ -80,6 +79,7 @@ public class CustomerDAOImpl implements CustomerDAO
      try (Connection connection = database.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CUSTOMER_BYID);
              ) {
+             preparedStatement.setLong(1, id);
              preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
