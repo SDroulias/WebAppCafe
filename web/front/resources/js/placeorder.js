@@ -26,7 +26,7 @@ $(document).ready(function() {
       cart[id] = quantity;
     });
     JSONcart = JSON.stringify(cart);
-    var post = $.post("placeOrder", JSONcart);
+    $.post("placeOrder", JSONcart);
     console.log(JSONcart);
   });
 });
