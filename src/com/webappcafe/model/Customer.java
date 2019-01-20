@@ -12,7 +12,7 @@ public class Customer {
     }
 
 
-    private Customer(long id, String fname, String lname, String username, String password) {
+    public Customer(long id, String fname, String lname, String username, String password) {
         setId(id);
         setFname(fname);
         setLname(lname);
