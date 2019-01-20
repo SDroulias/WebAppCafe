@@ -17,15 +17,26 @@ $(document).ready(function() {
   });
 
   $($beforeOrderBtn).click(function() {
+    let products;
     let cart = {};
+    let array = [];
     let JSONcart = {};
     let checked = $("input:checked");
     checked.each(function(i, elem) {
+      products = {};
       let id = $(elem).parents(".form-group").siblings(".id").text();
       let quantity = $(elem).parents(".form-group").siblings(".quantity").val();
-      cart[id] = quantity;
+      //cart[id] = quantity;
+      products.id = id;
+      products.quantity = quantity;
+      array.push(products);
     });
+    // let cart = {products: array};
+    // cart.products = array;
+    cart = {products: array};
+    console.log(cart);
     JSONcart = JSON.stringify(cart);
+    // console.log(JSONcart);
     $.post("placeOrder", JSONcart);
     console.log(JSONcart);
   });
