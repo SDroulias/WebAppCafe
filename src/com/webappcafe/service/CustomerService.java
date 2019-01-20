@@ -26,7 +26,7 @@ public class CustomerService {
         
     }
     
-    public void editCustomerPassword(int id, String password) {
+    public void editCustomerPassword(long id, String password) {
         
         customerDAO = new CustomerDAOImpl();
         
