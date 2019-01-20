@@ -44,7 +44,7 @@ public class LoginFunction extends HttpServlet
                 HttpSession session=request.getSession();
                 loggedInCustomer = LoginFunction.getCustomer(username, password);
                 session.setAttribute("loggedInCustomer",loggedInCustomer);  
-                request.getRequestDispatcher("/successfullogin.jsp").forward(request, response);
+//                request.getRequestDispatcher("/successfullogin.jsp").forward(request, response);
                 response.getWriter().print(true);
             }
             else

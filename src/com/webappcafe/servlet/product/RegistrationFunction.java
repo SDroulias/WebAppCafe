@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
  
 @WebServlet(name = "registrationFunction", value = {"/registrationFunction"})
 public class RegistrationFunction extends HttpServlet {
@@ -30,7 +31,8 @@ public static final String SELECT_CUSTOMERS_USERNAME = String.format("SELECT use
     String lname = request.getParameter("lname");
     String userName = request.getParameter("username");
     String password = request.getParameter("pswd");
-    
+    String userRegistered = null;
+    Customer loggedInCustomer;
      try
      {
         if(!preRegistrationCheck(userName))
@@ -39,31 +41,48 @@ public static final String SELECT_CUSTOMERS_USERNAME = String.format("SELECT use
             PrintWriter out = response.getWriter();
             out.write("Username already in use.");
             return;
-        }          
-     } catch (SQLException ex)
+        }
+        else
+        {
+            Customer registerBean = new Customer();
+            registerBean.setFname(fname);
+            registerBean.setLname(lname);
+            registerBean.setUsername(userName);
+            registerBean.setPassword(password); 
+            CustomerDAOImpl customerDao = new CustomerDAOImpl();
+            userRegistered = customerDao.registerUser(registerBean);
+            HttpSession session=request.getSession();
+//            loggedInCustomer = LoginFunction.getCustomer(userName, password);
+            session.setAttribute("loggedInCustomer",registerBean);  
+        }
+     } 
+     catch (SQLException ex)
      {
          Logger.getLogger(RegistrationFunction.class.getName()).log(Level.SEVERE, null, ex);
      }
     
-    Customer registerBean = new Customer();
-    registerBean.setFname(fname);
-    registerBean.setLname(lname);
-    registerBean.setUsername(userName);
-    registerBean.setPassword(password); 
-
-    CustomerDAOImpl customerDao = new CustomerDAOImpl();
-
-    String userRegistered = customerDao.registerUser(registerBean);
+//    Customer registerBean = new Customer();
+//    registerBean.setFname(fname);
+//    registerBean.setLname(lname);
+//    registerBean.setUsername(userName);
+//    registerBean.setPassword(password); 
+//
+//    CustomerDAOImpl customerDao = new CustomerDAOImpl();
+//
+//    String userRegistered = customerDao.registerUser(registerBean);
 
     if(userRegistered.equals("SUCCESS"))   
     {
-        LoginFunction logUserIn = new LoginFunction();
-        logUserIn.doPost(request, response);
+//        LoginFunction logUserIn = new LoginFunction();
+//        logUserIn.doPost(request, response);
+        response.getWriter().print(true);
+
     }
     else   
     {
-        request.setAttribute("errMessage", userRegistered);
-        request.getRequestDispatcher("/landingPage.html").forward(request, response);
+//        request.setAttribute("errMessage", userRegistered);
+//        request.getRequestDispatcher("/landingPage.html").forward(request, response);
+        response.getWriter().print(false);
     }
  }
  
