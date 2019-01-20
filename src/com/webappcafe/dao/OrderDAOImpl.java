@@ -24,6 +24,8 @@ public class OrderDAOImpl implements OrderDAO {
             "inner join customers c on o.customer_id = c.id\n" +
             "where o.status = ?;";
 
+    public static final String SELECT_ORDERS_BY_CUSTOMER_ID = "SELECT * FROM `orders` WHERE customer_id = ?;";
+
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
@@ -163,6 +165,37 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public List<Order> getOrdersByCustomerId(long customerId) {
-        return null;
+        List<Order> customerOrders = new ArrayList<>();
+
+        Connection connection = database.getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+
+            preparedStatement = connection.prepareStatement(SELECT_ORDERS_BY_CUSTOMER_ID);
+            preparedStatement.setLong(1, customerId);
+
+            resultSet = preparedStatement.executeQuery();
+
+            resultSet.beforeFirst();
+            while (resultSet.next()) {
+
+                Order order = fetchOrderByResultSet(resultSet);
+                customerOrders.add(order);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                resultSet.close();
+                preparedStatement.close();
+                connection.close();
+            } catch (SQLException | NullPointerException e) {
+                e.printStackTrace();
+            }
+        }
+        return customerOrders;
     }
 }
