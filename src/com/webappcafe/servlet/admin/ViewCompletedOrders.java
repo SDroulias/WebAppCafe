@@ -61,6 +61,7 @@ public class ViewCompletedOrders extends HttpServlet {
                 String productString = product.getName() + " x " + productOrder.getProductsQuantity();
                 productsOfOrder.add(productString);
 
+                //calculates the total price of an order
                 totalPrice += (product.getPrice() * productOrder.getProductsQuantity());
 
             }
