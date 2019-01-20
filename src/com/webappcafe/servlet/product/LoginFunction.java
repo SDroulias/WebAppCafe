@@ -1,22 +1,19 @@
 package com.webappcafe.servlet.product;
 
-import java.io.IOException;
+import com.webappcafe.datasource.Database;
+import com.webappcafe.model.Customer;
+import com.webappcafe.model.LoginItem;
+
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.webappcafe.model.LoginItem;
-import com.webappcafe.datasource.Database;
-import com.webappcafe.model.Customer;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "loginFunction", value = {"/loginFunction"})
 public class LoginFunction extends HttpServlet 
@@ -40,7 +37,6 @@ public class LoginFunction extends HttpServlet
             if(userValidate.equals("SUCCESS")) 
             {
                 //Create new session for currently logged in user
-//                request.setAttribute("userName", username);
                 HttpSession session=request.getSession();
                 loggedInCustomer = LoginFunction.getCustomer(username, password);
                 session.setAttribute("loggedInCustomer",loggedInCustomer);  
@@ -49,8 +45,6 @@ public class LoginFunction extends HttpServlet
             }
             else
             {
-//                request.setAttribute("errMessage", userValidate); 
-//                request.getRequestDispatcher("/loginfailure.jsp").forward(request, response);
                 response.getWriter().print(false);
             }   
         } 
@@ -100,7 +94,6 @@ public class LoginFunction extends HttpServlet
         Customer customer = null;
         try
         {
-//            String query = "SELECT * FROM customers WHERE username = ? AND password = ?;";
             PreparedStatement st = con.prepareStatement(SELECT_CUSTOMER_INSTANCE);
             try
             {
@@ -112,7 +105,7 @@ public class LoginFunction extends HttpServlet
 
                     while (rs.next()) 
                     {
-                       customer = new Customer(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+                        customer = Customer.createCustomer(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
                     }
                 }
                 finally
