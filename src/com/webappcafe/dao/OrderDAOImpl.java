@@ -75,11 +75,14 @@ public class OrderDAOImpl implements OrderDAO {
              ResultSet resultSet = preparedStatement.executeQuery()) {
             resultSet.beforeFirst();
             while (resultSet.next()) {
-                Order order = new Order();
-                order.setId(resultSet.getLong(1));
-                order.setDate(LocalDateTime.parse(resultSet.getString(2), DATE_TIME_FORMATTER));
-                order.setCustomerId(resultSet.getLong(3));
-                order.setStatus(resultSet.getString(4));
+
+//                Order order = new Order();
+//                order.setId(resultSet.getLong(1));
+//                order.setDate(LocalDateTime.parse(resultSet.getString(2), DATE_TIME_FORMATTER));
+//                order.setCustomerId(resultSet.getLong(3));
+//                order.setStatus(resultSet.getString(4));
+
+                Order order = fetchOrderByResultSet(resultSet);
                 orderList.add(order);
             }
         } catch (SQLException e) {
@@ -106,11 +109,13 @@ public class OrderDAOImpl implements OrderDAO {
             resultSet.beforeFirst();
             while (resultSet.next()) {
 
-                Order order = new Order();
-                order.setId(resultSet.getLong(1));
-                order.setDate(LocalDateTime.parse(resultSet.getString(2), DATE_TIME_FORMATTER));
-                order.setCustomerId(resultSet.getLong(3));
-                order.setStatus(resultSet.getString(4));
+//                Order order = new Order();
+//                order.setId(resultSet.getLong(1));
+//                order.setDate(LocalDateTime.parse(resultSet.getString(2), DATE_TIME_FORMATTER));
+//                order.setCustomerId(resultSet.getLong(3));
+//                order.setStatus(resultSet.getString(4));
+
+                Order order = fetchOrderByResultSet(resultSet);
 
                 Customer customer = new Customer();
                 customer.setId(resultSet.getLong(5));
@@ -133,5 +138,31 @@ public class OrderDAOImpl implements OrderDAO {
         }
 
         return completedOrders;
+    }
+
+    @Override
+    public Order fetchOrderByResultSet(ResultSet resultSet) {
+        Order order = null;
+
+        try {
+            order = new Order();
+            order.setId(resultSet.getLong(1));
+            order.setDate(LocalDateTime.parse(resultSet.getString(2), DATE_TIME_FORMATTER));
+            order.setCustomerId(resultSet.getLong(3));
+            order.setStatus(resultSet.getString(4));
+
+            return order;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+
+        return order;
+    }
+
+    @Override
+    public List<Order> getOrdersByCustomerId(long customerId) {
+        return null;
     }
 }
