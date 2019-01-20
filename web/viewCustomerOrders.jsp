@@ -1,3 +1,5 @@
+<%@ page isELIgnored="false" language="java" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -32,72 +34,96 @@
         </div>
     </div>
     <div id="content">
-        <div class="row">
-            <div class="col-3 d-flex align-items-center">
-                <p>Friday 6/6/6 6:66</p>
+
+        <c:forEach items="${customerOrders}" var="customerOrder">
+
+            <div class="row">
+                <div class="col-3 d-flex align-items-center">
+                    <p items=${DATE_TIME_FORMATTER} var="DATE_TIME_FORMATTER">${DATE_TIME_FORMATTER.format(customerOrder.getDate())}</p>
+                </div>
+                <div class="products col-3">
+                    <ul class="list-unstyled">
+                        <c:forEach items="${customerOrder.getProductsOfOrder()}" var="product">
+                            <li>${product}</li>
+                        </c:forEach>
+                    </ul>
+                </div>
+                <div class="col-3 d-flex align-items-center">
+                    <p items="${DECIMAL_FORMAT}" var="DECIMAL_FORMAT">${DECIMAL_FORMAT.format(customerOrder.getTotalPrice())}</p>
+                </div>
+                <div class="col-3 d-flex align-items-center">
+                    <p>${customerOrder.getStatus()}</p>
+                </div>
             </div>
-            <div class="products col-3">
-                <ul class="list-unstyled">
-                    <li>Product</li>
-                    <li>Product</li>
-                    <li>Product</li>
-                </ul>
-            </div>
-            <div class="col-3 d-flex align-items-center">
-                <p>100</p>
-            </div>
-            <div class="col-3 d-flex align-items-center">
-                <p>Active</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-3 d-flex align-items-center">
-                <p>Friday 13/12/13 13:13</p>
-            </div>
-            <div class="products col-3">
-                <ul class="list-unstyled">
-                    <li>Product</li>
-                    <li>Product</li>
-                    <li>Product</li>
-                    <li>Product</li>
-                    <li>Product</li>
-                    <li>Product</li>
-                    <li>Product</li>
-                    <li>Product</li>
-                    <li>Product</li>
-                </ul>
-            </div>
-            <div class="col-3 d-flex align-items-center">
-                <p>200</p>
-            </div>
-            <div class="col-3 d-flex align-items-center">
-                <p>Completed</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-3 d-flex align-items-center">
-                <p>Friday 13/12/13 13:13</p>
-            </div>
-            <div class="products col-3">
-                <ul class="list-unstyled">
-                    <li>Product</li>
-                    <li>Product</li>
-                    <li>Product</li>
-                    <li>Product</li>
-                    <li>Product</li>
-                    <li>Product</li>
-                    <li>Product</li>
-                    <li>Product</li>
-                    <li>Product</li>
-                </ul>
-            </div>
-            <div class="col-3 d-flex align-items-center">
-                <p>200</p>
-            </div>
-            <div class="col-3 d-flex align-items-center">
-                <p>Completed</p>
-            </div>
-        </div>
+
+        </c:forEach>
+
+        <%--<div class="row">--%>
+            <%--<div class="col-3 d-flex align-items-center">--%>
+                <%--<p>Friday 6/6/6 6:66</p>--%>
+            <%--</div>--%>
+            <%--<div class="products col-3">--%>
+                <%--<ul class="list-unstyled">--%>
+                    <%--<li>Product</li>--%>
+                    <%--<li>Product</li>--%>
+                    <%--<li>Product</li>--%>
+                <%--</ul>--%>
+            <%--</div>--%>
+            <%--<div class="col-3 d-flex align-items-center">--%>
+                <%--<p>100</p>--%>
+            <%--</div>--%>
+            <%--<div class="col-3 d-flex align-items-center">--%>
+                <%--<p>Active</p>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+        <%--<div class="row">--%>
+            <%--<div class="col-3 d-flex align-items-center">--%>
+                <%--<p>Friday 13/12/13 13:13</p>--%>
+            <%--</div>--%>
+            <%--<div class="products col-3">--%>
+                <%--<ul class="list-unstyled">--%>
+                    <%--<li>Product</li>--%>
+                    <%--<li>Product</li>--%>
+                    <%--<li>Product</li>--%>
+                    <%--<li>Product</li>--%>
+                    <%--<li>Product</li>--%>
+                    <%--<li>Product</li>--%>
+                    <%--<li>Product</li>--%>
+                    <%--<li>Product</li>--%>
+                    <%--<li>Product</li>--%>
+                <%--</ul>--%>
+            <%--</div>--%>
+            <%--<div class="col-3 d-flex align-items-center">--%>
+                <%--<p>200</p>--%>
+            <%--</div>--%>
+            <%--<div class="col-3 d-flex align-items-center">--%>
+                <%--<p>Completed</p>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+        <%--<div class="row">--%>
+            <%--<div class="col-3 d-flex align-items-center">--%>
+                <%--<p>Friday 13/12/13 13:13</p>--%>
+            <%--</div>--%>
+            <%--<div class="products col-3">--%>
+                <%--<ul class="list-unstyled">--%>
+                    <%--<li>Product</li>--%>
+                    <%--<li>Product</li>--%>
+                    <%--<li>Product</li>--%>
+                    <%--<li>Product</li>--%>
+                    <%--<li>Product</li>--%>
+                    <%--<li>Product</li>--%>
+                    <%--<li>Product</li>--%>
+                    <%--<li>Product</li>--%>
+                    <%--<li>Product</li>--%>
+                <%--</ul>--%>
+            <%--</div>--%>
+            <%--<div class="col-3 d-flex align-items-center">--%>
+                <%--<p>200</p>--%>
+            <%--</div>--%>
+            <%--<div class="col-3 d-flex align-items-center">--%>
+                <%--<p>Completed</p>--%>
+            <%--</div>--%>
+        <%--</div>--%>
     </div>
 </main>
 
