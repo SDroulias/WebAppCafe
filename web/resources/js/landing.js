@@ -142,7 +142,7 @@ $(document).ready(function(){
       function(result){
         if (result == 'true') {
           console.log("THE CUSTOMER WAS REGISTERD");
-          window.location.assign("index.html");
+          window.location.assign("index.jsp");
         } else {
           console.log("THIS USERNAME EXISTS");
           $registerForm.removeClass("was-validated");
@@ -177,7 +177,7 @@ $(document).ready(function(){
           console.log(result);
           if (result == 'customer') {
             // console.log("IT IS TRUE");
-            window.location.assign("index.html");
+            window.location.assign("index.jsp");
           } else if (result == 'root') {
             window.location.assign("admin/dashboard.jsp");
           } else {
