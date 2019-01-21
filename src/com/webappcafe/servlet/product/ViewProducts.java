@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(name = "viewProducts", value = {"/viewProducts"})
+@WebServlet(name = "viewProducts", value = {"/admin/viewProducts"})
 public class ViewProducts extends HttpServlet {
 
     @Override

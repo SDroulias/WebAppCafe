@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(name = "deleteCustomer", value = {"/deleteCustomer"})
+@WebServlet(name = "deleteCustomer", value = {"/admin/deleteCustomer"})
 public class DeleteCustomer extends HttpServlet 
 {
 

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(name = "UpdateOrder", urlPatterns = {"/UpdateOrder"})
+@WebServlet(name = "UpdateOrder", urlPatterns = {"/admin/UpdateOrder"})
 public class UpdateOrder extends HttpServlet {
 
    

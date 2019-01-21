@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(name = "editProduct", urlPatterns = {"/editProduct"})
+@WebServlet(name = "editProduct", urlPatterns = {"/admin/editProduct"})
 public class EditProduct extends HttpServlet {
 
     @Override
