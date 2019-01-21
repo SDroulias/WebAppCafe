@@ -37,12 +37,12 @@ public class LoginFunction extends HttpServlet
 
             if (username.equals("root") && password.equals("root")) {
                 HttpSession session = request.getSession();
-//                session.setAttribute("username", "root");
-//                session.setAttribute("password", "root");
-                loggedInCustomer = new Customer();
-                loggedInCustomer.setUsername("root");
-                loggedInCustomer.setPassword("root");
-                session.setAttribute("admin", loggedInCustomer);
+                session.setAttribute("username", "root");
+                session.setAttribute("password", "root");
+//                loggedInCustomer = new Customer();
+//                loggedInCustomer.setUsername("root");
+//                loggedInCustomer.setPassword("root");
+//                session.setAttribute("admin", loggedInCustomer);
                 response.getWriter().print("root");
 
             }else if(userValidate.equals("SUCCESS"))

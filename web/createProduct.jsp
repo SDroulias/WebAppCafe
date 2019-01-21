@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.webappcafe.model.Customer" %><%--
   Created by IntelliJ IDEA.
   User: STATHIS
   Date: 13/1/2019
@@ -15,6 +15,16 @@
           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></head>
 
           <body>
+
+          <%
+            String username = String.valueOf(session.getAttribute("username"));
+            String password = String.valueOf(session.getAttribute("password"));
+          %>
+          <% if (!username.equals("root") && !password.equals("root")) {
+            response.sendRedirect("landingPage.html");
+            }
+          %>
+
             <header>
               <nav class="navbar navbar-dark bg-dark">
                 <a href="#" class="navbar-brand">Logo</a>

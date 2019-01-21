@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
@@ -23,7 +24,7 @@ import java.util.Map;
 public class ViewActiveOrders extends HttpServlet {
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-    public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat(".###");
+    public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("####.###");
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -32,47 +33,56 @@ public class ViewActiveOrders extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        OrderDAO orderDAO = new OrderDAOImpl();
+        HttpSession session = request.getSession();
+        String username = String.valueOf(session.getAttribute("username"));
+        String password = String.valueOf(session.getAttribute("password"));
 
-        ProductDAO productDAO = new ProductDAOImpl();
+        if (!username.equals("root") && !password.equals("root")) {
+            response.sendRedirect("./");
+        } else {
 
-        ProductOrderDAO productOrderDAO = new ProductOrderDAOImpl();
+            OrderDAO orderDAO = new OrderDAOImpl();
 
-        Map<Order, Customer> activeOrders = orderDAO.getCompletedOrders("in_progress");
+            ProductDAO productDAO = new ProductDAOImpl();
 
-        for (Map.Entry<Order, Customer> orderCustomerEntry : activeOrders.entrySet()) {
+            ProductOrderDAO productOrderDAO = new ProductOrderDAOImpl();
 
-            List<Product> productList = productDAO.getProductsOfOrder(orderCustomerEntry.getKey().getId());
+            Map<Order, Customer> activeOrders = orderDAO.getCompletedOrders("in_progress");
 
-            List<ProductOrder> productOrderList = productOrderDAO.getProductsOrdersByOrderId(orderCustomerEntry.getKey().getId());
+            for (Map.Entry<Order, Customer> orderCustomerEntry : activeOrders.entrySet()) {
 
-            Iterator<Product> productIterator = productList.iterator();
-            Iterator<ProductOrder> productOrderIterator = productOrderList.iterator();
+                List<Product> productList = productDAO.getProductsOfOrder(orderCustomerEntry.getKey().getId());
 
-            List<String> productsOfOrder = new ArrayList<>();
+                List<ProductOrder> productOrderList = productOrderDAO.getProductsOrdersByOrderId(orderCustomerEntry.getKey().getId());
 
-            double totalPrice = 0;
-            while (productIterator.hasNext() && productOrderIterator.hasNext()) {
+                Iterator<Product> productIterator = productList.iterator();
+                Iterator<ProductOrder> productOrderIterator = productOrderList.iterator();
 
-                Product product = productIterator.next();
-                ProductOrder productOrder = productOrderIterator.next();
+                List<String> productsOfOrder = new ArrayList<>();
 
-                //creates products list of String with name and quantity
-                String productString = product.getName() + " x " + productOrder.getProductsQuantity();
-                productsOfOrder.add(productString);
+                double totalPrice = 0;
+                while (productIterator.hasNext() && productOrderIterator.hasNext()) {
 
-                totalPrice += (product.getPrice() * productOrder.getProductsQuantity());
+                    Product product = productIterator.next();
+                    ProductOrder productOrder = productOrderIterator.next();
+
+                    //creates products list of String with name and quantity
+                    String productString = product.getName() + " x " + productOrder.getProductsQuantity();
+                    productsOfOrder.add(productString);
+
+                    totalPrice += (product.getPrice() * productOrder.getProductsQuantity());
+
+                }
+
+                orderCustomerEntry.getKey().setProductsOfOrder(productsOfOrder);
+                orderCustomerEntry.getKey().setTotalPrice(totalPrice);
 
             }
 
-            orderCustomerEntry.getKey().setProductsOfOrder(productsOfOrder);
-            orderCustomerEntry.getKey().setTotalPrice(totalPrice);
-
+            request.setAttribute("DATE_TIME_FORMATTER", DATE_TIME_FORMATTER);
+            request.setAttribute("DECIMAL_FORMAT", DECIMAL_FORMAT);
+            request.setAttribute("activeOrders", activeOrders);
+            request.getRequestDispatcher("viewActiveOrders.jsp").forward(request, response);
         }
-
-        request.setAttribute("DATE_TIME_FORMATTER", DATE_TIME_FORMATTER);
-        request.setAttribute("DECIMAL_FORMAT", DECIMAL_FORMAT);
-        request.setAttribute("activeOrders", activeOrders);
-        request.getRequestDispatcher("viewActiveOrders.jsp").forward(request, response);
     }
 }

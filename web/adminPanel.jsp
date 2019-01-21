@@ -17,11 +17,15 @@
       </nav>
     </header>
 
-    <% Customer customer = (Customer) session.getAttribute("admin");%>
-    <% if (customer == null) {
+    <%
+//        Customer customer = (Customer) session.getAttribute("admin");
+        String username = String.valueOf(session.getAttribute("username"));
+        String password = String.valueOf(session.getAttribute("password"));
+    %>
+    <% if (!username.equals("root") && !password.equals("root")) {
         response.sendRedirect("landingPage.html");
     } else {
-        %> Welcome <%= customer.getUsername()%>
+        %> Welcome <%= username %>
     <%}%>
 
     <main class="mt-5 mb-5 container flex-grow-1 d-flex flex-column">

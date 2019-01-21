@@ -24,7 +24,7 @@ import java.util.Map;
 public class ViewCompletedOrders extends HttpServlet {
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-    public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat(".###");
+    public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#####.###");
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -34,12 +34,12 @@ public class ViewCompletedOrders extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-//        String username = String.valueOf(session.getAttribute("username"));
-//        String password = String.valueOf(session.getAttribute("password"));
-        Customer customer = (Customer) session.getAttribute("admin");
+        String username = String.valueOf(session.getAttribute("username"));
+        String password = String.valueOf(session.getAttribute("password"));
+//        Customer customer = (Customer) session.getAttribute("admin");
 
-        if (customer == null) {
-            response.sendRedirect("landingPage.html");
+        if (!username.equals("root") && !password.equals("root")) {
+            response.sendRedirect("./");
         } else {
             OrderDAO orderDAO = new OrderDAOImpl();
 

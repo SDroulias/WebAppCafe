@@ -2,7 +2,6 @@ package com.webappcafe.servlet.product;
 
 import com.webappcafe.dao.ProductDAO;
 import com.webappcafe.dao.ProductDAOImpl;
-import com.webappcafe.model.Customer;
 import com.webappcafe.model.Product;
 
 import javax.servlet.ServletException;
@@ -22,11 +21,11 @@ public class CreateProduct extends HttpServlet {
         //TODO make DAOImpls singleton classes
 
         HttpSession session = request.getSession();
-//        String username = String.valueOf(session.getAttribute("username"));
-//        String password = String.valueOf(session.getAttribute("password"));
-        Customer customer = (Customer) session.getAttribute("admin");
+        String username = String.valueOf(session.getAttribute("username"));
+        String password = String.valueOf(session.getAttribute("password"));
+//        Customer customer = (Customer) session.getAttribute("admin");
 
-        if (customer == null) {
+        if (!username.equals("root") && !password.equals("root")) {
             response.sendRedirect("landingPage.html");
         } else {
             ProductDAO productDAO = new ProductDAOImpl();
