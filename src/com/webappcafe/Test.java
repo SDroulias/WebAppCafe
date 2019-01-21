@@ -1,9 +1,20 @@
 package com.webappcafe;
 
+import com.webappcafe.dao.OrderDAO;
+import com.webappcafe.dao.OrderDAOImpl;
+import com.webappcafe.model.Order;
+
 public class Test {
 
 
     public static void main(String[] args) {
+        
+//        OrderDAO orderDAO = new OrderDAOImpl();
+//        orderDAO.updateOrderStatus(41, "complete");
+        
+        
+        
+        
 
 //        OrderDAO orderDAO = new OrderDAOImpl();
 //
