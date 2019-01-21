@@ -164,10 +164,12 @@ $(document).ready(function(){
           password: $loginPass.val()
         },
         function(result) {
-          // console.log(result);
-          if (result == 'true') {
+          console.log(result);
+          if (result == 'customer') {
             // console.log("IT IS TRUE");
             window.location.assign("successfullogin.jsp");
+          } else if (result == 'root') {
+            window.location.assign("adminPanel.jsp");
           } else {
             // console.log("IT IS FALSE");
             // window.location.assign("loginfailure.jsp");
