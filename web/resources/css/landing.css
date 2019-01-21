@@ -1,6 +1,9 @@
-
 body {
   height: 100vh;
+}
+
+main {
+  padding-bottom: 4.5rem;
 }
 
 #logo {
@@ -17,19 +20,46 @@ body {
   color: #343a40;
 }
 
-main {
-  background-color: #d2ab00;
+main div {
+  height: 100%;
+}
+
+.main-1 {
+  background-image: url(../images/coffee_donuts.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.main-2 {
+  background-image: url(../images/coffee-cappuccino.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.main-3 {
+  background-image: url(../images/coffee-beans.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #banner {
+  position: absolute;
+  top: 4rem;
   width: 40%;
-  height: 40%;
-  /* background-color: transparent; */
+  height: 35%;
+  margin-left: 3rem;
+  margin-top: 2.5rem;
 }
 
-footer {
-  height: 5rem;
-  background-color: #343a40;
+@media only screen and (max-width: 1067px) {
+  #banner {
+    width: 100%;
+    margin-top: 1rem;
+    margin-left: 0;
+  }
 }
 
 .login-fail {
