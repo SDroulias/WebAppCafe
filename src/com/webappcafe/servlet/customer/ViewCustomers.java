@@ -1,4 +1,4 @@
-package com.webappcafe.servlet.product;
+package com.webappcafe.servlet.customer;
 
 import com.webappcafe.dao.CustomerDAOImpl;
 import com.webappcafe.model.Customer;

@@ -1,11 +1,21 @@
 package com.webappcafe.dao;
 
 import com.webappcafe.model.Customer;
+import java.sql.ResultSet;
 import java.util.List;
 
 
 public interface CustomerDAO {
-    public String registerUser(Customer registerBean);
-    public List<Customer> getAllCustomers();
-    public void deleteCustomerByID(long id);
+    
+    String registerUser(Customer registerBean);
+    
+    List<Customer> getAllCustomers();
+    
+    Customer getCustomerById(long id);
+    
+    void deleteCustomerByID(long id);
+    
+    int updateCustomer(Customer customer);
+    
+    Customer fetchCustomerByResultSet(ResultSet results);
 }
