@@ -4,6 +4,7 @@ body {
 
 main {
   padding-bottom: 4.5rem;
+  height: 100%;
 }
 
 #logo {
@@ -49,7 +50,7 @@ main div {
   position: absolute;
   top: 4rem;
   width: 40%;
-  height: 35%;
+  min-height: 35%;
   margin-left: 3rem;
   margin-top: 2.5rem;
 }
