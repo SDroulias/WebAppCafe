@@ -1,6 +1,9 @@
-
 body {
   height: 100vh;
+}
+
+main {
+  padding-bottom: 4.5rem;
 }
 
 #logo {
@@ -43,11 +46,18 @@ main div {
 }
 
 #banner {
+  position: absolute;
+  top: 4rem;
   width: 40%;
-  height: 40%;
+  height: 35%;
+  margin-left: 3rem;
+  margin-top: 2.5rem;
 }
 
-footer {
-  height: 5rem;
-  background-color: #343a40;
+@media only screen and (max-width: 1067px) {
+  #banner {
+    width: 100%;
+    margin-top: 1rem;
+    margin-left: 0;
+  }
 }
