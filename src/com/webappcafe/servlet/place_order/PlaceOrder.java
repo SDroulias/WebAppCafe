@@ -1,9 +1,12 @@
 package com.webappcafe.servlet.place_order;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.webappcafe.model.Product;
+import com.webappcafe.wrapper.ProductWrapper;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -29,8 +32,7 @@ public class PlaceOrder extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        Gson json = new Gson();
-        JsonParser parser = new JsonParser();
+        Gson jsonParser = new Gson();
 //        InputStream RequestRawData = request.getInputStream();
 //        Scanner input = new Scanner(RequestRawData).useDelimiter("\\A");
 //        String JSONRawData = "";
@@ -42,8 +44,14 @@ public class PlaceOrder extends HttpServlet {
         
         
         String order = request.getParameter("order");
-        JsonElement jsonTree = parser.parse(order);
         System.out.println(order);
+        
+        JsonParser parser = new JsonParser();
+        JsonElement rootElement = parser.parse(order);
+        JsonObject rootObject = rootElement.getAsJsonObject();
+        JsonArray products = rootObject.getAsJsonArray("products");
+        
+        products.size();
         
     }
 
