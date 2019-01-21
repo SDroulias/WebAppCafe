@@ -9,7 +9,6 @@ public class Order {
     private LocalDateTime date;
     private long customerId;
     private String status;
-    private boolean isAvailable;
 
     private List<String> productsOfOrder;
     private double totalPrice;
@@ -17,18 +16,11 @@ public class Order {
     public Order() {
     }
 
-    private Order(long id, LocalDateTime date, long customerId, String status, boolean isAvailable) {
+    private Order(long id, LocalDateTime date, long customerId, String status) {
         setId(id);
         setDate(date);
         setCustomerId(customerId);
         setStatus(status);
-        setIsAvailable(isAvailable);
-    }
-    
-    private Order(long customerId, String status, boolean isAvailable) {
-        setCustomerId(customerId);
-        setStatus(status);
-        setIsAvailable(isAvailable);
     }
     
     private Order(long customerId, String status) {
@@ -68,14 +60,6 @@ public class Order {
         this.status = status;
     }
 
-    public boolean isIsAvailable() {
-        return isAvailable;
-    }
-
-    public void setIsAvailable(boolean isAvailable) {
-        this.isAvailable = isAvailable;
-    }
-
     public List<String> getProductsOfOrder() {
         return productsOfOrder;
     }
@@ -92,8 +76,8 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
-    public static Order createOrder(long id, LocalDateTime date, long customerId, String status, boolean isAvailable) {
-        return new Order(id, date, customerId, status, isAvailable);
+    public static Order createOrder(long id, LocalDateTime date, long customerId, String status) {
+        return new Order(id, date, customerId, status);
     }
 
     public static Order createOrder(long customerId, String status) {
@@ -106,7 +90,6 @@ public class Order {
                 "id=" + id + 
                 ", date=" + date + 
                 ", customerId=" + customerId + 
-                ", status=" + status + 
-                ", isAvailable=" + isAvailable + '}';
+                ", status=" + status +'}';
     }
 }

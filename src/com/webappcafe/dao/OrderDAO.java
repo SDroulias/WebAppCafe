@@ -17,4 +17,8 @@ public interface OrderDAO {
     List<Order> getOrdersByCustomerId(long customerId);
 
     Order fetchOrderByResultSet(ResultSet results);
+    
+    public Order getOrderById(long id);
+    
+    public void updateOrderStatus(long id, String status);
 }

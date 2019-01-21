@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ProductOrderDAOImpl implements ProductOrderDAO {
 
@@ -17,7 +19,7 @@ public class ProductOrderDAOImpl implements ProductOrderDAO {
             "INNER JOIN `orders` `o` ON `po`.`orders_id` = `o`.`id`\n" +
             "WHERE `po`.`orders_id` = ?\n" +
             "ORDER BY `po`.`products_id`;";
-
+    public static final String SAVE_ORDERS_PRODUCTS = "INSERT INTO products_orders(orders_id, products_id, products_quantity) values (?,?,?)";
     private Database database = Database.getInstance();
 
     @Override
@@ -63,5 +65,28 @@ public class ProductOrderDAOImpl implements ProductOrderDAO {
         }
 
         return productsOrderList;
+    }
+
+
+    @Override
+    public void saveOrdersProducts(ProductOrder order)
+    {
+        try
+        {
+            Connection connection = database.getConnection();
+            PreparedStatement preparedStatement = null;
+            //update products_orders table
+//            String query = "insert into products_orders(orders_id, products_id, products_quantity) values (?,?,?)"; //Insert user details into the table 'products'
+            preparedStatement = connection.prepareStatement(SAVE_ORDERS_PRODUCTS); //Making use of prepared statements here to insert bunch of data
+            preparedStatement.setLong(1, order.getOrdersId());
+            preparedStatement.setLong(2, order.getProductsId());
+            preparedStatement.setInt(3, order.getProductsQuantity());
+            
+            preparedStatement.executeUpdate();
+        } 
+        catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
     }
 }

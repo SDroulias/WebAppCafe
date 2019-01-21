@@ -4,6 +4,9 @@ $(document).ready(function(){
 
   $updateBtn.click(function(){
     $updateId = $(this).parent().siblings().children(".id");
-    $.post("UpdateOrder", {id: $updateId.html()});
+    $.post("UpdateOrder", {id: $updateId.html()},
+    function(){
+        location.reload();
+    });
   });
 });
