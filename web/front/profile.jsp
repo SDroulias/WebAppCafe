@@ -1,3 +1,6 @@
+<%@ page isELIgnored="false" language="java" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -5,10 +8,7 @@
   <meta charset="utf-8">
   <title>Web Cafe</title>
   <script type="text/javascript">
-    var uid = 13; // ${user.getId()};
-    var userFname = 'Steven'; // '${user.getFname()}';
-    var userLname = 'Drea'; // '${user.getLname()}';
-    var userPass = '1234'; // '${user.getPassword}';
+    var userPass = '${loggedInCustomer.getPassword()}';
   </script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -29,11 +29,11 @@
         </div>
         <div class="form-group">
           <label for="fname">First Name</label>
-          <input name="fname" type="text" class="form-control" id="fname" required disabled maxlength="45">
+          <input name="fname" type="text" class="form-control" id="fname" value="${loggedInCustomer.getFname()}" required disabled maxlength="45">
         </div>
         <div class="form-group">
           <label for="lname">Last Name</label>
-          <input name="lname" type="text" class="form-control" id="lname" required disabled maxlength="45">
+          <input name="lname" type="text" class="form-control" id="lname" value="${loggedInCustomer.getLname()}" required disabled maxlength="45">
         </div>
         <button id="save-user" class="btn btn-outline-success float-right" disabled>Save</button>
         <button id="update-user" class="btn btn-outline-secondary float-right mr-3">Update</button>
