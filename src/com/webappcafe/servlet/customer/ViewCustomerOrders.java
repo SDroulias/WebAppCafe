@@ -1,6 +1,7 @@
 package com.webappcafe.servlet.customer;
 
 import com.webappcafe.dao.*;
+import com.webappcafe.model.Customer;
 import com.webappcafe.model.Order;
 import com.webappcafe.model.Product;
 import com.webappcafe.model.ProductOrder;
@@ -34,42 +35,48 @@ public class ViewCustomerOrders extends HttpServlet {
         ProductOrderDAO productOrderDAO = new ProductOrderDAOImpl();
 
         HttpSession session = request.getSession();
-        long customerId = (long) session.getAttribute("customerId");
+        Customer customer = (Customer) session.getAttribute("loggedInCustomer");
 
-        List<Order> customerOrders = orderDAO.getOrdersByCustomerId(customerId);
+        if (customer == null) {
+            response.sendRedirect("landingPage.html");
 
-        for (Order order : customerOrders) {
+        } else {
 
-            List<Product> productList = productDAO.getProductsOfOrder(order.getId());
+            List<Order> customerOrders = orderDAO.getOrdersByCustomerId(customer.getId());
 
-            List<ProductOrder> productOrderList = productOrderDAO.getProductsOrdersByOrderId(order.getId());
+            for (Order order : customerOrders) {
 
-            Iterator<Product> productIterator = productList.iterator();
-            Iterator<ProductOrder> productOrderIterator = productOrderList.iterator();
+                List<Product> productList = productDAO.getProductsOfOrder(order.getId());
 
-            List<String> productsOfOrder = new ArrayList<>();
+                List<ProductOrder> productOrderList = productOrderDAO.getProductsOrdersByOrderId(order.getId());
 
-            double totalPrice = 0;
-            while (productIterator.hasNext() && productOrderIterator.hasNext()) {
+                Iterator<Product> productIterator = productList.iterator();
+                Iterator<ProductOrder> productOrderIterator = productOrderList.iterator();
 
-                Product product = productIterator.next();
-                ProductOrder productOrder = productOrderIterator.next();
+                List<String> productsOfOrder = new ArrayList<>();
 
-                //creates products list of String with name and quantity
-                String productString = product.getName() + " x " + productOrder.getProductsQuantity();
-                productsOfOrder.add(productString);
+                double totalPrice = 0;
+                while (productIterator.hasNext() && productOrderIterator.hasNext()) {
 
-                //calculates the total price of an order
-                totalPrice += (product.getPrice() * productOrder.getProductsQuantity());
+                    Product product = productIterator.next();
+                    ProductOrder productOrder = productOrderIterator.next();
+
+                    //creates products list of String with name and quantity
+                    String productString = product.getName() + " x " + productOrder.getProductsQuantity();
+                    productsOfOrder.add(productString);
+
+                    //calculates the total price of an order
+                    totalPrice += (product.getPrice() * productOrder.getProductsQuantity());
+                }
+                order.setProductsOfOrder(productsOfOrder);
+                order.setTotalPrice(totalPrice);
             }
-            order.setProductsOfOrder(productsOfOrder);
-            order.setTotalPrice(totalPrice);
-        }
 
-        request.setAttribute("DATE_TIME_FORMATTER", DATE_TIME_FORMATTER);
-        request.setAttribute("DECIMAL_FORMAT", DECIMAL_FORMAT);
-        request.setAttribute("customerOrders", customerOrders);
-        request.getRequestDispatcher("viewCustomerOrders.jsp").forward(request, response);
+            request.setAttribute("DATE_TIME_FORMATTER", DATE_TIME_FORMATTER);
+            request.setAttribute("DECIMAL_FORMAT", DECIMAL_FORMAT);
+            request.setAttribute("customerOrders", customerOrders);
+            request.getRequestDispatcher("viewCustomerOrders.jsp").forward(request, response);
+        }
     }
 
     @Override

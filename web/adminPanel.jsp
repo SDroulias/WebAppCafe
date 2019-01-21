@@ -1,3 +1,4 @@
+<%@ page import="com.webappcafe.model.Customer" %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -15,6 +16,13 @@
         </form>
       </nav>
     </header>
+
+    <% Customer customer = (Customer) session.getAttribute("admin");%>
+    <% if (customer == null) {
+        response.sendRedirect("landingPage.html");
+    } else {
+        %> Welcome <%= customer.getUsername()%>
+    <%}%>
 
     <main class="mt-5 mb-5 container flex-grow-1 d-flex flex-column">
      <div class="row flex-grow-1">
