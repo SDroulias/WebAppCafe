@@ -9,7 +9,6 @@ public class Order {
     private LocalDateTime date;
     private long customerId;
     private String status;
-//    private boolean isAvailable;
 
     private List<String> productsOfOrder;
     private double totalPrice;
