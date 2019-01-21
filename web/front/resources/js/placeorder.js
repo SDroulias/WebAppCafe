@@ -51,13 +51,13 @@ $(document).ready(function() {
   });
 
   $placeOrderBtn.click(function() {
-    $.post("placeOrder", JSONcart, // the url to post to is placeOrder. Change to whatever you need
+    $.post("placeOrder",{order: JSONcart}, // the url to post to is placeOrder. Change to whatever you need
       function() {
         $orderModal.modal('hide');
         $(".alert").show();
         setTimeout(function() {
           window.location.assign("userlanding.html");
         }, 2000);
-      });
+      }, "json");
   });
 });
