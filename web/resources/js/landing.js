@@ -19,6 +19,16 @@ $(document).ready(function(){
 
   let pswd1Check = false;
 
+  $(".carousel").slick({
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: false,
+    draggable: false,
+    pauseOnFocus: false,
+    pauseOnHover: false
+  });
+
   function addInvalid(a) {
     if (!(a.hasClass("is-invalid"))){
         a.removeClass("is-valid");
