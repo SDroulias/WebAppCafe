@@ -7,7 +7,7 @@
   }
 %>
 <nav class="navbar navbar-dark bg-dark">
-  <a id="logo" href="index.html" class="navbar-brand">Logo</a>
+  <a id="logo" href="./index" class="navbar-brand">Logo</a>
   <div class="d-flex align-items-center">
 
     <ul class="nav">

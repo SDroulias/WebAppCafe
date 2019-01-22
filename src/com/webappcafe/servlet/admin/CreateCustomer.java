@@ -32,7 +32,7 @@ public class CreateCustomer extends HttpServlet {
         String userRegistered = null;
         try {
             if (!preRegistrationCheck(userName)) {
-                response.getWriter().print(false);
+                response.getWriter().print("false");
             } else {
                 Customer registerBean = new Customer();
                 registerBean.setFname(fname);
@@ -41,7 +41,7 @@ public class CreateCustomer extends HttpServlet {
                 registerBean.setPassword(password);
                 CustomerDAOImpl customerDao = new CustomerDAOImpl();
                 userRegistered = customerDao.registerUser(registerBean);
-                response.getWriter().print(true);
+                response.getWriter().print("true");
             }
         } catch (SQLException ex) {
             Logger.getLogger(RegistrationFunction.class.getName()).log(Level.SEVERE, null, ex);

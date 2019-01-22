@@ -10,7 +10,7 @@ $(document).ready(function(){
     e.preventDefault();
     $form.addClass("was-validated");
     if ($form[0].checkValidity()){
-      $.post("createProduct",{productName: $productName.val(), price: $productPrice.val(), description: $productDescr.val()},
+      $.post("crea",{productName: $productName.val(), price: $productPrice.val(), description: $productDescr.val()},
       function(){
         $modal.modal('show');
       });

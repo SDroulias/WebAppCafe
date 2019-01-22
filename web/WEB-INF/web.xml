@@ -15,7 +15,7 @@
     <!--mapping-->
     <servlet-mapping>
         <servlet-name>createCustomer</servlet-name>
-        <url-pattern>/admin/createCustomer</url-pattern>
+        <url-pattern>/admin/create-customer</url-pattern>
     </servlet-mapping>
 
     <servlet>

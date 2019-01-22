@@ -181,8 +181,7 @@ $(document).ready(function(){
           } else if (result == 'root') {
             window.location.assign("./admin/dashboard");
           } else {
-            // console.log("IT IS FALSE");
-            // window.location.assign("loginfailure.jsp");
+
             $loginForm.removeClass("was-validated");
             $loginFail.html("Invalid username or password");
             $username.addClass("login-fail");

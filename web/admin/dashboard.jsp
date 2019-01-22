@@ -30,7 +30,7 @@
      <div class="row flex-grow-1">
         <div class="border-cols col-md-4 d-flex flex-column align-items-center">
           <h1 class="pt-5 pb-5">Customers</h1>
-          <a class="d-block mb-5" href="./createCustomer">Create Customer</a>
+          <a class="d-block mb-5" href="./create-customer">Create Customer</a>
           <a class="" href="./viewCustomers">View Customers</a>
         </div>
         <div class="border-cols col-md-4 d-flex flex-column align-items-center">
