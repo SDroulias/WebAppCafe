@@ -42,7 +42,7 @@ public class PlaceOrder extends HttpServlet {
         // If customer exists
         
         orderService = new OrderService();
-        orderId = orderService.createOrder(41); // Gets the last inserted orderId 
+        orderId = orderService.createOrder(customer.getId()); // Gets the last inserted orderId 
         
         // Getting the JSON request in a parameter
         String order = request.getParameter("order");
