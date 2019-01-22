@@ -7,7 +7,7 @@ import com.webappcafe.model.Order;
 public class OrderService {
     
     public long createOrder(long id) {
-        long orderId = 0;
+        long orderId;
         OrderDAO orderDAO = new OrderDAOImpl();
         
         // Saving the newly created order with the given id

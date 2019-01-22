@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 public class OrderDAOImpl implements OrderDAO {
 
-    private static final String INSERT_ORDER_STATEMENT = String.format("INSERT INTO %s (%s, %s) VALUES (?);",
+    private static final String INSERT_ORDER_STATEMENT = String.format("INSERT INTO %s (%s) VALUES (?);",
             "`orders`", "`customer_id`");
 
     public static final String SELECT_ORDERS_STATEMENT = String.format("SELECT * FROM %s;", "`orders`");
