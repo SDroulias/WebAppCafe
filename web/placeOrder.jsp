@@ -21,10 +21,10 @@
 
   <main class="container">
     <form id="order-form">
-       <c:forEach items="${products}" var="product">
       <div id="before-order" class="container fixed-top d-flex justify-content-center mt-3">
         <button id="before-order-btn" type="submit" class="btn btn-outline-secondary">Place Order</button>
       </div>
+        <c:forEach items="${products}" var="product">
       <div class="form-row align-items-center pt-3 pb-3">
         <div class="form-group col-1">
           <div class="form-check">
