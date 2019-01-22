@@ -65,7 +65,7 @@ public class PlaceOrder extends HttpServlet {
             }
         }
 
-        
+        response.getWriter().print("susccess");
 
     }
 }
