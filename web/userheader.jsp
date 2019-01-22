@@ -15,7 +15,7 @@
         <i class="fa fa-user fa-2x nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="./orders">Orders</a>
-          <a class="dropdown-item" href="./profile.jsp">Profile</a>
+          <a class="dropdown-item" href="./profile">Profile</a>
             <div class="dropdown-divider"></div>
           <a href="./logoutFunction" class="dropdown-item">Logout</a>
         </div>

@@ -18,5 +18,53 @@
         <url-pattern>/admin/createCustomer</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>createProduct</servlet-name>
+        <jsp-file>/admin/createProduct.jsp</jsp-file>
+    </servlet>
+    <!--mapping-->
+    <servlet-mapping>
+        <servlet-name>createProduct</servlet-name>
+        <url-pattern>/admin/createProduct</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>dashboard</servlet-name>
+        <jsp-file>/admin/dashboard.jsp</jsp-file>
+    </servlet>
+    <!--mapping-->
+    <servlet-mapping>
+        <servlet-name>dashboard</servlet-name>
+        <url-pattern>/admin/dashboard</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>index</servlet-name>
+        <jsp-file>/index.jsp</jsp-file>
+    </servlet>
+    <!--mapping-->
+    <servlet-mapping>
+        <servlet-name>index</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>profile</servlet-name>
+        <jsp-file>/profile.jsp</jsp-file>
+    </servlet>
+    <!--mapping-->
+    <servlet-mapping>
+        <servlet-name>profile</servlet-name>
+        <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+
+
+
+
+
+
+
 </web-app>
 

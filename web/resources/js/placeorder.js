@@ -58,7 +58,7 @@ $(document).ready(function() {
         $orderModal.modal('hide');
         $(".alert").show();
         setTimeout(function() {
-          window.location.assign("./index.jsp");
+          window.location.assign("./index");
         }, 2000);
       });
   });

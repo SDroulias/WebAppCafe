@@ -35,7 +35,7 @@
         </div>
         <div class="border-cols col-md-4 d-flex flex-column align-items-center">
           <h1 class="pt-5 pb-5 text-center">Products</h1>
-          <a class="d-block mb-5" href="./createProduct.jsp">Create Product</a>
+          <a class="d-block mb-5" href="./createProduct">Create Product</a>
           <a class="" href="viewProducts">View Products</a>
         </div>
         <div class="col-md-4 d-flex flex-column align-items-center">
