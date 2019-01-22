@@ -1,4 +1,4 @@
-package com.webappcafe.servlet.customer;
+package com.webappcafe.servlet.admin;
 
 import com.webappcafe.dao.CustomerDAOImpl;
 import com.webappcafe.model.Customer;
@@ -25,8 +25,6 @@ public class ViewCustomers extends HttpServlet {
         HttpSession session = request.getSession();
         String username = String.valueOf(session.getAttribute("username"));
         String password = String.valueOf(session.getAttribute("password"));
-
-//        Customer customer = (Customer) session.getAttribute("admin");
 
         if (!username.equals("root") && !password.equals("root")) {
             response.sendRedirect("./");

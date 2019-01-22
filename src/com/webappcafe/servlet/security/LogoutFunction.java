@@ -1,4 +1,4 @@
-package com.webappcafe.servlet.product;
+package com.webappcafe.servlet.security;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,8 +12,7 @@ import java.io.IOException;
 @WebServlet(name = "logoutFunction", value = {"/logoutFunction"})
 public class LogoutFunction extends HttpServlet
 {
-//    private static final long serialVersionUID = 1L;
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     { 
         HttpSession session = request.getSession(false); 
         if(session!=null) 

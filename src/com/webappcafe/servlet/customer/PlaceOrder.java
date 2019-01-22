@@ -1,4 +1,4 @@
-package com.webappcafe.servlet.place_order;
+package com.webappcafe.servlet.customer;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -64,8 +64,5 @@ public class PlaceOrder extends HttpServlet {
                 prodOrderService.createProductOrder(orderId, productId, productQuantity);
             }
         }
-
-        
-
     }
 }

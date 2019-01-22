@@ -1,4 +1,4 @@
-package com.webappcafe.servlet.product;
+package com.webappcafe.servlet.admin;
 
 import com.webappcafe.service.ProductService;
 
@@ -11,11 +11,19 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-@WebServlet(name = "viewProducts", value = {"/viewProducts"})
-public class ViewProducts extends HttpServlet {
+@WebServlet(name = "editProduct", urlPatterns = {"/editProduct"})
+public class EditProduct extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        
+        
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -26,14 +34,11 @@ public class ViewProducts extends HttpServlet {
             response.sendRedirect("./");
         } else {
             ProductService service = new ProductService();
-
-            request.setAttribute("products", service.getAvailableProducts());
-            request.getRequestDispatcher("viewProducts.jsp").forward(request, response);
+            service.editProduct(Long.parseLong(request.getParameter("id")),
+                    request.getParameter("name"),
+                    Double.parseDouble(request.getParameter("price")),
+                    request.getParameter("description"));
         }
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
+    
 }

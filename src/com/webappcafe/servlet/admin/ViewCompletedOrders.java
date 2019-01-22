@@ -36,7 +36,6 @@ public class ViewCompletedOrders extends HttpServlet {
         HttpSession session = request.getSession();
         String username = String.valueOf(session.getAttribute("username"));
         String password = String.valueOf(session.getAttribute("password"));
-//        Customer customer = (Customer) session.getAttribute("admin");
 
         if (!username.equals("root") && !password.equals("root")) {
             response.sendRedirect("./");

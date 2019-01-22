@@ -18,7 +18,6 @@
     </header>
 
     <%
-        //        Customer customer = (Customer) session.getAttribute("admin");
         String username = String.valueOf(session.getAttribute("username"));
         String password = String.valueOf(session.getAttribute("password"));
     %>

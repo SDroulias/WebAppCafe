@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.webappcafe.servlet.product;
+package com.webappcafe.servlet.admin;
 
 import com.webappcafe.service.ProductService;
 
@@ -16,33 +11,29 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-@WebServlet(name = "setProductUnavailable", urlPatterns = {"/setProductUnavailable"})
-public class SetProductUnavailable extends HttpServlet {
+@WebServlet(name = "viewProducts", value = {"/viewProducts"})
+public class ViewProducts extends HttpServlet {
 
-   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
-
-    
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
         String username = String.valueOf(session.getAttribute("username"));
         String password = String.valueOf(session.getAttribute("password"));
-//        Customer customer = (Customer) session.getAttribute("admin");
 
         if (!username.equals("root") && !password.equals("root")) {
             response.sendRedirect("./");
         } else {
             ProductService service = new ProductService();
 
-            service.updateProductAvailability(Long.parseLong(request.getParameter("id")), false);
+            request.setAttribute("products", service.getAvailableProducts());
+            request.getRequestDispatcher("viewProducts.jsp").forward(request, response);
         }
+    }
 
-
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
     }
 }

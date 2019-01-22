@@ -1,3 +1,4 @@
+<%@ page import="com.webappcafe.model.Customer" %>
 <%@ page isELIgnored="false" language="java" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -15,6 +16,15 @@
 </head>
 
 <body ng-app="myApp">
+
+<%
+    Customer customer = (Customer) session.getAttribute("loggedInCustomer");
+%>
+<% if (customer == null) {
+    response.sendRedirect("landingPage.html");
+}
+%>
+
 <header ng-include="'./userheader.html'" class="fixed-top"></header>
 
 <main class="container">
