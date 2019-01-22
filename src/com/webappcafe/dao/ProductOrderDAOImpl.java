@@ -69,7 +69,7 @@ public class ProductOrderDAOImpl implements ProductOrderDAO {
 
 
     @Override
-    public void saveOrdersProducts(ProductOrder order)
+    public void saveProductOrder(ProductOrder order)
     {
         try
         {

@@ -23,11 +23,10 @@ public class Order {
         setStatus(status);
     }
     
-    private Order(long customerId, String status) {
+    private Order(long customerId) {
         setCustomerId(customerId);
-        setStatus(status);
     }
-
+    
     public long getId() {
         return id;
     }
@@ -80,8 +79,8 @@ public class Order {
         return new Order(id, date, customerId, status);
     }
 
-    public static Order createOrder(long customerId, String status) {
-        return new Order(customerId, status);
+    public static Order createOrder(long customerId) {
+        return new Order(customerId);
     }
 
     @Override
@@ -90,6 +89,6 @@ public class Order {
                 "id=" + id + 
                 ", date=" + date + 
                 ", customerId=" + customerId + 
-                ", status=" + status +'}';
+                ", status=" + status + '}';
     }
 }
