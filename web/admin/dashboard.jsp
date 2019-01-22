@@ -31,17 +31,17 @@
         <div class="border-cols col-md-4 d-flex flex-column align-items-center">
           <h1 class="pt-5 pb-5">Customers</h1>
           <a class="d-block mb-5" href="./create-customer">Create Customer</a>
-          <a class="" href="./viewCustomers">View Customers</a>
+          <a class="" href="./view-customers">View Customers</a>
         </div>
         <div class="border-cols col-md-4 d-flex flex-column align-items-center">
           <h1 class="pt-5 pb-5 text-center">Products</h1>
-          <a class="d-block mb-5" href="./createProduct">Create Product</a>
-          <a class="" href="viewProducts">View Products</a>
+          <a class="d-block mb-5" href="./create-product">Create Product</a>
+          <a class="" href="view-products">View Products</a>
         </div>
         <div class="col-md-4 d-flex flex-column align-items-center">
           <h1 class="pt-5 pb-5 text-center">Orders</h1>
-          <a class="d-block mb-5" href="viewActiveOrders">View Active Orders</a>
-          <a class="" href="viewCompletedOrders">View Completed Orders</a>
+          <a class="d-block mb-5" href="view-active-orders">View Active Orders</a>
+          <a class="" href="view-completed-orders">View Completed Orders</a>
         </div>
       </div>
     </main>

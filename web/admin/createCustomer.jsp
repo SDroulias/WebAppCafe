@@ -86,7 +86,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
-          <a href="dashboard.jsp" type="button" class="btn btn-primary">Dashboard</a>
+          <a href="dashboard" type="button" class="btn btn-primary">Dashboard</a>
         </div>
       </div>
     </div>

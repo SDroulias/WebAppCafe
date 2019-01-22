@@ -82,7 +82,7 @@ $(document).ready(function() {
     }
 
     if ($registerForm[0].checkValidity() && pswdCheck == true) {
-      $.post("./createCustomer", {fname: $fname.val(), lname: $lname.val(), username: $uname.val(), password: $pswd.val()},
+      $.post("createCustomer", {fname: $fname.val(), lname: $lname.val(), username: $uname.val(), password: $pswd.val()},
       function(result){
         console.log(result);
         if (result == 'true'){

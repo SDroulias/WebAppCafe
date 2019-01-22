@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 import static com.webappcafe.servlet.security.RegistrationFunction.preRegistrationCheck;
 
-@WebServlet(name = "createCustomer", value = {"/createCustomer"})
+@WebServlet(name = "createCustomer", value = {"/admin/createCustomer"})
 public class CreateCustomer extends HttpServlet {
 
     public static final String SELECT_CUSTOMERS_USERNAME = String.format("SELECT username FROM customers");

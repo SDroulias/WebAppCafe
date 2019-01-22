@@ -20,7 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet(name = "viewActiveOrders", value = {"/admin/viewActiveOrders"})
+@WebServlet(name = "viewActiveOrders", value = {"/admin/view-active-orders"})
 public class ViewActiveOrders extends HttpServlet {
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");

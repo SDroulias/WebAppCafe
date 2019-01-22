@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-@WebServlet(name = "viewProducts", value = {"/admin/viewProducts"})
+@WebServlet(name = "viewProducts", value = {"/admin/view-products"})
 public class ViewProducts extends HttpServlet {
 
     @Override
