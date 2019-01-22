@@ -25,7 +25,7 @@
         String password = String.valueOf(session.getAttribute("password"));
     %>
     <% if (!username.equals("root") && !password.equals("root")) {
-        response.sendRedirect("landingPage.html");
+        response.sendRedirect("../");
     }
     %>
 

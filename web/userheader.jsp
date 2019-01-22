@@ -1,3 +1,11 @@
+<%@ page import="com.webappcafe.model.Customer" %>
+<%
+  Customer customer = (Customer) session.getAttribute("loggedInCustomer");
+
+  if (customer == null) {
+    response.sendRedirect("./");
+  }
+%>
 <nav class="navbar navbar-dark bg-dark">
   <a id="logo" href="index.html" class="navbar-brand">Logo</a>
   <div class="d-flex align-items-center">

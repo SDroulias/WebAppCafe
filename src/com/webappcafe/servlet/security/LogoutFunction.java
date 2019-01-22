@@ -19,7 +19,7 @@ public class LogoutFunction extends HttpServlet
             session.invalidate(); 
             response.sendRedirect("./");
 //            request.setAttribute("errMessage", "You have logged out successfully");
-//            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/landingPage.html");
+//            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/landingPage.jsp");
 //            requestDispatcher.forward(request, response);
 //            System.out.println("Logged out");
         }

@@ -19,6 +19,9 @@ $(document).ready(function(){
   let pass1IsVal = false;
   let pass2IsVal = false;
 
+  console.log($saveUserBtn);
+  console.log("IN JS");
+
 
 
   function addInvalid(a) {
@@ -44,10 +47,11 @@ $(document).ready(function(){
   });
 
   $saveUserBtn.click(function(){
+    console.log("clicked save user");
     if ($userForm[0].checkValidity()) {
       $.ajax({
         type: "POST",
-        url: "../editCustomerFnameLname", // Enter the url for the update of user fname and lname
+        url: "editCustomerFnameLname", // Enter the url for the update of user fname and lname
         data: {fname: $fname.val(), lname: $lname.val()},
         success: function(){
           location.reload(true);
@@ -114,7 +118,7 @@ $(document).ready(function(){
     if (oldPassIsVal && pass1IsVal && pass2IsVal) {
       $.ajax({
         type: "POST",
-        url: "../editCustomerPassword", // Enter url for user password update
+        url: "editCustomerPassword", // Enter url for user password update
         data: {password: $pass1.val()},
         success: function(){
           location.reload(true);

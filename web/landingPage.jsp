@@ -1,3 +1,7 @@
+<%@ page import="com.webappcafe.model.Customer"%>
+<%@ page isELIgnored="false" language="java" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -16,7 +20,7 @@
 </head>
 
 <body ng-app="myApp" class="d-flex flex-column">
-  <header>
+<header class="fixed-top">
     <nav class="navbar navbar-dark bg-dark">
       <a id="logo" href="#" class="navbar-brand">Logo</a>
       <div>
@@ -131,7 +135,7 @@
     </div>
   </section>
 
-  <footer ng-include="'./userfooter.html'" class="fixed-bottom d-flex justify-content-between align-items-center"></footer>
+  <footer class="fixed-bottom d-flex justify-content-between align-items-center"></footer>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

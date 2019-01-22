@@ -1,5 +1,13 @@
+<%@ page import="com.webappcafe.model.Customer" %>
+<%
+  Customer customer = (Customer) session.getAttribute("loggedInCustomer");
+
+  if (customer == null) {
+    response.sendRedirect("./");
+  }
+%>
 <div class="d-flex flex-column ml-3">
-  <p class="mb-0">Addess: Ano Ilisia</p>
+  <p class="mb-0">Address: Ano Ilisia</p>
   <p class="mb-0">Tel: 21096969696</p>
   <p class="mb-0">Copyright 2019</p>
 </div>

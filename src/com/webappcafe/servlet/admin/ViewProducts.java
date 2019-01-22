@@ -23,7 +23,7 @@ public class ViewProducts extends HttpServlet {
         String password = String.valueOf(session.getAttribute("password"));
 
         if (!username.equals("root") && !password.equals("root")) {
-            response.sendRedirect("./");
+            response.sendRedirect("../");
         } else {
             ProductService service = new ProductService();
 
