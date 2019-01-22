@@ -26,7 +26,7 @@ public class CreateProduct extends HttpServlet {
 //        Customer customer = (Customer) session.getAttribute("admin");
 
         if (!username.equals("root") && !password.equals("root")) {
-            response.sendRedirect("landingPage.html");
+            response.sendRedirect("./");
         } else {
             ProductDAO productDAO = new ProductDAOImpl();
 

@@ -18,14 +18,14 @@
     </header>
 
     <%
-//        Customer customer = (Customer) session.getAttribute("admin");
+        //        Customer customer = (Customer) session.getAttribute("admin");
         String username = String.valueOf(session.getAttribute("username"));
         String password = String.valueOf(session.getAttribute("password"));
     %>
     <% if (!username.equals("root") && !password.equals("root")) {
-        response.sendRedirect("landingPage.html");
+        response.sendRedirect("./");
     } else {
-        %> Welcome <%= username %>
+    %> Welcome <%= username %>
     <%}%>
 
     <main class="mt-5 mb-5 container flex-grow-1 d-flex flex-column">

@@ -26,14 +26,17 @@ public class EditCustomerPassword extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         Customer customer = (Customer) session.getAttribute("loggedInCustomer");
-        CustomerService service = new CustomerService();
-        String password = request.getParameter("password");
-        
-        service.editCustomerPassword(customer.getId(), password);
 
-        customer.setPassword(password);
-        session.setAttribute("loggedInCustomer", customer);
-        
+        if (customer == null) {
+            response.sendRedirect("/");
+        } else {
+            CustomerService service = new CustomerService();
+            String password = request.getParameter("password");
+
+            service.editCustomerPassword(customer.getId(), password);
+
+            customer.setPassword(password);
+            session.setAttribute("loggedInCustomer", customer);
+        }
     }
-    
 }

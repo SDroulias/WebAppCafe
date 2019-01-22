@@ -33,7 +33,7 @@ public class EditProduct extends HttpServlet {
 //        Customer customer = (Customer) session.getAttribute("admin");
 
         if (!username.equals("root") && !password.equals("root")) {
-            response.sendRedirect("landingPage.html");
+            response.sendRedirect("./");
         } else {
             ProductService service = new ProductService();
             service.editProduct(Long.parseLong(request.getParameter("id")),

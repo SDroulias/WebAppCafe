@@ -34,7 +34,7 @@ public class ViewCustomerOrders extends HttpServlet {
         Customer customer = (Customer) session.getAttribute("loggedInCustomer");
 
         if (customer == null) {
-            response.sendRedirect("landingPage.html");
+            response.sendRedirect("./");
 
         } else {
 

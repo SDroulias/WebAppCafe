@@ -26,18 +26,23 @@ public class EditCustomerFnameLname extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         Customer customer = (Customer) session.getAttribute("loggedInCustomer");
-        String fname = request.getParameter("fname");
-        String lname = request.getParameter("lname");
 
-        CustomerService service = new CustomerService();
-        
-        service.editCustomerFnameLname(customer.getId(),
-                fname, lname);
+        if (customer == null) {
+            response.sendRedirect("/");
+        } else {
 
-        customer.setFname(fname);
-        customer.setLname(lname);
-        session.setAttribute("loggedInCustomer", customer);
-        
+            String fname = request.getParameter("fname");
+            String lname = request.getParameter("lname");
+
+            CustomerService service = new CustomerService();
+
+            service.editCustomerFnameLname(customer.getId(),
+                    fname, lname);
+
+            customer.setFname(fname);
+            customer.setLname(lname);
+            session.setAttribute("loggedInCustomer", customer);
+        }
     }
     
 }

@@ -21,20 +21,15 @@ public class ViewProducts extends HttpServlet {
         HttpSession session = request.getSession();
         String username = String.valueOf(session.getAttribute("username"));
         String password = String.valueOf(session.getAttribute("password"));
-//        Customer customer = (Customer) session.getAttribute("admin");
 
         if (!username.equals("root") && !password.equals("root")) {
-            response.sendRedirect("landingPage.html");
+            response.sendRedirect("./");
         } else {
             ProductService service = new ProductService();
 
             request.setAttribute("products", service.getAvailableProducts());
             request.getRequestDispatcher("viewProducts.jsp").forward(request, response);
         }
-
-
-
-        
     }
 
     @Override

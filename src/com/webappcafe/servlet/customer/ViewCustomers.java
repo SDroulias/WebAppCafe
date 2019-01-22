@@ -29,7 +29,7 @@ public class ViewCustomers extends HttpServlet {
 //        Customer customer = (Customer) session.getAttribute("admin");
 
         if (!username.equals("root") && !password.equals("root")) {
-            response.sendRedirect("landingPage.html");
+            response.sendRedirect("./");
         } else {
             CustomerDAOImpl customerDAO = new CustomerDAOImpl();
 
