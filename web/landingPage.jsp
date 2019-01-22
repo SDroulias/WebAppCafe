@@ -20,15 +20,7 @@
 </head>
 
 <body ng-app="myApp" class="d-flex flex-column">
-<header class="fixed-top">
-    <nav class="navbar navbar-dark bg-dark">
-      <a id="logo" href="#" class="navbar-brand">Logo</a>
-      <div>
-        <button id="login-btn" class="btn btn-outline-secondary mr-1" data-toggle="modal" data-target="#login-modal">Login</button>
-        <button id="register-btn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#register-modal">Register</button>
-      </div>
-    </nav>
-  </header>
+  <header ng-include="'./userheader.jsp'" class="fixed-top"></header>
 
   <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-modal-title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -135,7 +127,7 @@
     </div>
   </section>
 
-  <footer class="fixed-bottom d-flex justify-content-between align-items-center"></footer>
+  <footer ng-include="'./userfooter.jsp'" class="fixed-bottom d-flex justify-content-between align-items-center"></footer>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
