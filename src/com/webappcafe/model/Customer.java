@@ -1,5 +1,6 @@
 package com.webappcafe.model;
 
+
 public class Customer {
     private long id;
     private String fname;
@@ -9,6 +10,7 @@ public class Customer {
 
     public Customer() {
     }
+
 
     private Customer(long id, String fname, String lname, String username, String password) {
         setId(id);

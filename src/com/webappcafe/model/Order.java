@@ -27,11 +27,6 @@ public class Order {
         setCustomerId(customerId);
     }
     
-    private Order(long customerId, String status) {
-        setCustomerId(customerId);
-        setStatus(status);
-    }
-
     public long getId() {
         return id;
     }

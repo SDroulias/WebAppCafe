@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class OrderDAOImpl implements OrderDAO {
 
@@ -23,7 +25,12 @@ public class OrderDAOImpl implements OrderDAO {
             "from orders o\n" +
             "inner join customers c on o.customer_id = c.id\n" +
             "where o.status = ?;";
+    
+    private static final String SELECT_ORDER_BY_ID = "SELECT * FROM `orders` WHERE `id` = ?;";
 
+    public static final String SELECT_ORDERS_BY_CUSTOMER_ID = "SELECT * FROM `orders` WHERE customer_id = ?;";
+    
+    private static final String UPDATE_ORDER_STATEMENT = "UPDATE `orders` SET `status` = ? WHERE `id` = ?";
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
@@ -74,11 +81,14 @@ public class OrderDAOImpl implements OrderDAO {
              ResultSet resultSet = preparedStatement.executeQuery()) {
             resultSet.beforeFirst();
             while (resultSet.next()) {
-                Order order = new Order();
-                order.setId(resultSet.getLong(1));
-                order.setDate(LocalDateTime.parse(resultSet.getString(2), DATE_TIME_FORMATTER));
-                order.setCustomerId(resultSet.getLong(3));
-                order.setStatus(resultSet.getString(4));
+
+//                Order order = new Order();
+//                order.setId(resultSet.getLong(1));
+//                order.setDate(LocalDateTime.parse(resultSet.getString(2), DATE_TIME_FORMATTER));
+//                order.setCustomerId(resultSet.getLong(3));
+//                order.setStatus(resultSet.getString(4));
+
+                Order order = fetchOrderByResultSet(resultSet);
                 orderList.add(order);
             }
         } catch (SQLException e) {
@@ -105,11 +115,13 @@ public class OrderDAOImpl implements OrderDAO {
             resultSet.beforeFirst();
             while (resultSet.next()) {
 
-                Order order = new Order();
-                order.setId(resultSet.getLong(1));
-                order.setDate(LocalDateTime.parse(resultSet.getString(2), DATE_TIME_FORMATTER));
-                order.setCustomerId(resultSet.getLong(3));
-                order.setStatus(resultSet.getString(4));
+//                Order order = new Order();
+//                order.setId(resultSet.getLong(1));
+//                order.setDate(LocalDateTime.parse(resultSet.getString(2), DATE_TIME_FORMATTER));
+//                order.setCustomerId(resultSet.getLong(3));
+//                order.setStatus(resultSet.getString(4));
+
+                Order order = fetchOrderByResultSet(resultSet);
 
                 Customer customer = new Customer();
                 customer.setId(resultSet.getLong(5));
@@ -132,5 +144,119 @@ public class OrderDAOImpl implements OrderDAO {
         }
 
         return completedOrders;
+    }
+
+    @Override
+    public Order fetchOrderByResultSet(ResultSet resultSet) {
+        Order order = null;
+
+        try {
+            order = new Order();
+            order.setId(resultSet.getLong(1));
+            order.setDate(LocalDateTime.parse(resultSet.getString(2), DATE_TIME_FORMATTER));
+            order.setCustomerId(resultSet.getLong(3));
+            order.setStatus(resultSet.getString(4));
+
+            return order;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+
+        return order;
+    }
+    
+    @Override
+    public Order getOrderById(long id) {
+        
+        Connection connection = database.getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        
+        try {
+            preparedStatement = connection.prepareStatement(SELECT_ORDER_BY_ID);
+            preparedStatement.setLong(1, id);
+            
+            resultSet = preparedStatement.executeQuery();
+            resultSet.beforeFirst();
+            
+            if(resultSet.next()) {
+                Order order = new Order();
+                order.setId(resultSet.getLong(1));
+                order.setDate(LocalDateTime.parse(resultSet.getString(2), DATE_TIME_FORMATTER));
+                order.setCustomerId(resultSet.getLong(3));
+                order.setStatus(resultSet.getString(4));
+                
+                return order;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }    
+
+    @Override
+    public List<Order> getOrdersByCustomerId(long customerId) {
+        List<Order> customerOrders = new ArrayList<>();
+
+        Connection connection = database.getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+
+            preparedStatement = connection.prepareStatement(SELECT_ORDERS_BY_CUSTOMER_ID);
+            preparedStatement.setLong(1, customerId);
+
+            resultSet = preparedStatement.executeQuery();
+
+            resultSet.beforeFirst();
+            while (resultSet.next()) {
+
+                Order order = fetchOrderByResultSet(resultSet);
+                customerOrders.add(order);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                resultSet.close();
+                preparedStatement.close();
+                connection.close();
+            } catch (SQLException | NullPointerException e) {
+                e.printStackTrace();
+            }
+        }
+        return customerOrders;
+    }
+    
+    public int updateOrder(Order order) {
+        int affectedRows = 0;
+        
+        PreparedStatement preparedStatement = database.getPreparedStatement(UPDATE_ORDER_STATEMENT);
+        try {
+            preparedStatement.setString(1, order.getStatus());
+            preparedStatement.setLong(2, order.getId());
+            
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            affectedRows = preparedStatement.executeUpdate();
+            
+            return affectedRows;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return affectedRows;
+    }
+ 
+    @Override
+    public void updateOrderStatus(long id, String status) {
+        Order order = getOrderById(id);
+        
+        if (order != null) {
+           order.setStatus(status);
+           updateOrder(order);
+        }
     }
 }

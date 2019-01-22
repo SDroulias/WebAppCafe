@@ -1,4 +1,4 @@
-package com.webappcafe.servlet.admin;
+package com.webappcafe.servlet.customer;
 
 import com.webappcafe.dao.*;
 import com.webappcafe.model.Customer;
@@ -18,42 +18,37 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
-@WebServlet(name = "viewCompletedOrders", value = {"/viewCompletedOrders"})
-public class ViewCompletedOrders extends HttpServlet {
+
+@WebServlet(name = "viewCustomerOrders", value = {"/viewCustomerOrders"})
+public class ViewCustomerOrders extends HttpServlet {
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat(".###");
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        OrderDAO orderDAO = new OrderDAOImpl();
+        ProductDAO productDAO = new ProductDAOImpl();
+        ProductOrderDAO productOrderDAO = new ProductOrderDAOImpl();
 
         HttpSession session = request.getSession();
-//        String username = String.valueOf(session.getAttribute("username"));
-//        String password = String.valueOf(session.getAttribute("password"));
-        Customer customer = (Customer) session.getAttribute("admin");
+        Customer customer = (Customer) session.getAttribute("loggedInCustomer");
 
         if (customer == null) {
             response.sendRedirect("landingPage.html");
+
         } else {
-            OrderDAO orderDAO = new OrderDAOImpl();
 
-            ProductDAO productDAO = new ProductDAOImpl();
+            List<Order> customerOrders = orderDAO.getOrdersByCustomerId(customer.getId());
 
-            ProductOrderDAO productOrderDAO = new ProductOrderDAOImpl();
+            for (Order order : customerOrders) {
 
-            Map<Order, Customer> completedOrders = orderDAO.getCompletedOrders("complete");
+                List<Product> productList = productDAO.getProductsOfOrder(order.getId());
 
-            for (Map.Entry<Order, Customer> orderCustomerEntry : completedOrders.entrySet()) {
-
-                List<Product> productList = productDAO.getProductsOfOrder(orderCustomerEntry.getKey().getId());
-
-                List<ProductOrder> productOrderList = productOrderDAO.getProductsOrdersByOrderId(orderCustomerEntry.getKey().getId());
+                List<ProductOrder> productOrderList = productOrderDAO.getProductsOrdersByOrderId(order.getId());
 
                 Iterator<Product> productIterator = productList.iterator();
                 Iterator<ProductOrder> productOrderIterator = productOrderList.iterator();
@@ -72,20 +67,21 @@ public class ViewCompletedOrders extends HttpServlet {
 
                     //calculates the total price of an order
                     totalPrice += (product.getPrice() * productOrder.getProductsQuantity());
-
                 }
-
-                orderCustomerEntry.getKey().setProductsOfOrder(productsOfOrder);
-                orderCustomerEntry.getKey().setTotalPrice(totalPrice);
-
+                order.setProductsOfOrder(productsOfOrder);
+                order.setTotalPrice(totalPrice);
             }
 
             request.setAttribute("DATE_TIME_FORMATTER", DATE_TIME_FORMATTER);
             request.setAttribute("DECIMAL_FORMAT", DECIMAL_FORMAT);
-            request.setAttribute("completedOrders", completedOrders);
-            request.getRequestDispatcher("viewCompletedOrders.jsp").forward(request, response);
+            request.setAttribute("customerOrders", customerOrders);
+            request.getRequestDispatcher("viewCustomerOrders.jsp").forward(request, response);
         }
+    }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
     }
 }
