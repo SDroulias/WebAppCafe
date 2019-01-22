@@ -64,5 +64,6 @@ public class PlaceOrder extends HttpServlet {
                 prodOrderService.createProductOrder(orderId, productId, productQuantity);
             }
         }
+        response.getWriter().print("susccess");
     }
 }

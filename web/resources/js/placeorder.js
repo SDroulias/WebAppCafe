@@ -51,13 +51,15 @@ $(document).ready(function() {
   });
 
   $placeOrderBtn.click(function() {
+    console.log("inside order click");
     $.post("placeOrder",{order: JSONcart}, // the url to post to is placeOrder. Change to whatever you need
       function() {
+        console.log("inside sucess function");
         $orderModal.modal('hide');
         $(".alert").show();
         setTimeout(function() {
-          window.location.assign("userlanding.html");
+          window.location.assign("./index.jsp");
         }, 2000);
-      }, "json");
+      });
   });
 });

@@ -30,8 +30,8 @@
 
 
   <main class="container">
-    <form id="order-form">
-      <div id="before-order" class="container fixed-top d-flex justify-content-center mt-3">
+    <form id="order-form" class="">
+      <div id="before-order" class="container fixed-top d-flex justify-content-center">
         <button id="before-order-btn" type="submit" class="btn btn-outline-secondary">Place Order</button>
       </div>
         <c:forEach items="${products}" var="product">
