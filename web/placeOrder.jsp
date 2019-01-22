@@ -25,7 +25,7 @@
       }
   %>
 
-  <header ng-include="'./userheader.html'" class="fixed-top"></header>
+  <header ng-include="'./userheader.jsp'" class="fixed-top"></header>
 
 
 
