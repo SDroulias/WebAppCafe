@@ -5,14 +5,14 @@
     <meta charset="utf-8">
     <title>Admin Panel</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="./resources/css/adminpanel.css">
+    <link rel="stylesheet" type="text/css" href="../resources/css/adminpanel.css">
   </head>
   <body class="d-flex flex-column">
     <header>
       <nav class="navbar navbar-dark bg-dark">
         <a href="#" class="navbar-brand">Logo</a>
         <form class="form-inine" action="/" method="post">
-          <button class="btn btn-outline-secondary" type="submit">Logout</button>
+          <a href="../logoutFunction" class="btn btn-outline-secondary" type="submit">Logout</a>
         </form>
       </nav>
     </header>
@@ -22,27 +22,26 @@
         String password = String.valueOf(session.getAttribute("password"));
     %>
     <% if (!username.equals("root") && !password.equals("root")) {
-        response.sendRedirect("./");
-    } else {
-    %> Welcome <%= username %>
-    <%}%>
+        response.sendRedirect("../");
+        }
+    %>
 
     <main class="mt-5 mb-5 container flex-grow-1 d-flex flex-column">
      <div class="row flex-grow-1">
         <div class="border-cols col-md-4 d-flex flex-column align-items-center">
           <h1 class="pt-5 pb-5">Customers</h1>
-          <a class="d-block mb-5" href="createCustomer">Create Customer</a>
-          <a class="" href="viewCustomer">View Customers</a>
+          <a class="d-block mb-5" href="createCustomer.html">Create Customer</a>
+          <a class="" href="./viewCustomers">View Customers</a>
         </div>
         <div class="border-cols col-md-4 d-flex flex-column align-items-center">
           <h1 class="pt-5 pb-5 text-center">Products</h1>
-          <a class="d-block mb-5" href="createProduct.jsp">Create Product</a>
+          <a class="d-block mb-5" href="./createProduct.jsp">Create Product</a>
           <a class="" href="viewProducts">View Products</a>
         </div>
         <div class="col-md-4 d-flex flex-column align-items-center">
           <h1 class="pt-5 pb-5 text-center">Orders</h1>
-          <a class="d-block mb-5" href="viewActiveOrder">View Active Orders</a>
-          <a class="" href="viewCompletedOrder">View Completed Orders</a>
+          <a class="d-block mb-5" href="viewActiveOrders">View Active Orders</a>
+          <a class="" href="viewCompletedOrders">View Completed Orders</a>
         </div>
       </div>
     </main>

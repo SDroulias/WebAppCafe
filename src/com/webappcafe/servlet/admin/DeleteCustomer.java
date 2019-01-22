@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-@WebServlet(name = "deleteCustomer", value = {"/deleteCustomer"})
+@WebServlet(name = "deleteCustomer", value = {"/admin/deleteCustomer"})
 public class DeleteCustomer extends HttpServlet 
 {
 

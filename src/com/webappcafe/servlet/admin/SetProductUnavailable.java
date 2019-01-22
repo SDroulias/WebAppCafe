@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-@WebServlet(name = "setProductUnavailable", urlPatterns = {"/setProductUnavailable"})
+@WebServlet(name = "setProductUnavailable", urlPatterns = {"/admin/setProductUnavailable"})
 public class SetProductUnavailable extends HttpServlet {
 
    

@@ -36,7 +36,7 @@
 
             <section class="container mt-5">
               <h1 class="text-center">Create a Product</h1>
-              <form id="create-form" class="mt-5" action="createProduct" method="POST" novalidate="novalidate">
+              <form id="create-form" class="mt-5" method="POST" novalidate="novalidate">
                 <div class="form-group row">
                   <label for="product-name" class="col-sm-2 col-form-label col-form-label-lg">Name</label>
                   <div class="col-sm-10">
@@ -79,7 +79,7 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
-                          <a href="adminPanel.jsp" type="button" class="btn btn-primary">Dashboard</a>
+                          <a href="dashboard.jsp" type="button" class="btn btn-primary">Dashboard</a>
                         </div>
                       </div>
                     </div>
@@ -88,7 +88,7 @@
                   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
                   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
                   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-                  <script type="text/javascript" src="./resources/js/createproduct.js"></script>
+                  <script type="text/javascript" src="../resources/js/createproduct.js"></script>
               </body>
 
             </html>

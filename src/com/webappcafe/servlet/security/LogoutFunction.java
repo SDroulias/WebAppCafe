@@ -1,6 +1,5 @@
 package com.webappcafe.servlet.security;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,10 +17,11 @@ public class LogoutFunction extends HttpServlet
         if(session!=null) 
         {
             session.invalidate(); 
-            request.setAttribute("errMessage", "You have logged out successfully");
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/landingPage.html");
-            requestDispatcher.forward(request, response);
-            System.out.println("Logged out");
+            response.sendRedirect("./");
+//            request.setAttribute("errMessage", "You have logged out successfully");
+//            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/landingPage.html");
+//            requestDispatcher.forward(request, response);
+//            System.out.println("Logged out");
         }
     }
 }

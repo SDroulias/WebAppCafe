@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-@WebServlet(name = "editProduct", urlPatterns = {"/editProduct"})
+@WebServlet(name = "editProduct", urlPatterns = {"/admin/editProduct"})
 public class EditProduct extends HttpServlet {
 
     @Override

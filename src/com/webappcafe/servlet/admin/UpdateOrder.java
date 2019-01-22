@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-@WebServlet(name = "UpdateOrder", urlPatterns = {"/UpdateOrder"})
+@WebServlet(name = "UpdateOrder", urlPatterns = {"/admin/UpdateOrder"})
 public class UpdateOrder extends HttpServlet {
 
    

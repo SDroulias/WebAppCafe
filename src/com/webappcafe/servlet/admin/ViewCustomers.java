@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "viewCustomers", value = {"/viewCustomers"})
+@WebServlet(name = "viewCustomers", value = {"/admin/viewCustomers"})
 public class ViewCustomers extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
