@@ -30,10 +30,6 @@ public class ViewCustomerOrders extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        OrderDAO orderDAO = new OrderDAOImpl();
-        ProductDAO productDAO = new ProductDAOImpl();
-        ProductOrderDAO productOrderDAO = new ProductOrderDAOImpl();
-
         HttpSession session = request.getSession();
         Customer customer = (Customer) session.getAttribute("loggedInCustomer");
 
@@ -41,6 +37,10 @@ public class ViewCustomerOrders extends HttpServlet {
             response.sendRedirect("./");
 
         } else {
+
+            OrderDAO orderDAO = new OrderDAOImpl();
+            ProductDAO productDAO = new ProductDAOImpl();
+            ProductOrderDAO productOrderDAO = new ProductOrderDAOImpl();
 
             List<Order> customerOrders = orderDAO.getOrdersByCustomerId(customer.getId());
 

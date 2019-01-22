@@ -120,7 +120,6 @@ public class ProductDAOImpl implements ProductDAO {
             e.printStackTrace();
         }
         
-        
         return affectedRows;
     }
 
@@ -195,11 +194,11 @@ public class ProductDAOImpl implements ProductDAO {
         
         try {
             p = Product.createProduct(
-                    results.getLong("id"),
-                    results.getString("name"),
-                    results.getString("description"),
-                    results.getDouble("price"),
-                    results.getBoolean("is_available"));
+                results.getLong("id"),
+                results.getString("name"),
+                results.getString("description"),
+                results.getDouble("price"),
+                results.getBoolean("is_available"));
             
             return p;
             

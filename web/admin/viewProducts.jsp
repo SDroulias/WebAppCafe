@@ -19,6 +19,16 @@
 </head>
 
 <body>
+
+    <%
+        String username = String.valueOf(session.getAttribute("username"));
+        String password = String.valueOf(session.getAttribute("password"));
+    %>
+    <% if (!username.equals("root") && !password.equals("root")) {
+        response.sendRedirect("../");
+    }
+    %>
+
 <header>
     <nav class="navbar navbar-dark bg-dark">
         <a href="#" class="navbar-brand">Logo</a>

@@ -1,3 +1,4 @@
+<%@ page import="com.webappcafe.model.Customer" %>
 <%@ page isELIgnored="false" language="java" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -15,7 +16,16 @@
 </head>
 
 <body ng-app="myApp">
-<header ng-include="'./userheader.html'" class="fixed-top"></header>
+
+<%
+    Customer customer = (Customer) session.getAttribute("loggedInCustomer");
+%>
+<% if (customer == null) {
+    response.sendRedirect("./");
+}
+%>
+
+<header ng-include="'./userheader.jsp'" class="fixed-top"></header>
 
 <main class="container">
     <h1 class="h2 mt-5 mb-5">Your orders</h1>
@@ -61,7 +71,7 @@
     </div>
 </main>
 
-<footer ng-include="'./userfooter.html'" class="fixed-bottom d-flex justify-content-between align-items-center"></footer>
+<footer ng-include="'./userfooter.jsp'" class="fixed-bottom d-flex justify-content-between align-items-center"></footer>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

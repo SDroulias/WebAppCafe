@@ -1,0 +1,69 @@
+main {
+  position: relative;
+  top: 10rem;
+  padding-bottom: 4.5rem;
+  overflow: auto;
+}
+
+.form-row {
+  border-bottom: 1px solid #343a40;
+  height: 6rem;
+}
+
+p.descr {
+  overflow-y: scroll;
+  max-height: 100%;
+}
+
+.toggle-checkbox {
+  background-color: #fbe988;
+}
+
+#order-form {
+  max-width: 100%;
+}
+
+.form-row {
+  width: inherit;
+  margin: 0;
+}
+
+#before-order {
+  top: 4.5rem;
+}
+
+#before-order-btn {
+  width: 100%;
+  height: 3rem;
+  color: #fff;
+  background-color: #d2ab00;
+}
+
+#before-order-btn:hover {
+  background-color: #ab8b02;
+  color: #fff;
+}
+
+#place-order-btn {
+  background-color: #d2ab00;
+  color: #fff;
+}
+
+#place-order-btn:hover {
+  background-color: #a28400;
+}
+
+.alert {
+  display: none;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 20%;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.modal-body {
+  background-color: #d2ab00;
+  color: #fff;
+}

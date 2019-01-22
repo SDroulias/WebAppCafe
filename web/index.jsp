@@ -36,11 +36,11 @@
       <p>View our products and order now one of our specialty blends!</p>
     </div>
     <div class="mb-2 mr-2">
-      <a id="order-now" href="placeorder.html" class="btn btn-outline-secondary float-right">Place order</a>
+      <a id="order-now" href="./products" class="btn btn-outline-secondary float-right">Place order</a>
     </div>
   </div>
 
-  <footer ng-include="'./userfooter.html'" class="fixed-bottom d-flex justify-content-between align-items-center"></footer>
+  <footer ng-include="'./userfooter.jsp'" class="fixed-bottom d-flex justify-content-between align-items-center"></footer>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

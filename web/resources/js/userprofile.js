@@ -19,10 +19,10 @@ $(document).ready(function(){
   let pass1IsVal = false;
   let pass2IsVal = false;
 
-  $uidUpdate.val(uid);
-  $uidPass.val(uid);
-  $fname.val(userFname);
-  $lname.val(userLname);
+  console.log($saveUserBtn);
+  console.log("IN JS");
+
+
 
   function addInvalid(a) {
     if (!(a.hasClass("is-invalid"))){
@@ -39,6 +39,7 @@ $(document).ready(function(){
   }
 
   $updateUserBtn.click(function(e){
+    console.log("click");
     e.preventDefault();
     $fname.prop("disabled", false);
     $lname.prop("disabled", false);
@@ -46,12 +47,15 @@ $(document).ready(function(){
   });
 
   $saveUserBtn.click(function(){
+    console.log("clicked save user");
     if ($userForm[0].checkValidity()) {
       $.ajax({
         type: "POST",
-        url: "updateUser", // Enter the url for the update of user fname and lname
-        data: {id: $uidUpdate.val(), fname: $fname.val(), lname: $lname.val()}
-        // success: function(){location.reload(true);}
+        url: "editCustomerFnameLname", // Enter the url for the update of user fname and lname
+        data: {fname: $fname.val(), lname: $lname.val()},
+        success: function(){
+          location.reload(true);
+        }
       });
     }
   });
@@ -114,9 +118,11 @@ $(document).ready(function(){
     if (oldPassIsVal && pass1IsVal && pass2IsVal) {
       $.ajax({
         type: "POST",
-        url: "updateUserPassword", // Enter url for user password update
-        data: {id: $uidPass.val(), password: $pass1.val()}
-        // success: function(){location.reload(true);}
+        url: "editCustomerPassword", // Enter url for user password update
+        data: {password: $pass1.val()},
+        success: function(){
+          location.reload(true);
+        }
       });
     }
   });

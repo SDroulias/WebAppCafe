@@ -2,19 +2,21 @@ package com.webappcafe.servlet.admin;
 
 import com.webappcafe.dao.CustomerDAOImpl;
 import com.webappcafe.model.Customer;
-import com.webappcafe.servlet.product.RegistrationFunction;
-import static com.webappcafe.servlet.product.RegistrationFunction.preRegistrationCheck;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.webappcafe.servlet.security.RegistrationFunction;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-@WebServlet(name = "createCustomer", value = {"/createCustomer"})
+import static com.webappcafe.servlet.security.RegistrationFunction.preRegistrationCheck;
+
+@WebServlet(name = "createCustomer", value = {"/admin/createCustomer"})
 public class CreateCustomer extends HttpServlet {
 
     public static final String SELECT_CUSTOMERS_USERNAME = String.format("SELECT username FROM customers");
@@ -30,7 +32,7 @@ public class CreateCustomer extends HttpServlet {
         String userRegistered = null;
         try {
             if (!preRegistrationCheck(userName)) {
-                response.getWriter().print(false);
+                response.getWriter().print("false");
             } else {
                 Customer registerBean = new Customer();
                 registerBean.setFname(fname);
@@ -39,12 +41,11 @@ public class CreateCustomer extends HttpServlet {
                 registerBean.setPassword(password);
                 CustomerDAOImpl customerDao = new CustomerDAOImpl();
                 userRegistered = customerDao.registerUser(registerBean);
-                response.getWriter().print(true);
+                response.getWriter().print("true");
             }
         } catch (SQLException ex) {
             Logger.getLogger(RegistrationFunction.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
 }

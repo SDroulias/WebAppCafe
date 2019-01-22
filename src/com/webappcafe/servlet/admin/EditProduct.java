@@ -1,7 +1,6 @@
 package com.webappcafe.servlet.admin;
 
-import com.webappcafe.dao.OrderDAO;
-import com.webappcafe.dao.OrderDAOImpl;
+import com.webappcafe.service.ProductService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,16 +11,17 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-@WebServlet(name = "UpdateOrder", urlPatterns = {"/admin/UpdateOrder"})
-public class UpdateOrder extends HttpServlet {
+@WebServlet(name = "editProduct", urlPatterns = {"/admin/editProduct"})
+public class EditProduct extends HttpServlet {
 
-   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        
+        
     }
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -33,12 +33,12 @@ public class UpdateOrder extends HttpServlet {
         if (!username.equals("root") && !password.equals("root")) {
             response.sendRedirect("./");
         } else {
-
-            OrderDAO orderDAO = new OrderDAOImpl();
-
-            orderDAO.updateOrderStatus(Long.parseLong(request.getParameter("id")), "complete");
+            ProductService service = new ProductService();
+            service.editProduct(Long.parseLong(request.getParameter("id")),
+                    request.getParameter("name"),
+                    Double.parseDouble(request.getParameter("price")),
+                    request.getParameter("description"));
         }
-
-
     }
+    
 }

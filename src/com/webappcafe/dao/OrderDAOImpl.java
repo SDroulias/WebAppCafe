@@ -16,8 +16,8 @@ import java.util.logging.Logger;
 
 public class OrderDAOImpl implements OrderDAO {
 
-    private static final String INSERT_ORDER_STATEMENT = String.format("INSERT INTO %s (%s, %s) VALUES(?, ?);",
-            "`orders`", "`customer_id`", "`status`");
+    private static final String INSERT_ORDER_STATEMENT = String.format("INSERT INTO %s (%s) VALUES (?);",
+            "`orders`", "`customer_id`");
 
     public static final String SELECT_ORDERS_STATEMENT = String.format("SELECT * FROM %s;", "`orders`");
 
@@ -48,7 +48,6 @@ public class OrderDAOImpl implements OrderDAO {
         try {
             preparedStatement = connection.prepareStatement(INSERT_ORDER_STATEMENT, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setLong(1,  order.getCustomerId());
-            preparedStatement.setString(2, order.getStatus());
 
             if (preparedStatement.executeUpdate() > 0) {
                 resultSet = preparedStatement.getGeneratedKeys();

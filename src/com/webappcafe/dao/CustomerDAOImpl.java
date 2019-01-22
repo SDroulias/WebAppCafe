@@ -1,12 +1,13 @@
 package com.webappcafe.dao;
 
  
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import com.webappcafe.datasource.Database;
 import com.webappcafe.model.Customer;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
  
@@ -14,8 +15,13 @@ public class CustomerDAOImpl implements CustomerDAO
 {
     private Database database = Database.getInstance();
     public static final String SELECT_CUSTOMERS_STATEMENT = String.format("SELECT * FROM %s;", "`customers`");
-    public static final String DELETE_CUSTOMER_BYID = String.format("DELETE FROM customers WHERE id = ?;");
-    public static final String CREATE_NEW_CUSTOMER = String.format("INSERT INTO customers(fname,lname,username,password) VALUES (?,?,?,?)");
+
+    public static final String CREATE_NEW_CUSTOMER = "INSERT INTO `customers` (`fname`,`lname`,`username`,`password`) VALUES (?,?,?,?);";
+    public static final String UPDATE_CUSTOMER_STATEMENT = "UPDATE `customers` SET `fname` = ?, `lname` = ?, `username` = ?, `password` = ? "
+            + "WHERE `id` = ?";
+    public static final String SELECT_CUSTOMER_WHERE_ID_STATEMENT = "SELECT * FROM `customers` WHERE `id` = ?";
+    public static final String DELETE_CUSTOMER_BYID = "DELETE FROM `customers` WHERE `id` = ?;";
+
  public String registerUser(Customer registerBean)
  {
     String fname = registerBean.getFname();
@@ -82,4 +88,73 @@ public class CustomerDAOImpl implements CustomerDAO
             e.printStackTrace();
         }
  }
+
+    @Override
+    public int updateCustomer(Customer customer) {
+        int affectedRows = 0;
+        
+        PreparedStatement preparedStmt = Database.getInstance().getPreparedStatement(UPDATE_CUSTOMER_STATEMENT);
+        try {
+            preparedStmt.setString(1, customer.getFname());
+            preparedStmt.setString(2, customer.getLname());
+            preparedStmt.setString(3, customer.getUsername());
+            preparedStmt.setString(4, customer.getPassword());
+            preparedStmt.setLong(5, customer.getId());
+            
+            affectedRows = preparedStmt.executeUpdate();
+            
+            return affectedRows;
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        
+        return affectedRows;
+    }
+
+    @Override
+    public Customer getCustomerById(long id) {
+        Customer c = null;
+        
+        PreparedStatement preparedStmt = Database.getInstance().getPreparedStatement(SELECT_CUSTOMER_WHERE_ID_STATEMENT);
+        try {
+            preparedStmt.setLong(1, id);
+            
+            ResultSet result = preparedStmt.executeQuery();
+            
+            while(result.next()) {
+                c = fetchCustomerByResultSet(result);
+            }
+            
+            return c;
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        
+        return c;
+    }
+ 
+    @Override
+    public Customer fetchCustomerByResultSet(ResultSet results) {
+        Customer c = null;
+        
+        try {
+            c = Customer.createCustomer(results.getLong("id"), 
+                results.getString("fname"), 
+                results.getString("lname"), 
+                results.getString("username"), 
+                results.getString("password"));
+        
+            return c;
+        
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        
+        return c;
+    }
 }

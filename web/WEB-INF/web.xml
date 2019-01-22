@@ -8,6 +8,63 @@
         <welcome-file>landingPage.html</welcome-file>
     </welcome-file-list>
 
+    <servlet>
+        <servlet-name>createCustomerView</servlet-name>
+        <jsp-file>/admin/createCustomer.jsp</jsp-file>
+    </servlet>
+    <!--mapping-->
+    <servlet-mapping>
+        <servlet-name>createCustomerView</servlet-name>
+        <url-pattern>/admin/create-customer</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>createProductView</servlet-name>
+        <jsp-file>/admin/createProduct.jsp</jsp-file>
+    </servlet>
+    <!--mapping-->
+    <servlet-mapping>
+        <servlet-name>createProductView</servlet-name>
+        <url-pattern>/admin/create-product</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>dashboard</servlet-name>
+        <jsp-file>/admin/dashboard.jsp</jsp-file>
+    </servlet>
+    <!--mapping-->
+    <servlet-mapping>
+        <servlet-name>dashboard</servlet-name>
+        <url-pattern>/admin/dashboard</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>index</servlet-name>
+        <jsp-file>/index.jsp</jsp-file>
+    </servlet>
+    <!--mapping-->
+    <servlet-mapping>
+        <servlet-name>index</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>profile</servlet-name>
+        <jsp-file>/profile.jsp</jsp-file>
+    </servlet>
+    <!--mapping-->
+    <servlet-mapping>
+        <servlet-name>profile</servlet-name>
+        <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+
+
+
+
+
+
 
 </web-app>
 

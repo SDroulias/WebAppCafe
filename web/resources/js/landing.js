@@ -142,7 +142,7 @@ $(document).ready(function(){
       function(result){
         if (result == 'true') {
           console.log("THE CUSTOMER WAS REGISTERD");
-          window.location.assign("index.jsp");
+          window.location.assign("./index");
         } else {
           console.log("THIS USERNAME EXISTS");
           $registerForm.removeClass("was-validated");
@@ -177,12 +177,11 @@ $(document).ready(function(){
           console.log(result);
           if (result == 'customer') {
             // console.log("IT IS TRUE");
-            window.location.assign("index.jsp");
+            window.location.assign("./index");
           } else if (result == 'root') {
-            window.location.assign("admin/dashboard.jsp");
+            window.location.assign("./admin/dashboard");
           } else {
-            // console.log("IT IS FALSE");
-            // window.location.assign("loginfailure.jsp");
+
             $loginForm.removeClass("was-validated");
             $loginFail.html("Invalid username or password");
             $username.addClass("login-fail");
