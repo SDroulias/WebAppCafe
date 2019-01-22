@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(name = "setProductUnavailable", urlPatterns = {"/setProductUnavailable"})
+@WebServlet(name = "setProductUnavailable", urlPatterns = {"/admin/setProductUnavailable"})
 public class SetProductUnavailable extends HttpServlet {
 
    

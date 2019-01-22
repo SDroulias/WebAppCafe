@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-@WebServlet(name = "createProduct", value = {"/createProduct"})
+@WebServlet(name = "createProduct", value = {"/admin/createProduct"})
 public class CreateProduct extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

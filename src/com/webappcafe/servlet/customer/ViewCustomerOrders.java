@@ -20,7 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 
 
-@WebServlet(name = "viewCustomerOrders", value = {"/viewCustomerOrders"})
+@WebServlet(name = "viewCustomerOrders", value = {"/orders"})
 public class ViewCustomerOrders extends HttpServlet {
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
@@ -38,7 +38,7 @@ public class ViewCustomerOrders extends HttpServlet {
         Customer customer = (Customer) session.getAttribute("loggedInCustomer");
 
         if (customer == null) {
-            response.sendRedirect("landingPage.html");
+            response.sendRedirect("./");
 
         } else {
 

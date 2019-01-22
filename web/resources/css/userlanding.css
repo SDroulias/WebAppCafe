@@ -3,15 +3,42 @@ body {
 }
 
 main {
-  background-color: #fff;
+  padding-top: 4.5em;
+  padding-bottom: 4.5rem;
+  height: 100%;
+}
+
+main div {
+  height: 100%;
+}
+
+.main-1 {
+  background-image: url(../images/Coffee_Cappuccino_Cinnamon_Cup_Saucer.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.main-2 {
+  background-image: url(../images/Coffee_Cappuccino_Cup_Two_Grain.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.main-3 {
+  background-image: url(../images/falling_coffee_cup.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #banner {
   padding: 0;
   margin-top: 4.5rem;
-  position: relative;
+  position: absolute;
   width: 28rem;
-  height: 15rem;
+  min-height: 15rem;
   top: 3rem;
   right: 3rem;
   background-color: #343a40;
@@ -20,8 +47,9 @@ main {
 @media only screen and (max-width: 768px) {
   #banner {
     width: 100%;
-    position: static;
-    margin-top: 6rem;
+    margin-top: 4rem;
+    right: 0;
+    left: 0;
   }
 }
 

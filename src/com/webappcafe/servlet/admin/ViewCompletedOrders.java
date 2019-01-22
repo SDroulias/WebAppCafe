@@ -20,7 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet(name = "viewCompletedOrders", value = {"/viewCompletedOrders"})
+@WebServlet(name = "viewCompletedOrders", value = {"/admin/viewCompletedOrders"})
 public class ViewCompletedOrders extends HttpServlet {
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
@@ -39,7 +39,7 @@ public class ViewCompletedOrders extends HttpServlet {
         Customer customer = (Customer) session.getAttribute("admin");
 
         if (customer == null) {
-            response.sendRedirect("landingPage.html");
+            response.sendRedirect("../");
         } else {
             OrderDAO orderDAO = new OrderDAOImpl();
 
