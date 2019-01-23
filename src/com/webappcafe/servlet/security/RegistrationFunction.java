@@ -32,7 +32,7 @@ public static final String SELECT_CUSTOMERS_USERNAME = String.format("SELECT use
     String userName = request.getParameter("username");
     String password = request.getParameter("pswd");
     String userRegistered = null;
-    Customer loggedInCustomer;
+//    Customer loggedInCustomer;
      try
      {
         if(!preRegistrationCheck(userName))
@@ -48,6 +48,8 @@ public static final String SELECT_CUSTOMERS_USERNAME = String.format("SELECT use
             registerBean.setPassword(password); 
             CustomerDAOImpl customerDao = new CustomerDAOImpl();
             userRegistered = customerDao.registerUser(registerBean);
+            //fetch newly registered user's every detail, including id
+            registerBean = customerDao.getCustomerByUsername(userName);
             HttpSession session=request.getSession();
             session.setAttribute("loggedInCustomer",registerBean);
             response.getWriter().print(true);

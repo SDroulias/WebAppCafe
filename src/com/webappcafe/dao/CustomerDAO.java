@@ -18,4 +18,6 @@ public interface CustomerDAO {
     int updateCustomer(Customer customer);
     
     Customer fetchCustomerByResultSet(ResultSet results);
+    
+    Customer getCustomerByUsername(String username);
 }

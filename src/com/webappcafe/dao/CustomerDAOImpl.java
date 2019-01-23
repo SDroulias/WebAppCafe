@@ -21,6 +21,7 @@ public class CustomerDAOImpl implements CustomerDAO
             + "WHERE `id` = ?";
     public static final String SELECT_CUSTOMER_WHERE_ID_STATEMENT = "SELECT * FROM `customers` WHERE `id` = ?";
     public static final String DELETE_CUSTOMER_BYID = "DELETE FROM `customers` WHERE `id` = ?;";
+    public static final String GET_CUSTOMER_BY_USERNAME = "SELECT * FROM `customers` WHERE `username` = ?";
 
  public String registerUser(Customer registerBean)
  {
@@ -150,6 +151,30 @@ public class CustomerDAOImpl implements CustomerDAO
         
             return c;
         
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        
+        return c;
+    }
+    
+    @Override
+    public Customer getCustomerByUsername(String username) {
+        Customer c = null;
+        
+        PreparedStatement preparedStmt = Database.getInstance().getPreparedStatement(GET_CUSTOMER_BY_USERNAME);
+        try {
+            preparedStmt.setString(1, username);
+            
+            ResultSet result = preparedStmt.executeQuery();
+            
+            while(result.next()) {
+                c = fetchCustomerByResultSet(result);
+            }
+            
+            return c;
+            
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
