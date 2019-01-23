@@ -24,9 +24,9 @@
 
 <header>
     <nav class="navbar navbar-dark bg-dark">
-        <a href="#" class="navbar-brand">Logo</a>
+        <a id="logo" href="./dashboard" class="navbar-brand">Logo</a>
         <form class="form-inine" action="/" method="post">
-            <button class="btn btn-outline-secondary" type="submit">Logout</button>
+            <a id="logout-btn" href="../logoutFunction" class="btn btn-outline-secondary" type="submit">Logout</a>
         </form>
     </nav>
 </header>
@@ -35,16 +35,16 @@
     <h1 class="mb-5 mt-5 text-center">Completed Orders</h1>
 
     <div id="head" class="row">
-        <div class="col-2 d-flex align-items-center">
+        <div class="col-2 d-none">
             <p class="h5 font-weight-bold">ID</p>
         </div>
         <div class="col-3 d-flex align-items-center">
             <p class="h5 font-weight-bold">Date</p>
         </div>
-        <div class="col-2 d-flex align-items-center">
+        <div class="col-3 d-flex align-items-center">
             <p class="h5 font-weight-bold">Products</p>
         </div>
-        <div class="col-3 d-flex align-items-center">
+        <div class="col-4 d-flex align-items-center">
             <p class="h5 font-weight-bold">Customer</p>
         </div>
         <div class="col-2 d-flex align-items-center">
@@ -55,20 +55,20 @@
         <c:forEach items="${completedOrders}" var="completedOrder">
 
             <div class="row">
-                <div class="cols col-2 d-flex align-items-center">
+                <div class="cols col-2 d-none">
                     <p class="id font-weight-bold">${completedOrder.key.getId()}</p>
                 </div>
                 <div class="cols col-3 d-flex align-items-center">
                     <p items=${DATE_TIME_FORMATTER} var="DATE_TIME_FORMATTER">${DATE_TIME_FORMATTER.format(completedOrder.key.getDate())}</p>
                 </div>
-                <div class="cols products col-2">
+                <div class="cols products col-3">
                     <ul class="list-unstyled">
                         <c:forEach items="${completedOrder.key.getProductsOfOrder()}" var="product">
                             <li>${product}</li>
                         </c:forEach>
                     </ul>
                 </div>
-                <div class="cols col-3 d-flex align-items-center">
+                <div class="cols col-4 d-flex align-items-center">
                     <p>${completedOrder.value.getFname()} ${completedOrder.value.getLname()}</p>
                 </div>
                 <div class="cols col-2 d-flex align-items-center">

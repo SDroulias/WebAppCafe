@@ -31,9 +31,9 @@
 
 <header>
     <nav class="navbar navbar-dark bg-dark">
-        <a href="#" class="navbar-brand">Logo</a>
+        <a id="logo" href="./dashboard" class="navbar-brand">Logo</a>
         <form class="form-inine" action="/" method="post">
-            <button class="btn btn-outline-secondary" type="submit">Logout</button>
+            <a id="logout-btn" href="../logoutFunction" class="btn btn-outline-secondary" type="submit">Logout</a>
         </form>
     </nav>
 </header>
@@ -57,7 +57,7 @@
         <div class="form-group row">
             <label for="product-price" class="col-sm-2 col-form-label">Price</label>
             <div class="col-sm-10">
-                <input type="number" name="price" step="0.01" class="form-control " id="product-price" min="0.01" max="99.99" required disabled>
+                <input type="number" name="price" step="0.01" class="form-control " id="product-price" min="0.01" max="99.99" placeholder="Enter the product's price" required disabled>
                 <div class="invalid-feedback">Please enter a price from 0.01 to 99.99</div>
             </div>
         </div>
@@ -83,7 +83,7 @@
     <table class="table table-striped">
         <thead id="thead">
         <tr>
-            <th scope="col">Id</th>
+            <th scope="col" class="d-none">Id</th>
             <th scope="col">Name</th>
             <th scope="col">Price</th>
             <th scope="col" colspan="3">Description</th>
@@ -93,7 +93,7 @@
         <%--Loops through the list of products--%>
         <c:forEach items="${products}" var="product">
             <tr>
-                <th class="id" scope="row">${product.getId()}</th>
+                <th class="id d-none" scope="row">${product.getId()}</th>
                 <td class="name">${product.getName()}</td>
                 <td class="price">${product.getPrice()}</td>
                 <td class="descr">${product.getDescription()}</td>

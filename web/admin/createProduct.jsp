@@ -12,7 +12,9 @@
       <head>
         <meta charset="utf-8">
           <title>Create Product</title>
-          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></head>
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+          <link rel="stylesheet" type="text/css" href="../resources/css/createproduct.css">
+          </head>
 
           <body>
 
@@ -27,9 +29,9 @@
 
             <header>
               <nav class="navbar navbar-dark bg-dark">
-                <a href="#" class="navbar-brand">Logo</a>
+                <a id="logo" href="./dashboard" class="navbar-brand">Logo</a>
                 <form class="form-inine" action="/" method="post">
-                  <button class="btn btn-outline-secondary" type="submit">Logout</button>
+                  <a id="logout-btn" href="../logoutFunction" class="btn btn-outline-secondary" type="submit">Logout</a>
                 </form>
               </nav>
             </header>
@@ -47,7 +49,7 @@
                   <div class="form-group row">
                     <label for="product-price" class="col-sm-2 col-form-label col-form-label-lg">Price</label>
                     <div class="col-sm-10">
-                      <input type="number" name="price" step="0.01" class="form-control form-control-lg" id="product-price" min="0.01" max="99.99" required="required">
+                      <input type="number" name="price" step="0.01" class="form-control form-control-lg" id="product-price" min="0.01" max="99.99" placeholder="Enter the product's price" required="required">
                         <div class="invalid-feedback">Please enter a price from 0.01 to 99.99</div>
                       </div>
                     </div>
@@ -79,7 +81,7 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
-                          <a href="dashboard" type="button" class="btn btn-primary">Dashboard</a>
+                          <a id="dash-btn" href="dashboard" type="button" class="btn btn-primary">Dashboard</a>
                         </div>
                       </div>
                     </div>

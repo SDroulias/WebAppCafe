@@ -76,7 +76,7 @@
           <input type="password" class="form-control" id="pass2" required maxlength="70">
           <div id="pass2-feed" class="invalid-feedback">The passwords must match</div>
         </div>
-        <button id="save-pass" class="btn btn-outline-success float-right">Update</button>
+        <button id="save-pass" class="btn btn-outline-success float-right">Save</button>
       </form>
     </section>
   </main>

@@ -1,16 +1,28 @@
-main {
-  position: relative;
-  top: 4.5rem;
-  overflow: auto;
+#logo {
+  color: #d2ab00;
+}
+
+#logout-btn {
+  border: 1px solid #d2ab00;
+  color: #d2ab00;
+}
+
+#logout-btn:hover {
+  background-color: #d2ab00;
+  color: #343a40;
 }
 
 .row {
   height: 4rem;
   border-bottom: 1px solid #343a40;
+  border-left: 1px solid #343a40;
+  border-right: 1px solid #343a40;
 }
 
 #head {
   border-top: 1px solid #343a40;
+  background-color: #343a40;
+  color: #fff;
 }
 
 .cols {
@@ -27,9 +39,4 @@ main {
 
 #content .row:nth-child(odd) {
   background-color: #f2f2f2;
-}
-
-#head{
-  background-color: #343a40;
-  color: #fff;
 }

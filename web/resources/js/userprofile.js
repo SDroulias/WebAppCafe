@@ -84,6 +84,10 @@ $(document).ready(function(){
       addValid($(this));
       pass1IsVal = true;
     }
+
+    if ($(this).val() === $pass2.val()) {
+      addValid($pass2);
+    }
   });
 
   $pass2.keyup(function(){
@@ -94,6 +98,10 @@ $(document).ready(function(){
       addValid($(this));
       pass2IsVal = true;
     }
+  });
+
+  $oldPass.focus(function(){
+    $(this).removeClass("is-invalid");
   });
 
   $savePassBtn.click(function(){

@@ -72,9 +72,9 @@
   </div>
 
   <div class="alert alert-success container" role="alert">
-    <h4>Everything looks great!</h4>
-    <h6>Your order will be ready to be collected as soon as possible.</h6>
-    <p>Redirecting you to the main site now...</p>
+    <h4 class="text-center">Everything looks great!</h4>
+    <h6 class="text-center">Your order will be ready to be collected as soon as possible.</h6>
+    <p class="text-center">Redirecting you to the main site now...</p>
   </div>
 
   <footer ng-include="'./userfooter.jsp'" class="fixed-bottom d-flex justify-content-between align-items-center"></footer>

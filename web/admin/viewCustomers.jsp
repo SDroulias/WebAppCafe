@@ -24,9 +24,9 @@
 
   <header>
     <nav class="navbar navbar-dark bg-dark">
-      <a href="#" class="navbar-brand">Logo</a>
+      <a id="logo" href="./dashboard" class="navbar-brand">Logo</a>
       <form class="form-inine" action="/" method="post">
-        <button class="btn btn-outline-secondary" type="submit">Logout</button>
+        <a id="logout-btn" href="../logoutFunction" class="btn btn-outline-secondary" type="submit">Logout</a>
       </form>
     </nav>
   </header>
@@ -36,16 +36,16 @@
     <table class="table table-striped">
       <thead id="thead">
         <tr>
-          <th scope="col">Id</th>
+          <th scope="col" class="d-none">Id</th>
           <th scope="col">First Name</th>
           <th scope="col">Last Name</th>
           <th scope="col" colspan="2">Username</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="tbody">
         <c:forEach items="${customers}" var="customers">
-            <tr>
-                <th class="id" scope="row">${customers.getId()}</th>
+            <tr class="trow">
+                <th class="id d-none" scope="row">${customers.getId()}</th>
                 <td class="fname">${customers.getFname()}</td>
                 <td class="lname">${customers.getLname()}</td>
                 <td class="uname">${customers.getUsername()}</td>
