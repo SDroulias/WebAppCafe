@@ -16,15 +16,17 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @WebServlet(name = "viewCustomerOrders", value = {"/orders"})
 public class ViewCustomerOrders extends HttpServlet {
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-    public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat(".###");
+    public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#####.###");
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -71,6 +73,11 @@ public class ViewCustomerOrders extends HttpServlet {
                 order.setProductsOfOrder(productsOfOrder);
                 order.setTotalPrice(totalPrice);
             }
+
+            //sorts customerOrders by Order date in descending order
+            customerOrders = customerOrders.stream()
+                    .sorted(Comparator.comparing(Order::getDate).reversed())
+                    .collect(Collectors.toList());
 
             request.setAttribute("DATE_TIME_FORMATTER", DATE_TIME_FORMATTER);
             request.setAttribute("DECIMAL_FORMAT", DECIMAL_FORMAT);

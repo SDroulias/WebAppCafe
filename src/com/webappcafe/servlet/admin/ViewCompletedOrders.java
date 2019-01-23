@@ -15,10 +15,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @WebServlet(name = "viewCompletedOrders", value = {"/admin/view-completed-orders"})
 public class ViewCompletedOrders extends HttpServlet {
@@ -79,12 +77,17 @@ public class ViewCompletedOrders extends HttpServlet {
 
             }
 
+            //sorts completedOrders by Order date in descending order
+            completedOrders = completedOrders.entrySet().stream()
+                    .sorted(Map.Entry.comparingByKey(Comparator.comparing(Order::getDate).reversed()))
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                            (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+
+
             request.setAttribute("DATE_TIME_FORMATTER", DATE_TIME_FORMATTER);
             request.setAttribute("DECIMAL_FORMAT", DECIMAL_FORMAT);
             request.setAttribute("completedOrders", completedOrders);
             request.getRequestDispatcher("viewCompletedOrders.jsp").forward(request, response);
         }
-
-
     }
 }

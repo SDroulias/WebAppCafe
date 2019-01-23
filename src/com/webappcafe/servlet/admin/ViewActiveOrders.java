@@ -15,16 +15,14 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @WebServlet(name = "viewActiveOrders", value = {"/admin/view-active-orders"})
 public class ViewActiveOrders extends HttpServlet {
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-    public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("####.###");
+    public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#####.###");
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -78,6 +76,12 @@ public class ViewActiveOrders extends HttpServlet {
                 orderCustomerEntry.getKey().setTotalPrice(totalPrice);
 
             }
+
+            //sorts activeOrders by Order date in descending order
+            activeOrders = activeOrders.entrySet().stream()
+                    .sorted(Map.Entry.comparingByKey(Comparator.comparing(Order::getDate).reversed()))
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                    (oldValue, newValue) -> oldValue, LinkedHashMap::new));
 
             request.setAttribute("DATE_TIME_FORMATTER", DATE_TIME_FORMATTER);
             request.setAttribute("DECIMAL_FORMAT", DECIMAL_FORMAT);
