@@ -82,7 +82,7 @@
                             <p items="${DECIMAL_FORMAT}" var="DECIMAL_FORMAT">${DECIMAL_FORMAT.format(activeOrder.key.getTotalPrice())}</p>
                         </div>
                         <div class="cols col-2 d-flex align-items-center justify-content-end">
-                            <button class="btn btn-outline-success update-btn">Completed</button>
+                            <button class="btn btn-outline-success update-btn">Complete Order</button>
                         </div>
                     </div>
                 </c:forEach>
