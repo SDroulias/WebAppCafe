@@ -17,12 +17,12 @@ import java.util.logging.Logger;
 public class Database {
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DB_SERVER = "ra1.anystream.eu:1011";
+    private static final String DB_SERVER = "localhost:3306";
     private static final String DB_NAME = "ateam";
     private static final String DB_URL = "jdbc:mysql://" + DB_SERVER + "/" + DB_NAME + "?zeroDateTimeBehavior=convertToNull" +
             "&serverTimezone=Europe/Athens&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false";
-    private static final String DB_USER = "ateam";
-    private static final String DB_PASSWORD = "ateam";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = "root";
 
     private static Database databaseInstance;
     public static final String COLUMN_ID = "`id`";
