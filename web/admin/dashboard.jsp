@@ -10,7 +10,7 @@
   <body class="d-flex flex-column">
     <header>
       <nav class="navbar navbar-dark bg-dark">
-        <a href="#" class="navbar-brand">Logo</a>
+        <a href="./dashboard" class="navbar-brand">Logo</a>
         <form class="form-inine" action="/" method="post">
           <a href="../logoutFunction" class="btn btn-outline-secondary" type="submit">Logout</a>
         </form>
