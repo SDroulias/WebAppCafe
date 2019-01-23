@@ -28,7 +28,7 @@
 <header ng-include="'./userheader.jsp'" class="fixed-top"></header>
 
 <main class="container">
-    <h1 class="h2 mt-5 mb-5">Your orders</h1>
+    <h1 class="h2 mt-5 mb-5">Your orders, ${loggedInCustomer.getUsername()}</h1>
     <div id="head" class="row">
         <div class="col-3 d-flex align-items-center">
             <p class="h5 font-weight-bold">Date</p>
@@ -82,4 +82,3 @@
 </body>
 
 </html>
-

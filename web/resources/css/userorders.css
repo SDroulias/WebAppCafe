@@ -1,17 +1,21 @@
 main {
   position: relative;
   top: 4.5rem;
-  padding-bottom: 4.5rem;
+  padding-bottom: 5.5rem;
   overflow: auto;
 }
 
 .row {
   height: 4rem;
   border-bottom: 1px solid #343a40;
+  border-left: 1px solid #343a40;
+  border-right: 1px solid #343a40;
 }
 
 #head {
   border-top: 1px solid #343a40;
+  background-color: #343a40;
+  color: #fff;
 }
 
 .col-3 {

@@ -31,9 +31,9 @@
 
 <header>
     <nav class="navbar navbar-dark bg-dark">
-        <a href="./dashboard" class="navbar-brand">Logo</a>
+        <a id="logo" href="./dashboard" class="navbar-brand">Logo</a>
         <form class="form-inine" action="/" method="post">
-            <a href="../logoutFunction" class="btn btn-outline-secondary" type="submit">Logout</a>
+            <a id="logout-btn" href="../logoutFunction" class="btn btn-outline-secondary" type="submit">Logout</a>
         </form>
     </nav>
 </header>

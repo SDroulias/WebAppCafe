@@ -19,9 +19,9 @@
   %>
               <header>
                 <nav class="navbar navbar-dark bg-dark">
-                  <a href="./dashboard" class="navbar-brand">Logo</a>
+                  <a id="logo" href="./dashboard" class="navbar-brand">Logo</a>
                   <form class="form-inine" action="/" method="post">
-                    <a href="../logoutFunction" class="btn btn-outline-secondary" type="submit">Logout</a>
+                    <a id="logout-btn" href="../logoutFunction" class="btn btn-outline-secondary" type="submit">Logout</a>
                   </form>
                 </nav>
               </header>
@@ -82,7 +82,7 @@
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
-                                <a href="dashboard" type="button" class="btn btn-primary">Dashboard</a>
+                                <a id="dash-btn" href="dashboard" type="button" class="btn btn-primary">Dashboard</a>
                               </div>
                             </div>
                           </div>
