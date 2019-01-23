@@ -42,9 +42,9 @@
           <th scope="col" colspan="2">Username</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="tbody">
         <c:forEach items="${customers}" var="customers">
-            <tr>
+            <tr class="trow">
                 <th class="id d-none" scope="row">${customers.getId()}</th>
                 <td class="fname">${customers.getFname()}</td>
                 <td class="lname">${customers.getLname()}</td>

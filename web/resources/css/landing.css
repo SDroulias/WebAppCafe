@@ -21,6 +21,30 @@ main {
   color: #343a40;
 }
 
+#login-submit {
+  border-color: #d2ab00;
+  color: #fff;
+  background-color: #d2ab00;
+}
+
+#login-submit:hover {
+  border-color: #ab8b02;
+  background-color: #ab8b02;
+  color: #fff;
+}
+
+#register-submit {
+  border-color: #d2ab00;
+  color: #fff;
+  background-color: #d2ab00;
+}
+
+#register-submit:hover {
+  border-color: #ab8b02;
+  background-color: #ab8b02;
+  color: #fff;
+}
+
 main div {
   height: 100%;
 }

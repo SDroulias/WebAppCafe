@@ -43,3 +43,7 @@ td.buttons {
   color: #fff;
   cursor: pointer;
 }
+
+table {
+  border: 1px solid #343a40;
+}

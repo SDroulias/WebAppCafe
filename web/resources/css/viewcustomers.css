@@ -20,3 +20,7 @@ td.buttons {
   background-color: #d2ab00;
   color: #343a40;
 }
+
+table {
+  border: 1px solid #343a40;
+}
