@@ -47,7 +47,7 @@
                   <div class="form-group row">
                     <label for="product-price" class="col-sm-2 col-form-label col-form-label-lg">Price</label>
                     <div class="col-sm-10">
-                      <input type="number" name="price" step="0.01" class="form-control form-control-lg" id="product-price" min="0.01" max="99.99" required="required">
+                      <input type="number" name="price" step="0.01" class="form-control form-control-lg" id="product-price" min="0.01" max="99.99" placeholder="Enter the product's price" required="required">
                         <div class="invalid-feedback">Please enter a price from 0.01 to 99.99</div>
                       </div>
                     </div>

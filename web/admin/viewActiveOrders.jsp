@@ -41,16 +41,16 @@
             <h1 class="mb-5 mt-5 text-center">Active Orders</h1>
 
             <div id="head" class="row">
-                <div class="col-1 d-flex align-items-center">
+                <div class="col-1 d-none">
                     <p class="h5 font-weight-bold">ID</p>
                 </div>
-                <div class="col-3 d-flex align-items-center">
+                <div class="col-2 d-flex align-items-center">
                     <p class="h5 font-weight-bold">Date</p>
                 </div>
-                <div class="col-2 d-flex align-items-center">
+                <div class="col-3 d-flex align-items-center">
                     <p class="h5 font-weight-bold">Products</p>
                 </div>
-                <div class="col-3 d-flex align-items-center">
+                <div class="col-4 d-flex align-items-center">
                     <p class="h5 font-weight-bold">Customer</p>
                 </div>
                 <div class="col-2 d-flex align-items-center">
@@ -62,20 +62,20 @@
                 <c:forEach items="${activeOrders}" var="activeOrder">
 
                     <div class="row">
-                        <div class="cols col-1 d-flex align-items-center">
+                        <div class="cols col-1 d-none">
                             <p class="id font-weight-bold">${activeOrder.key.getId()}</p>
                         </div>
-                        <div class="cols col-3 d-flex align-items-center">
+                        <div class="cols col-2 d-flex align-items-center">
                             <p items=${DATE_TIME_FORMATTER} var="DATE_TIME_FORMATTER">${DATE_TIME_FORMATTER.format(activeOrder.key.getDate())}</p>
                         </div>
-                        <div class="cols products col-2">
+                        <div class="cols products col-3">
                             <ul class="list-unstyled">
                                 <c:forEach items="${activeOrder.key.getProductsOfOrder()}" var="product">
                                     <li>${product}</li>
                                 </c:forEach>
                             </ul>
                         </div>
-                        <div class="cols col-3 d-flex align-items-center">
+                        <div class="cols col-4 d-flex align-items-center">
                             <p>${activeOrder.value.getFname()} ${activeOrder.value.getLname()}</p>
                         </div>
                         <div class="cols col-1 d-flex align-items-center">
