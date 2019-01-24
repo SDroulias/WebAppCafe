@@ -44,7 +44,7 @@
         <p class="id d-none">${product.getId()}</p>
         <p class="name col-3 mb-0">${product.getName()}</p>
         <p class="descr col-4 mb-0">${product.getDescription()}</p>
-        <p class="price offset-1 col-2 mb-0">${product.getPrice()}</p>
+        <p class="price offset-1 col-2 mb-0">${product.getPrice()}&euro;</p>
         <input class="col-1 form-control quantity" type="number" min="1">
       </div>
       </c:forEach>

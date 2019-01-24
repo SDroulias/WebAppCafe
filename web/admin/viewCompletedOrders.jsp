@@ -72,7 +72,7 @@
                     <p>${completedOrder.value.getFname()} ${completedOrder.value.getLname()}</p>
                 </div>
                 <div class="cols col-2 d-flex align-items-center">
-                    <p items="${DECIMAL_FORMAT}" var="DECIMAL_FORMAT">${DECIMAL_FORMAT.format(completedOrder.key.getTotalPrice())}</p>
+                    <p items="${DECIMAL_FORMAT}" var="DECIMAL_FORMAT">${DECIMAL_FORMAT.format(completedOrder.key.getTotalPrice())}&euro;</p>
                 </div>
             </div>
 

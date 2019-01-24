@@ -79,7 +79,7 @@
                             <p>${activeOrder.value.getFname()} ${activeOrder.value.getLname()}</p>
                         </div>
                         <div class="cols col-1 d-flex align-items-center">
-                            <p items="${DECIMAL_FORMAT}" var="DECIMAL_FORMAT">${DECIMAL_FORMAT.format(activeOrder.key.getTotalPrice())}</p>
+                            <p items="${DECIMAL_FORMAT}" var="DECIMAL_FORMAT">${DECIMAL_FORMAT.format(activeOrder.key.getTotalPrice())}&euro;</p>
                         </div>
                         <div class="cols col-2 d-flex align-items-center justify-content-end">
                             <button class="btn btn-outline-success update-btn">Complete Order</button>

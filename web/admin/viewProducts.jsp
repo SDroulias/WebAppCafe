@@ -95,7 +95,7 @@
             <tr>
                 <th class="id d-none" scope="row">${product.getId()}</th>
                 <td class="name">${product.getName()}</td>
-                <td class="price">${product.getPrice()}</td>
+                <td class="price">${product.getPrice()}&euro;</td>
                 <td class="descr">${product.getDescription()}</td>
                 <td class="buttons"><button type="button" class="btn btn-outline-secondary edit-btn">Edit</button></td>
                 <td class="buttons"><button type="button" class="btn btn-outline-danger delete-btn">Delete</button></td>
