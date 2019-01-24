@@ -59,7 +59,7 @@
                     </ul>
                 </div>
                 <div class="col-3 d-flex align-items-center">
-                    <p items="${DECIMAL_FORMAT}" var="DECIMAL_FORMAT">${DECIMAL_FORMAT.format(customerOrder.getTotalPrice())}</p>
+                    <p items="${DECIMAL_FORMAT}" var="DECIMAL_FORMAT">${DECIMAL_FORMAT.format(customerOrder.getTotalPrice())}&euro;</p>
                 </div>
                 <div class="col-3 d-flex align-items-center">
                     <p>${customerOrder.getStatus()}</p>
